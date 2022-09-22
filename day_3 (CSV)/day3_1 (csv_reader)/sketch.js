@@ -9,7 +9,7 @@ TEC costa rica, hfg schw. gmuend
 let countryData;
 
 function preload(){
-    countryData = loadTable('data/countries&areas.csv', 'csv', 'header');
+    countryData = loadTable('data/countries_areas.csv', 'csv', 'header');
 }
 
 function setup() {
@@ -18,9 +18,11 @@ function setup() {
     let i=0;
 
     for (let myRow of countryData.rows){
-        console.log(i + ": " +myRow.get('CountryName'));
+        console.log(i + ": " +myRow.get('CountryName') + "  |  " + myRow.get('sqrKm.') + " km^2");
         i++;
     }
+
+
 }
 
 function draw() {

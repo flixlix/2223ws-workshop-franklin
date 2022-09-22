@@ -17,7 +17,8 @@ class Cities {
         this.myCountryISO = "NaN";
         this.myPopulation = 0;
         this.myName = "NaN";
-        this.myColor = color(100,100,255, 100);
+        this.myColor = color('hsb(0,100%,100%)');
+        this.myHue = 0;
         this.estaEncima = false;
     }
 
@@ -26,17 +27,26 @@ class Cities {
         this.estaEncima = mouseX > this.myX - this.mySize / 2 && mouseX < this.myX + this.mySize / 2 &&
             mouseY > this.myY - this.mySize / 2 && mouseY < this.myY + this.mySize / 2;
 
-        noStroke();
+        strokeWeight(1);
+        stroke(255);
+        colorMode(HSB);
+        this.myColor = color(this.myHue,100,100,0.4);
         fill(this.myColor);
         ellipse (this.myX, this.myY, this.mySize, this.mySize);
 
 
         if (this.estaEncima) {
+            this.myColor = color(this.myHue,100,100,0.9);
+            fill(this.myColor);
+            strokeWeight(3);
+            stroke(255);
+            ellipse (this.myX, this.myY, this.mySize, this.mySize);
             fill (200);
-            text(this.myName, this.myX, this.myY);
-            text(this.myCountry, this.myX, this.myY +15);
-            text("code of country: " + this.myCountryISO, this.myX, this.myY + 30);
-            text("population: " + this.myPopulation, this.myX, this.myY + 45);
+            noStroke();
+            text(this.myName, this.myX + 30, this.myY);
+            text(this.myCountry, this.myX + 30, this.myY +15);
+            text("code of country: " + this.myCountryISO, this.myX + 30, this.myY + 30);
+            text("population: " + this.myPopulation, this.myX + 30, this.myY + 45);
         }
 
     } // end of display

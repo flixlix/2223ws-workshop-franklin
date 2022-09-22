@@ -6,30 +6,40 @@ TEC costa rica, hfg schw. gmuend
 */
 
 class Country {
-    constructor ( ){
-        this.myCountry = "NaN";
-        this.myCountryArea = 0;
-        this.myCountryISO = "NaN";
-        this.mySize = 0;
-        this.myWidth = 6;
-        this.myColor = color(100,100,255);
-        this.estaEncima = false;
+  constructor() {
+    this.myCountry = "NaN";
+    this.myCountryArea = 0;
+    this.myCountryISO = "NaN";
+    this.mySize = 0;
+    this.myWidth = 8.3;
+    this.myColor = color(255, 186, 8);
+    this.estaEncima = false;
+  }
+
+  display(myX, myY) {
+    this.estaEncima =
+      mouseX > myX &&
+      mouseX < myX + this.myWidth;
+
+    noStroke();
+    fill(this.myColor);
+    rect(myX, myY, this.myWidth, -this.mySize);
+    textAlign(LEFT, BASELINE);
+    if (this.estaEncima) {
+      fill(255, 255, 255, 128);
+      if (this.myCountryISO === "DEU" || this.myCountryISO === "PRT") {
+        textSize (30);
+        fill(255);
+        textAlign(CENTER, CENTER);
+        text("Area: " + this.myCountryArea + " km²", width / 2 , height / 2 + 45);
+        text("Country: " + this.myCountry, width / 2, height / 2);
+      } else {
+        fill(200);
+        text("Area: " + this.myCountryArea + " km²", myX, myY + 30);
+        text("Country: " + this.myCountry, myX, myY + 15);
+      }
+      rect(myX, myY, this.myWidth, -this.mySize - 1);
+
     }
-
-
-    display (myX, myY) {
-        this.estaEncima = mouseX > myX  && mouseX < myX + this.myWidth &&
-            mouseY > myY - this.mySize && mouseY < myY;
-
-        noStroke();
-        fill(this.myColor);
-        rect (myX, myY, this.myWidth, -this.mySize);
-
-        if (this.estaEncima) {
-            fill (200);
-            text(this.myCountryArea, myX, myY+30);
-            text(this.myCountry, myX, myY +15);
-        }
-    } // end of display
-
-}  // end of class
+  } // end of display
+} // end of class

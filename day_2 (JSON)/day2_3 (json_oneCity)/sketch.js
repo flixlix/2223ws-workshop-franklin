@@ -16,7 +16,7 @@ function preload(){
 
 function setup() {
     createCanvas(400, 400);
-    let numberOfCity = 10;
+    let numberOfCity = 20;
     population = mostPopulatedCities.cities[numberOfCity].population;
     nameOfCity = mostPopulatedCities.cities[numberOfCity].city_ascii;
     nameOfCountry = mostPopulatedCities.cities[numberOfCity].country;

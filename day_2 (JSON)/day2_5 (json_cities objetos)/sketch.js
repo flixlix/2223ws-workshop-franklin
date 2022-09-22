@@ -27,7 +27,8 @@ function setup() {
         currentCountry.myLatitude = mostPopulatedCities.cities[r].latitude;
         currentCountry.myX = map (currentCountry.myLongitude, -180,180, 0,width );
         currentCountry.myY = map (currentCountry.myLatitude, 90,-90, 0,height );
-        currentCountry.mySize = map( mostPopulatedCities.cities[r].population, 35000000,500000,  100,5) ;
+        currentCountry.mySize = map( mostPopulatedCities.cities[r].population, 35000000,8000000, 40,5);
+        currentCountry.myHue = map( mostPopulatedCities.cities[r].population, 35000000,8000000, 0, 120);
         currentCountry.myPopulation = mostPopulatedCities.cities[r].population;
         currentCountry.myName = mostPopulatedCities.cities[r].city_ascii;
         currentCountry.myCountry = mostPopulatedCities.cities[r].country;
