@@ -12,7 +12,7 @@ let zoomZ = -50;
 function preload() {
   img = loadImage("earth.jpg");
   //earthquakes = loadStrings("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv");
-  earthquakes = loadStrings("all_month.csv");
+  earthquakes = loadStrings("data/all_month.csv");
 }
 
 function setup() {
