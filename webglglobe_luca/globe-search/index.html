@@ -128,12 +128,17 @@
   });
 
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/globe-search/search.json', true);
+  xhr.open('GET', '/globe-search/data/25mostcities.json', true);
   xhr.onreadystatechange = function(e) {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         var data = JSON.parse(xhr.responseText);
+        for ( let i=1; i<data.length;i+=3) {
+          console.log(data[i])
+        }
+        /* data = [38.57,-9.52,0.5] */
         window.data = data;
+        console.log(data)
         globe.addData(data, {format: 'legend'});
         globe.createPoints();
         globe.animate();
