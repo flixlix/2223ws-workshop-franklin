@@ -29,7 +29,7 @@ function setup() {
         currentCountry.myLatitude = mostPopulatedCities.cities[r].latitude;
         currentCountry.myX = -width/2 + map (currentCountry.myLongitude, -180,180, 0,width );
         currentCountry.myY = -height/2 + map (currentCountry.myLatitude, 90,-90, 0,height );
-        currentCountry.mySize = map( mostPopulatedCities.cities[r].population, 35000000,500000, 300,5) ;
+        currentCountry.mySize = map( mostPopulatedCities.cities[r].population, 35000000,500000, 350,5) ;
         currentCountry.myPopulation = mostPopulatedCities.cities[r].population;
         currentCountry.myName = mostPopulatedCities.cities[r].city_ascii;
         currentCountry.myCountry = mostPopulatedCities.cities[r].country;
@@ -41,7 +41,7 @@ function setup() {
 function draw() {
     background(51);
     // projection
-    perspective(60 * PI/180, width/height, 1, 5000);
+    perspective(1 * PI/180, width/height, 1, 5000);
 
     // background Image
     fill(100);
