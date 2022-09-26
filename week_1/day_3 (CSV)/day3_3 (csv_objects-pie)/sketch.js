@@ -13,7 +13,7 @@ let minArea = 10000;
 let totalArea = 0;
 
 function preload(){
-    countryData = loadTable('data/countries&areas.csv', 'csv', 'header');
+    countryData = loadTable('data/countries_areas.csv', 'csv', 'header');
 }
 
 function setup() {
@@ -33,12 +33,12 @@ function setup() {
         if (nowArea > minArea){
             let angleOfCountry = map(nowArea, 0, totalArea, 0, TWO_PI);
             let currentCountry = new CountryArc (500, nowAngle, nowAngle+angleOfCountry);
+            
             nowAngle+=angleOfCountry;
             currentCountry.myCountryArea = myRow.get('sqr_Km');
             currentCountry.myCountry = myRow.get('Country_Name');
             currentCountry.myCountryISO = myRow.get('ISO_A3');
-            if ( currentCountry.myCountryISO === "DEU" ||currentCountry.myCountryISO === "CRI")
-                currentCountry.myColor = color(200,100,100);
+
             myCountries [i] = currentCountry;
             i++;
         }
@@ -50,7 +50,9 @@ function setup() {
 }
 
 function draw() {
+    colorMode(RGB)
     background(25);
+
 
     let currentX = width/2;
     let currentY = height/2;
