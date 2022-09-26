@@ -1,0 +1,241 @@
+{
+"description": "most populated cities in teh world",
+"source": "I forgot. I'm sorry.",
+"cities":
+  [
+  {
+    "city_ascii": "Tokyo",
+    "longitude": 139.7514,
+    "latitude": 35.685,
+    "country": "Japan",
+    "iso3": "JPN",
+    "population": 35676000,
+    "id": 1392685764
+  },
+  {
+    "city_ascii": "New York",
+    "longitude": -73.9249,
+    "latitude": 40.6943,
+    "country": "United States",
+    "iso3": "USA",
+    "population": 19164071,
+    "id": 1840034016
+  },
+  {
+    "city_ascii": "Mexico City",
+    "longitude": -99.131,
+    "latitude": 19.4424,
+    "country": "Mexico",
+    "iso3": "MEX",
+    "population": 19028000,
+    "id": 1484247881
+  },
+  {
+    "city_ascii": "Mumbai",
+    "longitude": 72.857,
+    "latitude": 19.017,
+    "country": "India",
+    "iso3": "IND",
+    "population": 18978000,
+    "id": 1356226629
+  },
+  {
+    "city_ascii": "Sao Paulo",
+    "longitude": -46.625,
+    "latitude": -23.5587,
+    "country": "Brazil",
+    "iso3": "BRA",
+    "population": 18845000,
+    "id": 1076532519
+  },
+  {
+    "city_ascii": "Delhi",
+    "longitude": 77.23,
+    "latitude": 28.67,
+    "country": "India",
+    "iso3": "IND",
+    "population": 15926000,
+    "id": 1356872604
+  },
+  {
+    "city_ascii": "Shanghai",
+    "longitude": 121.4365,
+    "latitude": 31.2165,
+    "country": "China",
+    "iso3": "CHN",
+    "population": 14987000,
+    "id": 1156073548
+  },
+  {
+    "city_ascii": "Kolkata",
+    "longitude": 88.3247,
+    "latitude": 22.495,
+    "country": "India",
+    "iso3": "IND",
+    "population": 14787000,
+    "id": 1356060520
+  },
+  {
+    "city_ascii": "Dhaka",
+    "longitude": 90.4086,
+    "latitude": 23.7231,
+    "country": "Bangladesh",
+    "iso3": "BGD",
+    "population": 12797394,
+    "id": 1050529279
+  },
+  {
+    "city_ascii": "Buenos Aires",
+    "longitude": -58.3975,
+    "latitude": -34.6025,
+    "country": "Argentina",
+    "iso3": "ARG",
+    "population": 12795000,
+    "id": 1032717330
+  },
+  {
+    "city_ascii": "Los Angeles",
+    "longitude": -118.4068,
+    "latitude": 34.114,
+    "country": "United States",
+    "iso3": "USA",
+    "population": 12740381,
+    "id": 1840020491
+  },
+  {
+    "city_ascii": "Karachi",
+    "longitude": 66.99,
+    "latitude": 24.87,
+    "country": "Pakistan",
+    "iso3": "PAK",
+    "population": 12130000,
+    "id": 1586129469
+  },
+  {
+    "city_ascii": "Cairo",
+    "longitude": 31.25,
+    "latitude": 30.05,
+    "country": "Egypt",
+    "iso3": "EGY",
+    "population": 11893000,
+    "id": 1818253931
+  },
+  {
+    "city_ascii": "Rio de Janeiro",
+    "longitude": -43.225,
+    "latitude": -22.925,
+    "country": "Brazil",
+    "iso3": "BRA",
+    "population": 11748000,
+    "id": 1076887657
+  },
+  {
+    "city_ascii": "Osaka",
+    "longitude": 135.4601,
+    "latitude": 34.75,
+    "country": "Japan",
+    "iso3": "JPN",
+    "population": 11294000,
+    "id": 1392419823
+  },
+  {
+    "city_ascii": "Beijing",
+    "longitude": 116.3883,
+    "latitude": 39.9289,
+    "country": "China",
+    "iso3": "CHN",
+    "population": 11106000,
+    "id": 1156228865
+  },
+  {
+    "city_ascii": "Manila",
+    "longitude": 120.9822,
+    "latitude": 14.6042,
+    "country": "Philippines",
+    "iso3": "PHL",
+    "population": 11100000,
+    "id": 1608618140
+  },
+  {
+    "city_ascii": "Moscow",
+    "longitude": 37.6155,
+    "latitude": 55.7522,
+    "country": "Russia",
+    "iso3": "RUS",
+    "population": 10452000,
+    "id": 1643318494
+  },
+  {
+    "city_ascii": "Istanbul",
+    "longitude": 29.01,
+    "latitude": 41.105,
+    "country": "Turkey",
+    "iso3": "TUR",
+    "population": 10061000,
+    "id": 1792756324
+  },
+  {
+    "city_ascii": "Paris",
+    "longitude": 2.3333,
+    "latitude": 48.8667,
+    "country": "France",
+    "iso3": "FRA",
+    "population": 9904000,
+    "id": 1250015082
+  },
+  {
+    "city_ascii": "Seoul",
+    "longitude": 126.9997,
+    "latitude": 37.5663,
+    "country": "Korea, South",
+    "iso3": "KOR",
+    "population": 9796000,
+    "id": 1410836482
+  },
+  {
+    "city_ascii": "Lagos",
+    "longitude": 3.3915,
+    "latitude": 6.4433,
+    "country": "Nigeria",
+    "iso3": "NGA",
+    "population": 9466000,
+    "id": 1566593751
+  },
+  {
+    "city_ascii": "Jakarta",
+    "longitude": 106.8294,
+    "latitude": -6.1744,
+    "country": "Indonesia",
+    "iso3": "IDN",
+    "population": 9125000,
+    "id": 1360771077
+  },
+  {
+    "city_ascii": "Guangzhou",
+    "longitude": 113.325,
+    "latitude": 23.145,
+    "country": "China",
+    "iso3": "CHN",
+    "population": 8829000,
+    "id": 1156237133
+  },
+  {
+    "city_ascii": "Chicago",
+    "longitude": -87.6861,
+    "latitude": 41.8373,
+    "country": "United States",
+    "iso3": "USA",
+    "population": 8639278,
+    "id": 1840000494
+  },
+  {
+    "city_ascii": "London",
+    "longitude": -0.1167,
+    "latitude": 51.5,
+    "country": "United Kingdom",
+    "iso3": "GBR",
+    "population": 8567000,
+    "id": 1826645935
+  }
+  ]
+}

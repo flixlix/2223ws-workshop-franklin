@@ -12,7 +12,7 @@ let zoomZ = -50;
 function preload() {
   img = loadImage("earth.jpg");
   //earthquakes = loadStrings("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv");
-  earthquakes = loadStrings("data/all_month.csv");
+  earthquakes = loadStrings("data/25mostcities.csv");
 }
 
 function setup() {
@@ -32,9 +32,9 @@ function setup() {
   for (var i = 0; i < earthquakes.length; i++) {
     var data = earthquakes[i].split(/,/);
     //console.log(data);
-    var lat = data[1];
-    var lon = data[2];
-    var mag = data[4];
+    var lat = data[2];
+    var lon = data[1];
+    var mag = data[5];
 
     let thetha = PI / 2 + radians(lat);
     let phi = PI / 2 - radians(lon);
