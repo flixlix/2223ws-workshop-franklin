@@ -2,8 +2,8 @@ let ww = 1280;
 let hh = 1280;
 let rotangle = 0;
 let img;
-let rx = 0;
-let ry = 0;
+let rx = 180;
+let ry = 90;
 let r = 200;
 let eqdata;
 rows = [];
@@ -13,6 +13,7 @@ function preload() {
   img = loadImage("earth.jpg");
   //earthquakes = loadStrings("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv");
   earthquakes = loadStrings("data/25mostcities.csv");
+  /* earthquakes = loadStrings("data/all_month.csv"); */
 }
 
 function setup() {
@@ -31,7 +32,7 @@ function setup() {
   //Extract data from CSV, calculate and store in the table
   for (var i = 0; i < earthquakes.length; i++) {
     var data = earthquakes[i].split(/,/);
-    //console.log(data);
+    // console.log(data);
     var lat = data[2];
     var lon = data[1];
     var mag = data[5];
@@ -48,7 +49,7 @@ function setup() {
     //console.log(angleb);
     mag = pow(10, mag);
     mag = sqrt(mag);
-    var magmax = sqrt(pow(10, 10));
+    var magmax = sqrt(pow(10, 1000000));
     var d = map(mag, 0, magmax, 0, 180);
     rows[i] = eqdata.addRow();
     rows[i].set("cX", cX);
@@ -66,7 +67,7 @@ function mouseWheel(event) {
   //move the square according to the vertical scroll amount
   zoomZ += event.delta;
   //uncomment to block page scrolling
-  //return false;
+  // return false;
 }
 
 function draw() {
@@ -121,10 +122,10 @@ function draw() {
     //   rotateY(angle_b, abs(r_axis.y));
     //   rotateX(angle_b, abs(r_axis.x));
     fill(200, 0, 255);
-    //normalMaterial();
+    // normalMaterial();
     box(boxheight, 1, 1);
     pop();
   }
 
-  rotangle = rotangle;
+  rotangle = rotangle + 0.05;
 }
