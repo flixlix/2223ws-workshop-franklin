@@ -2,8 +2,8 @@ let GDP_data;
 let myFont;
 let arrayOfCountries = [];
 let baseLine = 0;
-//let selectedCountries = ['AFG', 'ARE', 'ARG', 'AUS', 'AUT', 'BEL', 'BGD', 'BGR', 'BHR', 'BIH', 'BLR', 'BMU', 'BOL', 'BRA', 'BRB', 'CAF', 'CAN', 'CHE', 'CHI', 'CHL', 'CHN', 'COD', 'COL', 'CRI', 'CUB', 'CYP', 'CZE', 'DEU', 'DMA', 'DNK', 'DOM', 'ECU', 'EGY', 'ESP', 'EST', 'ETH', 'EUU', 'FIN', 'FRA', 'GBR', 'GEO', 'GHA', 'GIN', 'GRC', 'GRD', 'GRL', 'GTM', 'HKG', 'HND', 'HRV', 'HTI', 'HUN', 'IND', 'IRL', 'IRN', 'IRQ', 'ISL', 'ISR', 'ITA', 'JAM', 'JOR', 'JPN', 'KAZ', 'KEN', 'KHM', 'KOR', 'KWT', 'LBN', 'LBR', 'LCN', 'LIE', 'LTU', 'LUX', 'MAC', 'MAR', 'MCO', 'MEX', 'MLT', 'MMR', 'MNE', 'MNG', 'MRT', 'MUS', 'MYS', 'NGA', 'NIC', 'NLD', 'NOR', 'NPL', 'NZL', 'OMN',  'PAK', 'PAN', 'PER', 'PHL',  'POL', 'PRI', 'PRT', 'PRY', 'QAT', 'ROU', 'RUS', 'RWA', 'SAU', 'SDN', 'SEN', 'SGP', 'SLE', 'SLV', 'SMR', 'SOM', 'SRB', 'SSD', 'SUR', 'SVK', 'SVN', 'SWE', 'SYR', 'THA', 'TJK', 'TKM', 'TTO', 'TUN', 'TZA', 'UGA', 'UKR', 'URY', 'USA', 'VEN', 'VNM', 'XKX', 'YEM', 'ZAF', 'ZMB', 'ZWE'];
-let selectedCountries = ['BRA',  'CAN', 'CHN', 'DEU', 'EUU', 'FRA', 'GBR',  'ITA', 'JPN', 'MEX', 'RUS', 'USA', 'CHL','IND','LCN' ];
+//let selectedCurrencies = ['AFG', 'ARE', 'ARG', 'AUS', 'AUT', 'BEL', 'BGD', 'BGR', 'BHR', 'BIH', 'BLR', 'BMU', 'BOL', 'BRA', 'BRB', 'CAF', 'CAN', 'CHE', 'CHI', 'CHL', 'CHN', 'COD', 'COL', 'CRI', 'CUB', 'CYP', 'CZE', 'DEU', 'DMA', 'DNK', 'DOM', 'ECU', 'EGY', 'ESP', 'EST', 'ETH', 'EUU', 'FIN', 'FRA', 'GBR', 'GEO', 'GHA', 'GIN', 'GRC', 'GRD', 'GRL', 'GTM', 'HKG', 'HND', 'HRV', 'HTI', 'HUN', 'IND', 'IRL', 'IRN', 'IRQ', 'ISL', 'ISR', 'ITA', 'JAM', 'JOR', 'JPN', 'KAZ', 'KEN', 'KHM', 'KOR', 'KWT', 'LBN', 'LBR', 'LCN', 'LIE', 'LTU', 'LUX', 'MAC', 'MAR', 'MCO', 'MEX', 'MLT', 'MMR', 'MNE', 'MNG', 'MRT', 'MUS', 'MYS', 'NGA', 'NIC', 'NLD', 'NOR', 'NPL', 'NZL', 'OMN',  'PAK', 'PAN', 'PER', 'PHL',  'POL', 'PRI', 'PRT', 'PRY', 'QAT', 'ROU', 'RUS', 'RWA', 'SAU', 'SDN', 'SEN', 'SGP', 'SLE', 'SLV', 'SMR', 'SOM', 'SRB', 'SSD', 'SUR', 'SVK', 'SVN', 'SWE', 'SYR', 'THA', 'TJK', 'TKM', 'TTO', 'TUN', 'TZA', 'UGA', 'UKR', 'URY', 'USA', 'VEN', 'VNM', 'XKX', 'YEM', 'ZAF', 'ZMB', 'ZWE'];
+let selectedCurrencies = ['BRA',  'CAN', 'CHN', 'DEU', 'EUU', 'FRA', 'GBR',  'ITA', 'JPN', 'MEX', 'RUS', 'USA', 'CHL','IND','LCN' ];
 
 // --------------------------------------------------------  PRELOAD  ----------------------------------------------------
 function preload(){
@@ -19,7 +19,7 @@ function setup() {
     // para verificar que los datos hayan subido bien -------------------------
     console.log(' total rows in GDP_data: ' + GDP_data.getRowCount() ); // 266
     console.log(' total columns in GDP_data: ' + GDP_data.getColumnCount() ); // 64
-    console.log(' number of selected countries: ' + selectedCountries.length ); // 217
+    console.log(' number of selected countries: ' + selectedCurrencies.length ); // 217
 
     baseLine = height-50;
     textFont(myFont);
@@ -100,8 +100,8 @@ function mouseReleased() {
 
 function isThere (candidate) {
     let answer = false;
-    for (let i = 0; i < selectedCountries.length; i++) {
-        if (selectedCountries[i] === candidate) answer = true;
+    for (let i = 0; i < selectedCurrencies.length; i++) {
+        if (selectedCurrencies[i] === candidate) answer = true;
     }
     return (answer);
 }
