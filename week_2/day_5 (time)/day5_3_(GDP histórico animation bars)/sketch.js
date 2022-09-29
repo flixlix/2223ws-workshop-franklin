@@ -5,18 +5,31 @@ TEC costa rica, hfg schw. gmuend
 2022
  */
 
+/* 
+    
+    Code made by:
+    Carina Senger (carina.senger@hfg.design), 
+    Tim Niedermeier (tim.niedermeier@hfg.design), 
+    Anton Pelezki (anton.pelezki@hfg.design), 
+    Luca Ziegler Félix (luca.ziegler@hfg.design)
+
+*/
+
 let GDP_data;
 let myFont;
 let arrayOfCountries = [];
+
 let selectedCountries = ['BEL', 'CRI', 'CZE', 'DEU', 'EUU', 'FRA', 'GBR', 'ITA', 'JPN', 'MEX', 'RUS', 'USA', 'NAC', 'IND', 'LCN', 'UKR', 'BLR', 'ECS'];
 let currentYear;
 let myPlayButton, myRewindButton;
+
 
 // --------------------------------------------------------  PRELOAD  ----------------------------------------------------
 function preload() {
     //GDP_data = loadTable('data/GPD historical2021.csv', 'csv', 'header'); // CountryName,ISO_A3,sqrKm,population,gdpPc,gdp
     GDP_data = loadTable('data/suicide.csv', 'csv', 'header'); // CountryName,ISO_A3,sqrKm,population,gdpPc,gdp
     myFont = loadFont('assets/Roboto-Medium.ttf');
+    
 } // -------------------------------------------------------  PRELOAD  ----------------------------------------------------
 
 
@@ -28,6 +41,7 @@ function setup() {
     console.log(' total rows in GDP_data: ' + GDP_data.getRowCount()); // 266
     console.log(' total columns in GDP_data: ' + GDP_data.getColumnCount()); // 64
     console.log(' number of selected countries: ' + selectedCountries.length); // 217
+    console.log('number of country objects: ' + arrayOfCountries.length);
 
     //create and fill data in country objects --------------------------
     let currentCountry;
@@ -35,13 +49,17 @@ function setup() {
         let currentCountryCODE = GDP_data.getString(r, 1);
         if (isThere(currentCountryCODE)) {
             let currentCountryNAME = GDP_data.getString(r, 0);
+            colorMode(HSB)
             currentCountry = new Country();
+            colorMode(RGB)
             currentCountry.myName = currentCountryNAME;
             currentCountry.myCode = currentCountryCODE;
             arrayOfCountries.push(currentCountry);
+         
         }
     } // end for  tablaDeAreas --------------------------------------------------
-    console.log('number of country objects: ' + arrayOfCountries.length);
+    
+
 
     // save the years data in each country object
     foundCountries = 0;
@@ -62,11 +80,12 @@ function setup() {
             }
         }
     }
-    console.log('number of found countries: ' + foundCountries);
 
     currentYear = 0;
-    myPlayButton = new Button(100, 80, 20, ">");
+    myPlayButton = new Button(150, 80, 20, ">");
+    myBackButton = new Button(100, 80, 20, "<");
     myRewindButton = new Button(50, 80, 20, "<<");
+    myForwardButton = new Button(200, 80, 20, ">>");
 } // --------------------------------------------------------  SET UP ----------------------------------------------------
 
 
@@ -86,23 +105,44 @@ function draw() {
         yNow += 40;
         
     }
-   
 
-    if (myPlayButton.selected && frameCount % 13 === 0) {
+    if (myPlayButton.selected && frameCount % 30 === 0) {
         if (currentYear < 19) currentYear++;
         else {
             currentYear = 19;
             myPlayButton.selected = false;
         }
+        
+    }
+
+    if (myBackButton.selected && frameCount % 30 === 0) {
+        if(myPlayButton.selected) myPlayButton.selected = false;
+        if (currentYear > 0) currentYear--;
+        else {
+            currentYear = 0;
+            myBackButton.selected = false;
+        }
+        myPlayButton.selected = false;
     }
 
     if (myRewindButton.selected) {
+        myPlayButton.selected = false;
+        myBackButton.selected = false;
         currentYear = 0;
         myRewindButton.selected = false;
     }
 
+    if (myForwardButton.selected) {
+        myPlayButton.selected = false;
+        myBackButton.selected = false;
+        currentYear = 19;
+        myForwardButton.selected = false;
+    }
+
     myPlayButton.display();
+    myBackButton.display();
     myRewindButton.display();
+    myForwardButton.display();
 
     textAlign(LEFT);
     fill(200);
@@ -111,7 +151,7 @@ function draw() {
     text("Suicide rate per 100k citizens ", 50, 40);
     text("2000-2019", 50, 60);
     textSize(40);
-    text(arrayOfCountries[0].arrayOfData[currentYear].x, 150, 105);
+    text(arrayOfCountries[0].arrayOfData[currentYear].x, 250, 105);
 
 } // -----------------------------------------------------------  DRAW  ----------------------------------------------------
 
@@ -122,7 +162,9 @@ function draw() {
 // -----------------------------------------------------------  EVENTS  ----------------------------------------------------
 function mouseReleased() {
     myPlayButton.releasedOverMe();
+    myBackButton.releasedOverMe();
     myRewindButton.releasedOverMe();
+    myForwardButton.releasedOverMe();
 }
 
 
