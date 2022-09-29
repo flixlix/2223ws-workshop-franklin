@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>World's Airports</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      html {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000000 url("imgs/loading.gif") center center no-repeat;
+        color: #ffffff;
+        font-family: sans-serif;
+        font-size: 13px;
+        line-height: 20px;
+        height: 100%;
+      }
+
+      #info {
+        background-color: rgba(0, 0, 0, 0.3);
+        font-size: 11px;
+        position: absolute;
+        bottom: 5px;
+        border-radius: 3px;
+        right: 10px;
+        padding: 3px 10px 0 10px;
+      }
+
+      #currentInfo {
+        width: 270px;
+        position: absolute;
+        left: 20px;
+        top: 63px;
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 10px;
+      }
+
+      a {
+        color: #aaa;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .bull {
+        padding: 0 5px;
+        color: #555;
+      }
+
+      #title {
+        position: absolute;
+        top: 20px;
+        min-width: 270px;
+        left: 20px;
+        border-radius: 3px;
+        font: 27px serif;
+        padding: 10px;
+      }
+
+      .sport {
+        display: none;
+        font: 16px sans-serif;
+        line-height: 26px;
+        height: 20px;
+        color: rgba(255, 255, 255, 0.4);
+        padding-left: 7px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+
+      .sport:hover,
+      .sport.active {
+        font-size: 23px;
+        color: #fff;
+      }
+
+      #ce span {
+        display: none;
+      }
+
+      #ce {
+        width: 107px;
+        height: 55px;
+        display: block;
+        position: absolute;
+        bottom: 15px;
+        left: 20px;
+        background: url("imgs/ce.png");
+      }
+
+      #noWebGL {
+        visibility: hidden;
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        width: 600px;
+        margin-left: -300px;
+        padding: 3px;
+
+        color: #ff8248;
+        text-align: center;
+
+        border: 2px dotted #b32000;
+        border-radius: 5px;
+      }
+    </style>
+
+    <script
+      type="text/javascript"
+      src="third-party/Three/ThreeWebGL.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="third-party/Three/ThreeExtras.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="third-party/Three/RequestAnimationFrame.js"
+    ></script>
+    <script type="text/javascript" src="third-party/Three/Detector.js"></script>
+    <script type="text/javascript" src="third-party/Tween.js"></script>
+    <script type="text/javascript" src="globe.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        if (!Detector.webgl) {
+          $("#noWebGL").css("visibility", "visible");
+          $("body").css("background", "#000000");
+        } else {
+          let colorOptions = [
+            [0xd00000, 0xe85d04, 0xfaa307, 0xffba08 /* red */, 0], // From yellow to red
+            [0xffba08, 0xfaa307, 0xe85d04, 0xd00000 /* yellow */, 0], // From red to yellow
+            [0x014f86, 0x2c7da0, 0x61a5c2, 0xa9d6e5 /* dark blue */, 0], // From light blue to dark blue
+            [0xa9d6e5, 0x61a5c2, 0x2c7da0, 0x014f86 /* light blue */, 0], // From dark blue to light blue
+            [0xf4e784, 0xf4cc85, 0xf3b086, 0xf24389, 0], // From pink to yellow
+            [0xf24389, 0xf3b086, 0xf4e784, 0x329f5b, 0], // From pink to yellow
+            [0x329f5b, 0xf4e784, 0xf3b086, 0xf24389,  0] // From yellow to pink
+          ];
+          var colors = colorOptions[6]; // Choose her your color
+          var globe = DAT.Globe($("#container")[0], function (label) {
+            return new THREE.Color(colors[label]);
+          });
+
+          $(".sport").show();
+
+          $(".sport").each(function (i) {
+            var htmlcolor = colors[i].toString(16);
+            htmlcolor = "000000".substr(0, 6 - htmlcolor.length) + htmlcolor;
+            $(this).css("border-left", "20px solid #" + htmlcolor);
+            if (i < 4) {
+              $(this).click(function () {
+                displayData(i + 1);
+                $(".sport").removeClass("active");
+                $(this).addClass("active");
+              });
+            }
+          });
+
+          $("#sAll").click(function () {
+            displayData(false);
+            $(".sport").removeClass("active");
+          });
+
+          function displayData(label) {
+            globe.resetData();
+            globe.addData(window.data, { format: "legend", showLabel: label });
+            globe.createPoints();
+          }
+
+          $.ajax({
+            url: "data.json",
+            dataType: "json",
+            data: {},
+            cache: false,
+            success: function (data) {
+              window.data = data;
+              displayData(false);
+              globe.animate();
+              $("#sAll").html("Show all airports (" + data.length / 4 + ")");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              alert("Error downloading data: " + textStatus);
+            },
+          });
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div id="container"></div>
+
+
+    <div id="currentInfo">
+      <div id="sRun" class="sport">Heliport</div>
+      <div id="sBike" class="sport">Small Airport</div>
+      <div id="sWalk" class="sport">Medium Airport</div>
+      <div id="sOther" class="sport">Large Airport</div>
+      <!-- <div id="sAll" class="sport">&nbsp;</div> -->
+    </div>
+
+    <div id="title">World's Airports</div>
+
+  </body>
+</html>
