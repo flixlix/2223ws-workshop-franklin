@@ -84,12 +84,14 @@ function draw() {
         // year ∈ [0, 61] -> [1960, 2021]
         arrayOfCountries[country].displayBar(currentYear, 50, yNow);
         yNow += 40;
+        
     }
+   
 
-    if (myPlayButton.selected && frameCount % 10 === 0) {
-        if (currentYear < 20) currentYear++;
+    if (myPlayButton.selected && frameCount % 13 === 0) {
+        if (currentYear < 19) currentYear++;
         else {
-            currentYear = 20;
+            currentYear = 19;
             myPlayButton.selected = false;
         }
     }
@@ -107,7 +109,7 @@ function draw() {
     noStroke();
     textSize(18);
     text("Suicide rate per 100k citizens ", 50, 40);
-    text("2000-2020", 50, 60);
+    text("2000-2019", 50, 60);
     textSize(40);
     text(arrayOfCountries[0].arrayOfData[currentYear].x, 150, 105);
 
