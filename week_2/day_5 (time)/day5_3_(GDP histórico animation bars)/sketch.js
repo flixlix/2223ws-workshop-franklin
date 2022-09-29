@@ -14,7 +14,8 @@ let myPlayButton, myRewindButton;
 
 // --------------------------------------------------------  PRELOAD  ----------------------------------------------------
 function preload(){
-    GDP_data = loadTable('data/GPD historical2021.csv', 'csv', 'header'); // CountryName,ISO_A3,sqrKm,population,gdpPc,gdp
+    //GDP_data = loadTable('data/GPD historical2021.csv', 'csv', 'header'); // CountryName,ISO_A3,sqrKm,population,gdpPc,gdp
+    GDP_data = loadTable('data/suicide.csv', 'csv', 'header'); // CountryName,ISO_A3,sqrKm,population,gdpPc,gdp
     myFont = loadFont('assets/Roboto-Medium.ttf');
 }// -------------------------------------------------------  PRELOAD  ----------------------------------------------------
 
@@ -51,7 +52,7 @@ function setup() {
                 if(arrayOfCountries[country].myCode === currentCountryCODE){
                     foundCountries++;
                     let index = 2; // before we have: Country Name & Country Code
-                    for (let year = 1960; year < 2022; year++) {
+                    for (let year = 2000; year < 2020; year++) {
                         let currentGDP = GDP_data.getString(r, index);
                         let currentPaar = createVector (year,currentGDP); // small array with [year,GDP]
                         arrayOfCountries[country].arrayOfData.push(currentPaar);
