@@ -8,7 +8,7 @@ TEC costa rica, hfg schw. gmuend
 let GDP_data;
 let myFont;
 let arrayOfCountries = [];
-let selectedCountries = ['BRA',  'CAN', 'CHN', 'DEU', 'EUU', 'FRA', 'GBR',  'ITA', 'JPN', 'MEX', 'RUS', 'USA', 'CHL','IND','LCN' ];
+let selectedCountries = ['BEL',  'CRI', 'CZE', 'DEU', 'EUU', 'FRA', 'GBR',  'ITA', 'JPN', 'MEX', 'RUS', 'USA', 'NAC','IND','LCN', '' ];
 let currentYear;
 let myPlayButton, myRewindButton;
 
@@ -106,10 +106,11 @@ function draw() {
     fill(200);
     noStroke();
     textSize(18);
-    text("Gross Domestic Product (GDP)", 50, 40);
-    text("1960-2021", 50, 60);
+    text("Suicide rate per 100k citizens ", 50, 40);
+    text("2000-2020", 50, 60);
     textSize(40);
     text(arrayOfCountries[0].arrayOfData[currentYear].x, 150, 105);
+    
 }// -----------------------------------------------------------  DRAW  ----------------------------------------------------
 
 
