@@ -15,11 +15,11 @@ class Country {
     }
 
     displayBar(year, positionX, positionY) {
-        this.myWidth = map (this.arrayOfData[year].y, 10000000, 22000000000000,  0, 1200);
+        this.myWidth = map (this.arrayOfData[year].y, 3, 55,  0, 1000);
         rect(positionX, positionY, this.myWidth, 35);
         textSize(20);
         text (this.myCode, positionX+this.myWidth+5, positionY+20);
-        let currentGPD = (this.arrayOfData[year].y / 1000000000000).toFixed(2) + " MoM";
+        let currentGPD = (this.arrayOfData[year].y / 1).toFixed(2) + " per 100k";
         text (currentGPD, positionX+this.myWidth+50, positionY+20);
     }
 
