@@ -12,15 +12,15 @@ let numOfCities;
 
 function preload(){
     //mostPopulatedCities = loadJSON ("data/25mostPopulatedCities.json");
-    mostPopulatedCities = loadJSON ("data/1kmostPopulatedCities.json");
-    backgroundImage = loadImage ('data/mapaMundi1800x600.png');
+    mostPopulatedCities = loadJSON ("data/25mostPopulatedCitiesTemp.json");
+    backgroundImage = loadImage ('imgs/earth.jpg');
 }
 
 
 function setup() {
     createCanvas(1600, 800, WEBGL);
     setAttributes('antialias', true);
-    easycam = new Dw.EasyCam(this._renderer, {distance : 600});
+    easycam = new Dw.EasyCam(this._renderer, {distance : 1000});
 
     numOfCities = mostPopulatedCities.cities.length;
     for (let r = 0; r < numOfCities; r++) {
@@ -29,7 +29,8 @@ function setup() {
         currentCountry.myLatitude = mostPopulatedCities.cities[r].latitude;
         currentCountry.myX = -width/2 + map (currentCountry.myLongitude, -180,180, 0,width );
         currentCountry.myY = -height/2 + map (currentCountry.myLatitude, 90,-90, 0,height );
-        currentCountry.mySize = map( mostPopulatedCities.cities[r].population, 35000000,500000, 350,5) ;
+        currentCountry.mySizeCold = map( mostPopulatedCities.cities[r].coldest, 70,-70, 350,-350);
+        currentCountry.mySizeHot = map( mostPopulatedCities.cities[r].hottest, 70,-70, 350,-350);
         currentCountry.myPopulation = mostPopulatedCities.cities[r].population;
         currentCountry.myName = mostPopulatedCities.cities[r].city_ascii;
         currentCountry.myCountry = mostPopulatedCities.cities[r].country;

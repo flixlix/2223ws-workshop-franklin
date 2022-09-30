@@ -1,0 +1,267 @@
+{
+"description": "most populated cities in teh world and their hottest and coldest temperature recorded",
+"source": "https://en.wikipedia.org/wiki/List_of_countries_and_territories_by_extreme_temperatures",
+"cities":
+  [
+  {
+    "city_ascii": "Tokyo",
+    "longitude": 139.7514,
+    "latitude": 35.685,
+    "country": "Japan",
+    "iso3": "JPN",
+    "hottest": 41.1,
+    "coldest": -41.0,
+    "id": 1392685764
+  },
+  {
+    "city_ascii": "New York",
+    "longitude": -73.9249,
+    "latitude": 40.6943,
+    "country": "United States",
+    "iso3": "USA",
+    "hottest": 41,
+    "coldest": -26,
+    "id": 1840034016
+  },
+  {
+    "city_ascii": "Mexico City",
+    "longitude": -99.131,
+    "latitude": 19.4424,
+    "country": "Mexico",
+    "iso3": "MEX",
+    "hottest": 32.8,
+    "coldest": -3.3,
+    "id": 1484247881
+  },
+  {
+    "city_ascii": "Mumbai",
+    "longitude": 72.857,
+    "latitude": 19.017,
+    "country": "India",
+    "iso3": "IND",
+    "hottest": 42.2,
+    "coldest": 7.4,
+    "id": 1356226629
+  },
+  {
+    "city_ascii": "Sao Paulo",
+    "longitude": -46.625,
+    "latitude": -23.5587,
+    "country": "Brazil",
+    "iso3": "BRA",
+    "hottest": 38.3,
+    "coldest": 2.2,
+    "id": 1076532519
+  },
+  {
+    "city_ascii": "Delhi",
+    "longitude": 77.23,
+    "latitude": 28.67,
+    "country": "India",
+    "iso3": "IND",
+    "hottest": 49.2,
+    "coldest": -2.2,
+    "id": 1356872604
+  },
+  {
+    "city_ascii": "Shanghai",
+    "longitude": 121.4365,
+    "latitude": 31.2165,
+    "country": "China",
+    "iso3": "CHN",
+    "hottest": 40,
+    "coldest": -12.1,
+    "id": 1156073548
+  },
+  {
+    "city_ascii": "Kolkata",
+    "longitude": 88.3247,
+    "latitude": 22.495,
+    "country": "India",
+    "iso3": "IND",
+    "hottest": 43.9,
+    "coldest": 5,
+    "id": 1356060520
+  },
+  {
+    "city_ascii": "Dhaka",
+    "longitude": 90.4086,
+    "latitude": 23.7231,
+    "country": "Bangladesh",
+    "iso3": "BGD",
+    "hottest": 40.7,
+    "coldest": 2.6,
+    "id": 1050529279
+  },
+  {
+    "city_ascii": "Buenos Aires",
+    "longitude": -58.3975,
+    "latitude": -34.6025,
+    "country": "Argentina",
+    "iso3": "ARG",
+    "hottest": 43.3,
+    "coldest": -5.4,
+    "id": 1032717330
+  },
+  {
+    "city_ascii": "Los Angeles",
+    "longitude": -118.4068,
+    "latitude": 34.114,
+    "country": "United States",
+    "iso3": "USA",
+    "hottest": 49,
+    "coldest": -8,
+    "id": 1840020491
+  },
+  {
+    "city_ascii": "Karachi",
+    "longitude": 66.99,
+    "latitude": 24.87,
+    "country": "Pakistan",
+    "iso3": "PAK",
+    "hottest": 45,
+    "coldest": 3.3,
+    "id": 1586129469
+  },
+  {
+    "city_ascii": "Cairo",
+    "longitude": 31.25,
+    "latitude": 30.05,
+    "country": "Egypt",
+    "iso3": "EGY",
+    "hottest": 45,
+    "coldest": -0.1,
+    "id": 1818253931
+  },
+  {
+    "city_ascii": "Rio de Janeiro",
+    "longitude": -43.225,
+    "latitude": -22.925,
+    "country": "Brazil",
+    "iso3": "BRA",
+    "hottest": 40,
+    "coldest": 10.2,
+    "id": 1076887657
+  },
+  {
+    "city_ascii": "Osaka",
+    "longitude": 135.4601,
+    "latitude": 34.75,
+    "country": "Japan",
+    "iso3": "JPN",
+    "hottest": 37.2,
+    "coldest": -5,
+    "id": 1392419823
+  },
+  {
+    "city_ascii": "Beijing",
+    "longitude": 116.3883,
+    "latitude": 39.9289,
+    "country": "China",
+    "iso3": "CHN",
+    "hottest": 42,
+    "coldest": -27,
+    "id": 1156228865
+  },
+  {
+    "city_ascii": "Manila",
+    "longitude": 120.9822,
+    "latitude": 14.6042,
+    "country": "Philippines",
+    "iso3": "PHL",
+    "hottest": 38.6,
+    "coldest": 14.5,
+    "id": 1608618140
+  },
+  {
+    "city_ascii": "Moscow",
+    "longitude": 37.6155,
+    "latitude": 55.7522,
+    "country": "Russia",
+    "iso3": "RUS",
+    "hottest": 38.2,
+    "coldest": -42,
+    "id": 1643318494
+  },
+  {
+    "city_ascii": "Istanbul",
+    "longitude": 29.01,
+    "latitude": 41.105,
+    "country": "Turkey",
+    "iso3": "TUR",
+    "hottest": 37.8,
+    "coldest": -8.9,
+    "id": 1792756324
+  },
+  {
+    "city_ascii": "Paris",
+    "longitude": 2.3333,
+    "latitude": 48.8667,
+    "country": "France",
+    "iso3": "FRA",
+    "hottest": 42.6,
+    "coldest": -23.9,
+    "id": 1250015082
+  },
+  {
+    "city_ascii": "Seoul",
+    "longitude": 126.9997,
+    "latitude": 37.5663,
+    "country": "Korea, South",
+    "iso3": "KOR",
+    "hottest": 39.6,
+    "coldest": -29.1,
+    "id": 1410836482
+  },
+  {
+    "city_ascii": "Lagos",
+    "longitude": 3.3915,
+    "latitude": 6.4433,
+    "country": "Nigeria",
+    "iso3": "NGA",
+    "hottest": 38.9,
+    "coldest": 17.8,
+    "id": 1566593751
+  },
+  {
+    "city_ascii": "Jakarta",
+    "longitude": 106.8294,
+    "latitude": -6.1744,
+    "country": "Indonesia",
+    "iso3": "IDN",
+    "hottest": 38.9,
+    "coldest": 16.1,
+    "id": 1360771077
+  },
+  {
+    "city_ascii": "Guangzhou",
+    "longitude": 113.325,
+    "latitude": 23.145,
+    "country": "China",
+    "iso3": "CHN",
+    "hottest": 41.1,
+    "coldest": 1.1,
+    "id": 1156237133
+  },
+  {
+    "city_ascii": "Chicago",
+    "longitude": -87.6861,
+    "latitude": 41.8373,
+    "country": "United States",
+    "iso3": "USA",
+    "hottest": 41.1,
+    "coldest": -31.67,
+    "id": 1840000494
+  },
+  {
+    "city_ascii": "London",
+    "longitude": -0.1167,
+    "latitude": 51.5,
+    "country": "United Kingdom",
+    "iso3": "GBR",
+    "hottest": 40.2,
+    "coldest": -16.1,
+    "id": 1826645935
+  }
+  ]
+}
