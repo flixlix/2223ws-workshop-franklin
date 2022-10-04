@@ -4,6 +4,10 @@ function preload(){
     launchData = loadTable('data/launches_by_country.csv', 'csv', 'header');
 }
 
+function setup(){
+    console.log(' total columns in launchDate: ' + launchData.getColumnCount() ); // 64
+}
+
 /* 
 Hochschule für Gestaltung - Schwäbisch Gmünd
 Grundlagen im medialen Raum - Projektarbeit
@@ -29,3 +33,4 @@ Tim Niedermeier
         (_(__/  ./     /                    \_\      \.
                (_(___/                         \_____)_)
 */
+
