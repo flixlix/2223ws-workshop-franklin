@@ -4,11 +4,11 @@ const minLaunches = 30; /* Minimum number of launches per country to it to be di
 const arrayOfCountries = [];
 let currentYear;
 let xLine;
-const numYears = 5567;
+const numYears = 781;
 
 function preload() {
   launchDataByCountry = loadTable(
-    "data/launches_by_country.csv",
+    "data/launches_by_month.csv",
     "csv",
     "header"
   );
