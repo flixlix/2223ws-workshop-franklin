@@ -11,7 +11,7 @@ const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeig
 
 function preload() {
   launchDataByCountry = loadTable(
-    "data/launches_by_quarter.csv",
+    "data/launches_by_year.csv",
     "csv",
     "header"
   );
@@ -25,6 +25,7 @@ function preload() {
 
 function setup() {
   createCanvas(vw, vh); /* size of canvas in x and y direction */
+  frameRate(10)
   let currentCountry;
   currentYear = 0;
   xLine = height - 100;
@@ -65,6 +66,7 @@ function setup() {
 }
 
 function draw() {
+  
   background("#0c164f"); /* color of background of canvas */
   fill(255);
   textSize(30);

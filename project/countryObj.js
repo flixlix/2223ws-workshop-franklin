@@ -20,7 +20,7 @@ class Country {
     calculatePoints(xLine) {
         for (let year = 0; year < numYears; year++) {
             let valueX = this._xBorder + (year) * this._stepX;
-            let valueY = map(this._arrayOfData[year].y, 0, 40, xLine, 100);
+            let valueY = map(this._arrayOfData[year].y, 0, 120, xLine, 100);
             let currentPoint = createVector(valueX, valueY);
             this._arrayOfPoints.push(currentPoint);
         }
@@ -31,27 +31,31 @@ class Country {
         this.is_overMe();
 
         for (let year = 0; year < numYears; year++) {
-            if (this._overMe || this._isSelected) {
-                fill(this._colorIsOver);
-                stroke(this._colorIsOver);
-                strokeWeight(3);
-            } else {
-                fill(this._color);
+            if (this._name == "UdSSR" && year < 35 || this._name == "Russia" && year >= 36 || this._name != "UdSSR" && this._name != "Russia") {
+
+
+                if (this._overMe || this._isSelected) {
+                    fill(this._colorIsOver);
+                    stroke(this._colorIsOver);
+                    strokeWeight(3);
+                } else {
+                    fill(this._color);
+                    stroke(this._color);
+                    strokeWeight(1);
+                }
+
+                ellipse(this._arrayOfPoints[year].x, this._arrayOfPoints[year].y, 3, 3);
+
+                // for lines between points
                 stroke(this._color);
-                strokeWeight(1);
-            }
+                if (year > 0) line(this._arrayOfPoints[year - 1].x, this._arrayOfPoints[year - 1].y, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
 
-            ellipse(this._arrayOfPoints[year].x, this._arrayOfPoints[year].y, 3, 3);
-
-            // for lines between points
-            stroke(this._color);
-            if (year > 0) line(this._arrayOfPoints[year - 1].x, this._arrayOfPoints[year - 1].y, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
-
-            if (this._isSelected) {
-                fill(200);
-                textSize(18);
-                noStroke();
-                /* text( this._name, this._arrayOfPoints[this._arrayOfData.length-1].x+5, this._arrayOfPoints[this._arrayOfData.length-1].y); */
+                if (this._isSelected) {
+                    fill(200);
+                    textSize(18);
+                    noStroke();
+                    /* text( this._name, this._arrayOfPoints[this._arrayOfData.length-1].x+5, this._arrayOfPoints[this._arrayOfData.length-1].y); */
+                }
             }
         }
     }
@@ -80,7 +84,7 @@ class Country {
         let ifAny = false;
         for (let year = 0; year < numYears; year++) {
             let distance = dist(mouseX, mouseY, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
-            if (distance < 5) {
+            if (distance < 20) {
                 fill(200);
                 textSize(24);
                 let descriptionText;
