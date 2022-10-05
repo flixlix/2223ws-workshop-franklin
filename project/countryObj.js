@@ -11,26 +11,29 @@ class Country {
         this._color = color(186, 30, 104);
         this._colorIsOver = color(252, 251, 254);
 
-        this._maxYears = numYears;
-        this._stepX = (width - 150) / this._maxYears;
+        this._stepX = (width - 150) / yearsDisplayed;
         this._xBorder = 75;
     }
 
+
+
     // calculates the pixel position of each year in the country
     calculatePoints(xLine) {
-        for (let year = 0; year < numYears; year++) {
+        this._stepX = (width - 150) / yearsDisplayed;
+        this._arrayOfPoints = [];
+        for (let year = 0; year < yearsDisplayed; year++) {
             let valueX = this._xBorder + (year) * this._stepX;
             let valueY = map(this._arrayOfData[year].y, 0, 108, xLine, topY);
             let currentPoint = createVector(valueX, valueY);
             this._arrayOfPoints.push(currentPoint);
         }
-    };
+    }
 
 
     drawNumRocketLaunch(xLine) {
         this.is_overMe();
 
-        for (let year = 0; year < numYears; year++) {
+        for (let year = 0; year < yearsDisplayed; year++) {
             if (this._name == "UdSSR" && year < 35 || this._name == "Russia" && year >= 36 || this._name != "UdSSR" && this._name != "Russia") {
 
 
@@ -82,7 +85,7 @@ class Country {
 
     is_overMe() {
         let ifAny = false;
-        for (let year = 0; year < numYears; year++) {
+        for (let year = 0; year < yearsDisplayed; year++) {
             let distance = dist(mouseX, mouseY, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
             if (distance < 20) {
                 fill(200);
@@ -105,7 +108,7 @@ class Country {
     };
 
     clickOverMe() {
-        for (let year = 0; year < numYears; year++) {
+        for (let year = 0; year < yearsDisplayed; year++) {
             let distance = dist(mouseX, mouseY, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
             if (distance < 5) this._isSelected = !this._isSelected;
         }

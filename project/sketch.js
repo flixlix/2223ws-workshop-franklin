@@ -8,9 +8,12 @@ const arrayOfEvents = [];
 let currentYear;
 let xLine;
 let numYears; /* to be reassigned in the beginning of setup */
+let yearsDisplayed;
 let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 const topY = 150;
+let lineMaxX;
+let lineMinX;
 
 function preload() {
   launchDataByCountry = loadTable(
@@ -29,11 +32,17 @@ function preload() {
 
 function setup() {
   createCanvas(vw, vh); /* size of canvas in x and y direction */
-  frameRate(10)
+  frameRate(60);
   let currentCountry;
+  let currentEvent;
   currentYear = 0;
   xLine = height - 100;
-  numYears = launchDataByCountry.rows.length; /* assign number of points to number of rows in original csv */
+  numYears = launchDataByCountry.rows.length; /* 61 */
+  yearsDisplayed = 67; /* assign number of points to number of rows in original csv */
+  if (yearsDisplayed > launchDataByCountry.rows.length || yearsDisplayed < 1) {
+    console.warn("You entered too many years, resetting value...")
+    yearsDisplayed = launchDataByCountry.rows.length; /* 61 */
+  }
 
   /* Run through all columns except first column of header row & Create Country objects */
   for (let currentColumn = 1; currentColumn < launchDataByCountry.getColumnCount(); currentColumn++) {
@@ -66,7 +75,7 @@ function setup() {
     //calculates the pixel position of each year in the country
     arrayOfCountries[country].calculatePoints(xLine);
   }
-  let currentEvent;
+
   for (let i = 0; i < eventsData.rows.length; i++) {
     currentEvent = new Marker();
     currentEvent._name = eventsData.rows[i].obj.Country;
@@ -80,7 +89,21 @@ function setup() {
 }
 
 function draw() {
-  
+  if (frameCount % 20 === 0) {
+    if (yearsDisplayed < launchDataByCountry.rows.length) {
+      yearsDisplayed = yearsDisplayed + 1;
+    } else {
+      yearsDisplayed = 1;
+    }
+    for (let country = 0; country < arrayOfCountries.length; country++) { // countries
+      //calculates the pixel position of each year in the country
+      arrayOfCountries[country].calculatePoints(xLine);
+    }
+    for (let i = 0; i < arrayOfEvents.length; i++) {
+      arrayOfEvents[i].calculatePositionX(xLine);
+    }
+  }
+
   background("#0f0326"); /* color of background of canvas */
   fill(255);
   textSize(30);
@@ -92,7 +115,7 @@ function draw() {
   }
   for (let event = 0; event < arrayOfEvents.length; event++) { // events
     arrayOfEvents[event].drawMarker(xLine);
-  }  
+  }
 }
 
 
