@@ -1,14 +1,22 @@
 let launchDataByCountry;
+let colorsOfEachCountry;
 let rocketLaunches;
 const minLaunches = 30; /* Minimum number of launches per country to it to be displayed */
 const arrayOfCountries = [];
 let currentYear;
 let xLine;
-const numYears = 781;
+let numYears; /* to be reassigned in the beginning of setup */
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
 function preload() {
   launchDataByCountry = loadTable(
-    "data/launches_by_month.csv",
+    "data/launches_by_quarter.csv",
+    "csv",
+    "header"
+  );
+  colorsOfEachCountry = loadTable(
+    "data/colors_of_each_country.csv",
     "csv",
     "header"
   );
@@ -16,17 +24,23 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1200, 800); /* size of canvas in x and y direction */
+  /* createCanvas(1200, 800); */ /* size of canvas in x and y direction */
+  createCanvas(vw, vh);
   let currentCountry;
   currentYear = 0;
   xLine = height - 100;
-
-  /* Run through all columns except first column of header row & Create Country object */
+  numYears = launchDataByCountry.rows.length; /* assign number of points to number of rows in original csv */
+  /* Run through all columns except first column of header row & Create Country objects */
   for (let currentColumn = 1; currentColumn < launchDataByCountry.getColumnCount(); currentColumn++) {
     currentCountry = new Country();
     currentCountry._name = launchDataByCountry.columns[currentColumn]; /* add name of country to object */
     currentCountry._index = currentColumn;
     arrayOfCountries.push(currentCountry);
+  }
+  console.log(arrayOfCountries)
+  /* Run through all columns of color csv file and assign that color to country objects */
+  for (let currentColumn = 0; currentColumn < colorsOfEachCountry.getColumnCount(); currentColumn++) {
+    arrayOfCountries[currentColumn]._color = "#" + colorsOfEachCountry.rows[0].arr[currentColumn]; /* assign color from csv to country object */
   }
 
   /* add new value to array of data to each country */
@@ -48,7 +62,6 @@ function setup() {
     arrayOfCountries[country].calculatePoints(xLine);
   }
 
-  console.log(arrayOfCountries)
 }
 
 function draw() {
@@ -64,7 +77,7 @@ function draw() {
 
 function mouseReleased() {
   for (let country = 0; country < arrayOfCountries.length; country++) { // countries
-      arrayOfCountries[country].clickOverMe();
+    arrayOfCountries[country].clickOverMe();
   }
 
 }

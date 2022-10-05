@@ -6,7 +6,7 @@ class Country {
         this._arrayOfData = [];
         this._arrayOfPoints = [];
         this._overMe = false;
-        this._is_isSelected = false;
+        this._isSelected = false;
 
         this._color = color(186, 30, 104);
         this._colorIsOver = color(252, 251, 254);
@@ -20,7 +20,7 @@ class Country {
     calculatePoints(xLine) {
         for (let year = 0; year < numYears; year++) {
             let valueX = this._xBorder + (year) * this._stepX;
-            let valueY = map(this._arrayOfData[year].y, 0, 3, xLine, 600);
+            let valueY = map(this._arrayOfData[year].y, 0, 40, xLine, 100);
             let currentPoint = createVector(valueX, valueY);
             this._arrayOfPoints.push(currentPoint);
         }
@@ -54,7 +54,9 @@ class Country {
                 /* text( this._name, this._arrayOfPoints[this._arrayOfData.length-1].x+5, this._arrayOfPoints[this._arrayOfData.length-1].y); */
             }
         }
-    };
+    }
+
+
 
     displayBall(year) {
         fill(250, 150, 150, 50);
@@ -82,12 +84,14 @@ class Country {
                 fill(200);
                 textSize(24);
                 let descriptionText;
+
+                /* create dynamic description, based on value, singular or plural */
                 if ((this._arrayOfData[year].y * 1).toFixed(0) != 1) {
                     descriptionText = "Space Flights";
                 } else {
                     descriptionText = "Space Flight"
                 }
-                text((this._arrayOfData[year].y * 1).toFixed(0) + descriptionText, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y - 70);
+                text((this._arrayOfData[year].y * 1).toFixed(0) + " " /* add whitespace between value and text */ + descriptionText, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y - 70);
                 text(this._name, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y - 45);
                 text(this._arrayOfData[year].x, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y - 20);
                 ifAny = true;

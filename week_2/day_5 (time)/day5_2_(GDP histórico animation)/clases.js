@@ -1,5 +1,6 @@
 class Country {
 
+    
     constructor () {
         this.myName = "";
         this.myCode = "";
@@ -19,7 +20,7 @@ class Country {
     // calculates the pixel position of each year in the country
     calculatePoints (baseLine) {
         for (let year = 0; year < this.arrayOfData.length; year++) {
-            let secX = this.xBorder + (year) * this.stepX;
+            let secX = this.xBorder + (year) * this.stepX;     
             let secY = map (this.arrayOfData[year].y, 10000000, 22000000000000,  baseLine, 150);
             let currentPoint = createVector (secX,secY);
             this.arrayOfpoints.push(currentPoint);
