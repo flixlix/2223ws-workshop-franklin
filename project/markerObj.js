@@ -21,7 +21,7 @@ class Marker {
     lineMaxX = (width - 75); /* get coordinates of last element in array */
     lineMinX = 75; /* get coordinates of first element in array */
     for (let year = 0; year < yearsDisplayed; year++) {
-      this._positionX = map(this._decimalYear, 1957, 1957 + yearsDisplayed - 1, lineMinX, lineMaxX);
+      this._positionX = map(this._decimalYear, 1957, 1957 + yearsDisplayed, lineMinX, lineMaxX);
     }
   }
   
