@@ -68,7 +68,9 @@ function draw() {
   background("#0c164f"); /* color of background of canvas */
   fill(255);
   textSize(30);
-  text("First Launch date: " + launchDataByCountry.rows[0].obj.date, 50, 50);
+  text("Rocket launches throughout history", 50, 50)
+  textSize(15);
+  text("First Launch date: " + launchDataByCountry.rows[0].obj.date, 50, 75);
   for (let country = 0; country < arrayOfCountries.length; country++) { // countries
     arrayOfCountries[country].drawNumRocketLaunch(xLine);
   }
