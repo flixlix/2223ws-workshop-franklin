@@ -47,6 +47,7 @@ function setup() {
         }
     } // end for  tablaDeAreas --------------------------------------------------
     console.log('number of country objects: ' + arrayOfCountries.length );
+    console.log(arrayOfCountries)
 
     // save the years data in each country object
     foundCountries = 0;
@@ -67,6 +68,7 @@ function setup() {
             }
         }
     }
+    console.log("before:", arrayOfCountries)
     console.log('number of found countries: ' + foundCountries );
 
     for (let country = 0; country < arrayOfCountries.length; country++) { // countries
@@ -76,6 +78,7 @@ function setup() {
 
     currentYear = 0;
     myButton = new Button (20, 70, 20, "play");
+    console.log("after:", arrayOfCountries)
 }// --------------------------------------------------------  SET UP ----------------------------------------------------
 
 
