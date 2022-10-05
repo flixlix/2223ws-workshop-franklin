@@ -1,128 +1,87 @@
 class Marker {
   constructor() {
     this._name = "";
-    this._index = "";
-    this._arrayOfData = [];
-    this._arrayOfPoints = [];
+    this._index = 0;
+    this._decimalYear = "";
+    this._date = "";
+    this._description = "";
+    this._crew = "";
+    this._positionX = 10;
+    this._selectionWidth = 10;
     this._overMe = false;
     this._isSelected = false;
 
     this._color = color(255, 215, 0, 200);
-    this._colorIsOver = color(255, 215, 0, 255);
-    this._maxYears = numYears;
-    this._stepX = (width - 150) / this._maxYears;
-    this._xBorder = 75;
+    this._colorIsOver = color(255, 255, 255);
   }
 
   // calculates the pixel position
-  calculatePoints(xLine) {
+  calculatePositionX(xLine) {
     for (let year = 0; year < numYears; year++) {
-      let valueX = this._xBorder + year * this._stepX;
-      let valueY = map(this._arrayOfData[year].y, 0, 40, xLine, 100);
-      let currentPoint = createVector(valueX, valueY);
-      this._arrayOfPoints.push(currentPoint);
+      let lineMaxX = arrayOfCountries.at(-1)._arrayOfPoints.at(-1).x; /* get coordinates of last element in array */
+      let lineMinX = arrayOfCountries[0]._arrayOfPoints[0].x; /* get coordinates of first element in array */
+      let lineX = map(this._decimalYear, 1957, 2022, lineMinX, lineMaxX);
+      this._positionX = lineX;
     }
   }
 
-  drawNumRocketLaunch(xLine) {
+  drawMarker(xLine) {
+    push();
     this.is_overMe();
-
-    for (let year = 0; year < numYears; year++) {
-      if (this._overMe || this._isSelected) {
-        fill(this._colorIsOver);
-        stroke(this._colorIsOver);
-        strokeWeight(3);
-      } else {
-        fill(this._color);
-        stroke(this._color);
-        strokeWeight(1);
-      }
-
-      line(this._arrayOfPoints[year].x, this._arrayOfPoints[year].y, 3, 1000);
-
-      if (this._isSelected) {
-        fill(200);
-        textSize(18);
-        noStroke();
-        /* text( this._name, this._arrayOfPoints[this._arrayOfData.length-1].x+5, this._arrayOfPoints[this._arrayOfData.length-1].y); */
-      }
-    }
-  }
-
-  displayBall(year) {
-    fill(250, 150, 150, 50);
-    noStroke();
-    if (this._arrayOfPoints[year].y < 1127) {
-      // 1140
-      // drawing dates
-      let mySize = round(map(this._arrayOfPoints[year].y, 1200, 150, 1, 500));
-      line(
-        this._arrayOfPoints[year].x,
-        this._arrayOfPoints[year].y,
-        mySize,
-        mySize
-      );
-
-      // text
-      fill(200);
-      noStroke();
-      textAlign(CENTER);
-      textSize(10);
-      text(
-        this.myCode,
-        this._arrayOfPoints[year].x,
-        this._arrayOfPoints[year].y - 5
-      );
-      text(
-        year + 1960,
-        this._arrayOfPoints[year].x,
-        this._arrayOfPoints[year].y + 15
-      );
-    }
+    line(this._positionX, xLine, this._positionX, 100);
+    pop();
   }
 
   is_overMe() {
-    let ifAny = false;
-    for (let year = 0; year < numYears; year++) {
-      let distance = dist(
-        mouseX,
-        mouseY,
-        this._arrayOfPoints[year].x,
-        this._arrayOfPoints[year].y
-      );
-      if (distance < 5) {
-        fill(200);
-        textSize(24);
-        let descriptionText;
-
-        /* create dynamic description, based on value, singular or plural */
-        if ((this._arrayOfData[year].y * 1).toFixed(0) != 1) {
-          descriptionText = "Space Flights";
-        } else {
-          descriptionText = "Space Flight";
-        }
-        text(
-          (this._arrayOfData[year].y * 1).toFixed(0) +
-            " " /* add whitespace between value and text */ +
-            descriptionText,
-          this._arrayOfPoints[year].x,
-          this._arrayOfPoints[year].y - 70
-        );
-        text(
-          this._name,
-          this._arrayOfPoints[year].x,
-          this._arrayOfPoints[year].y - 45
-        );
-        text(
-          this._arrayOfData[year].x,
-          this._arrayOfPoints[year].x,
-          this._arrayOfPoints[year].y - 20
-        );
-        ifAny = true;
-      }
+    if (mouseX > this._positionX - this._selectionWidth && mouseX < this._positionX + this._selectionWidth) {
+      this._overMe = true;
+      stroke(this._colorIsOver);
+    } else {
+      this._overMe = false;
+      stroke(this._color);
     }
-    this._overMe = ifAny;
   }
+  /*  let ifAny = false;
+ for (let year = 0; year < numYears; year++) {
+   let distance = dist(
+     mouseX,
+     mouseY,
+     this._arrayOfPoints[year].x,
+     this._arrayOfPoints[year].y
+   );
+   if (distance < 5) {
+     fill(200);
+     textSize(24);
+     let descriptionText;
+
+     /* create dynamic description, based on value, singular or plural */
+  /*         if ((this._arrayOfData[year].y * 1).toFixed(0) != 1) {
+            descriptionText = "Space Flights";
+          } else {
+            descriptionText = "Space Flight";
+          }
+          text(
+            (this._arrayOfData[year].y * 1).toFixed(0) + */
+  /*           " " /* add whitespace between value and text */ /* 
+  /*           descriptionText,
+            this._arrayOfPoints[year].x,
+            this._arrayOfPoints[year].y - 70
+          );
+          text(
+            this._name,
+            this._arrayOfPoints[year].x,
+            this._arrayOfPoints[year].y - 45
+          );
+          text(
+            this._arrayOfData[year].x,
+            this._arrayOfPoints[year].x,
+            this._arrayOfPoints[year].y - 20
+          );
+          ifAny = true;
+        }
+      }
+      this._overMe = ifAny; */
+
 
   clickOverMe() {
     for (let year = 0; year < numYears; year++) {

@@ -23,7 +23,6 @@ class Country {
             let valueY = map(this._arrayOfData[year].y, 0, 120, xLine, 100);
             let currentPoint = createVector(valueX, valueY);
             this._arrayOfPoints.push(currentPoint);
-            console.log(year)
         }
     };
 
