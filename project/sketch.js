@@ -66,7 +66,7 @@ function setup() {
 }
 
 function draw() {
-  
+
   background("#0c164f"); /* color of background of canvas */
   fill(255);
   textSize(30);
@@ -76,6 +76,12 @@ function draw() {
   for (let country = 0; country < arrayOfCountries.length; country++) { // countries
     arrayOfCountries[country].drawNumRocketLaunch(xLine);
   }
+  
+  let lineMaxX = arrayOfCountries[arrayOfCountries.length - 1]._arrayOfPoints[arrayOfCountries[arrayOfCountries.length - 1]._arrayOfPoints.length - 1].x;
+  let myYear = 1969.5;
+  let lineX = map(myYear, 1957, 2022, 75, lineMaxX);
+
+  line(lineX, xLine, lineX, 100)
 }
 
 
