@@ -11,7 +11,7 @@ class Country {
         this._color = color(186, 30, 104);
         this._colorIsOver = color(252, 251, 254);
 
-        this._stepX = (width - 150) / yearsDisplayed;
+        this._stepX = (width - 150) / (yearsDisplayed - 1);
         this._xBorder = 75;
     }
 
@@ -19,10 +19,13 @@ class Country {
 
     // calculates the pixel position of each year in the country
     calculatePoints(xLine) {
-        this._stepX = (width - 150) / yearsDisplayed;
+        this._stepX = (width - 150) / (yearsDisplayed - 1);
         this._arrayOfPoints = [];
         for (let year = 0; year < yearsDisplayed; year++) {
-            let valueX = this._xBorder + (year) * this._stepX;
+            let valueX;
+            /* old way of calculating x coordinate */
+            /* valueX = this._xBorder + (year) * this._stepX; */    
+            valueX = map(this._arrayOfData[year].x - 1957,0,yearsDisplayed,75,width - 75);
             let valueY = map(this._arrayOfData[year].y, 0, 108, xLine, topY);
             let currentPoint = createVector(valueX, valueY);
             this._arrayOfPoints.push(currentPoint);

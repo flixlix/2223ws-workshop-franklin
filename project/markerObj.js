@@ -18,8 +18,8 @@ class Marker {
 
   // calculates the x position of the marker
   calculatePositionX(xLine) {
-    lineMaxX = arrayOfCountries.at(-1)._arrayOfPoints.at(-1).x; /* get coordinates of last element in array */
-    lineMinX = arrayOfCountries[0]._arrayOfPoints[0].x; /* get coordinates of first element in array */
+    lineMaxX = (width - 75); /* get coordinates of last element in array */
+    lineMinX = 75; /* get coordinates of first element in array */
     for (let year = 0; year < yearsDisplayed; year++) {
       this._positionX = map(this._decimalYear, 1957, 1957 + yearsDisplayed - 1, lineMinX, lineMaxX);
     }

@@ -38,7 +38,7 @@ function setup() {
   currentYear = 0;
   xLine = height - 100;
   numYears = launchDataByCountry.rows.length; /* 61 */
-  yearsDisplayed = 67; /* assign number of points to number of rows in original csv */
+  yearsDisplayed = 1; /* assign number of points to number of rows in original csv */
   if (yearsDisplayed > launchDataByCountry.rows.length || yearsDisplayed < 1) {
     console.warn("You entered too many years, resetting value...")
     yearsDisplayed = launchDataByCountry.rows.length; /* 61 */
@@ -89,11 +89,11 @@ function setup() {
 }
 
 function draw() {
-  if (frameCount % 20 === 0) {
-    if (yearsDisplayed < launchDataByCountry.rows.length) {
-      yearsDisplayed = yearsDisplayed + 1;
+  if (frameCount % 1 === 0) {
+    if (yearsDisplayed <= launchDataByCountry.rows.length - 1) {
+      yearsDisplayed = (yearsDisplayed * 1.001) + 0.05;
     } else {
-      yearsDisplayed = 1;
+      yearsDisplayed = launchDataByCountry.rows.length;
     }
     for (let country = 0; country < arrayOfCountries.length; country++) { // countries
       //calculates the pixel position of each year in the country
