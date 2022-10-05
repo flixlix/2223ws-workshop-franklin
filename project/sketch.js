@@ -24,12 +24,12 @@ function preload() {
 }
 
 function setup() {
-  /* createCanvas(1200, 800); */ /* size of canvas in x and y direction */
-  createCanvas(vw, vh);
+  createCanvas(vw, vh); /* size of canvas in x and y direction */
   let currentCountry;
   currentYear = 0;
   xLine = height - 100;
   numYears = launchDataByCountry.rows.length; /* assign number of points to number of rows in original csv */
+
   /* Run through all columns except first column of header row & Create Country objects */
   for (let currentColumn = 1; currentColumn < launchDataByCountry.getColumnCount(); currentColumn++) {
     currentCountry = new Country();
@@ -37,7 +37,7 @@ function setup() {
     currentCountry._index = currentColumn;
     arrayOfCountries.push(currentCountry);
   }
-  console.log(arrayOfCountries)
+
   /* Run through all columns of color csv file and assign that color to country objects */
   for (let currentColumn = 0; currentColumn < colorsOfEachCountry.getColumnCount(); currentColumn++) {
     arrayOfCountries[currentColumn]._color = "#" + colorsOfEachCountry.rows[0].arr[currentColumn]; /* assign color from csv to country object */
