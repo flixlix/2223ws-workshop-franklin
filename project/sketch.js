@@ -31,7 +31,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(vw, vh); /* size of canvas in x and y direction */
+  createCanvas(1400, 900); /* size of canvas in x and y direction */
   frameRate(60);
   let currentCountry;
   let currentEvent;
