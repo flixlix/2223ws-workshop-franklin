@@ -20,7 +20,7 @@ class Country {
     calculatePoints(xLine) {
         for (let year = 0; year < numYears; year++) {
             let valueX = this._xBorder + (year) * this._stepX;
-            let valueY = map(this._arrayOfData[year].y, 0, 120, xLine, 100);
+            let valueY = map(this._arrayOfData[year].y, 0, 108, xLine, topY);
             let currentPoint = createVector(valueX, valueY);
             this._arrayOfPoints.push(currentPoint);
         }

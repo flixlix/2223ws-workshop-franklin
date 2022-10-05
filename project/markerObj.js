@@ -11,11 +11,11 @@ class Marker {
     this._overMe = false;
     this._isSelected = false;
 
-    this._color = color(255, 215, 0, 200);
-    this._colorIsOver = color(255, 255, 255);
+    this._color =  color(255, 255, 255, 255);
+    this._colorIsOver = color(255, 215, 0, 255);
   }
 
-  // calculates the pixel position
+  // calculates the x position of the marker
   calculatePositionX(xLine) {
     for (let year = 0; year < numYears; year++) {
       let lineMaxX = arrayOfCountries.at(-1)._arrayOfPoints.at(-1).x; /* get coordinates of last element in array */
@@ -28,70 +28,39 @@ class Marker {
   drawMarker(xLine) {
     push();
     this.is_overMe();
-    line(this._positionX, xLine, this._positionX, 100);
+    
+    
+    if (this._isSelected || this._overMe) {
+      stroke(this._colorIsOver);
+    }
+    line(this._positionX, xLine, this._positionX, topY);
     pop();
   }
 
   is_overMe() {
-    if (mouseX > this._positionX - this._selectionWidth && mouseX < this._positionX + this._selectionWidth) {
+    if (mouseX > this._positionX - this._selectionWidth && mouseX < this._positionX + this._selectionWidth && mouseY > topY && mouseY < xLine) {
       this._overMe = true;
-      stroke(this._colorIsOver);
+
     } else {
       this._overMe = false;
       stroke(this._color);
+      return;
     }
+    push()
+    noStroke()
+    textLeading(20)
+    textAlign(RIGHT);
+    textSize(24);
+    fill(255);
+    text(this._date, width - 75, 36); /* crew text */
+    textSize(15);
+    fill(190);
+    text(this._name + "\n" + this._description + "\n" + this._crew, width - 75, 58);
+    pop()
   }
-  /*  let ifAny = false;
- for (let year = 0; year < numYears; year++) {
-   let distance = dist(
-     mouseX,
-     mouseY,
-     this._arrayOfPoints[year].x,
-     this._arrayOfPoints[year].y
-   );
-   if (distance < 5) {
-     fill(200);
-     textSize(24);
-     let descriptionText;
-
-     /* create dynamic description, based on value, singular or plural */
-  /*         if ((this._arrayOfData[year].y * 1).toFixed(0) != 1) {
-            descriptionText = "Space Flights";
-          } else {
-            descriptionText = "Space Flight";
-          }
-          text(
-            (this._arrayOfData[year].y * 1).toFixed(0) + */
-  /*           " " /* add whitespace between value and text */ /* 
-  /*           descriptionText,
-            this._arrayOfPoints[year].x,
-            this._arrayOfPoints[year].y - 70
-          );
-          text(
-            this._name,
-            this._arrayOfPoints[year].x,
-            this._arrayOfPoints[year].y - 45
-          );
-          text(
-            this._arrayOfData[year].x,
-            this._arrayOfPoints[year].x,
-            this._arrayOfPoints[year].y - 20
-          );
-          ifAny = true;
-        }
-      }
-      this._overMe = ifAny; */
-
-
   clickOverMe() {
-    for (let year = 0; year < numYears; year++) {
-      let distance = dist(
-        mouseX,
-        mouseY,
-        this._arrayOfPoints[year].x,
-        this._arrayOfPoints[year].y
-      );
-      if (distance < 5) this._isSelected = !this._isSelected;
+    if (mouseX > this._positionX - this._selectionWidth && mouseX < this._positionX + this._selectionWidth && mouseY > topY && mouseY < xLine) {
+      this._isSelected = !this._isSelected;
     }
   }
 } // end of class

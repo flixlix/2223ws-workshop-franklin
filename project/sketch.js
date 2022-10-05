@@ -10,6 +10,7 @@ let xLine;
 let numYears; /* to be reassigned in the beginning of setup */
 let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+const topY = 150;
 
 function preload() {
   launchDataByCountry = loadTable(
@@ -72,13 +73,15 @@ function setup() {
     currentEvent._date = eventsData.rows[i].obj.Date;
     currentEvent._decimalYear = eventsData.rows[i].obj.Position;
     currentEvent._description = eventsData.rows[i].obj.Event;
+    currentEvent._crew = eventsData.rows[i].obj.Crew
     currentEvent.calculatePositionX(xLine);
     arrayOfEvents.push(currentEvent)
   }
 }
 
 function draw() {
-  background("#0c164f"); /* color of background of canvas */
+  
+  background("#0f0326"); /* color of background of canvas */
   fill(255);
   textSize(30);
   text("Rocket launches throughout history", 50, 50)
@@ -96,6 +99,9 @@ function draw() {
 function mouseReleased() {
   for (let country = 0; country < arrayOfCountries.length; country++) { // countries
     arrayOfCountries[country].clickOverMe();
+  }
+  for (let event = 0; event < arrayOfEvents.length; event++) { // countries
+    arrayOfEvents[event].clickOverMe();
   }
 
 }
