@@ -105,7 +105,7 @@ function draw() {
 
   if (frameCount % 1 === 0 && playButton.selected)  {
     if (yearsDisplayed <= launchDataByCountry.rows.length - 1) {
-      yearsDisplayed = (yearsDisplayed * 1.001) + 0.05;
+      yearsDisplayed = (yearsDisplayed * 1.005) + 0.05;
     } else {
       yearsDisplayed = launchDataByCountry.rows.length;
     }
