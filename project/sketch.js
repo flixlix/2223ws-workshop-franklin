@@ -36,7 +36,8 @@ function setup() {
   frameRate(60);
   let currentCountry;
   let currentEvent;
-  myPlayButton = new Button(150, 80, 20, ">");
+  playButton = new Button(width/2-10, height-50, 20, ">");
+  console.log()
   currentYear = 0;
   xLine = height - 100;
   numYears = launchDataByCountry.rows.length; /* 61 */
