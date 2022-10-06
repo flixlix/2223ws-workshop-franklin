@@ -14,6 +14,7 @@ let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight
 const topY = 150;
 let lineMaxX;
 let lineMinX;
+let playButton;
 
 function preload() {
   launchDataByCountry = loadTable(
@@ -35,6 +36,7 @@ function setup() {
   frameRate(60);
   let currentCountry;
   let currentEvent;
+  myPlayButton = new Button(150, 80, 20, ">");
   currentYear = 0;
   xLine = height - 100;
   numYears = launchDataByCountry.rows.length; /* 61 */
@@ -118,6 +120,7 @@ function draw() {
   for (let event = 0; event < arrayOfEvents.length; event++) { // events
     arrayOfEvents[event].drawMarker(xLine);
   }
+  playButton.display();
 }
 
 
