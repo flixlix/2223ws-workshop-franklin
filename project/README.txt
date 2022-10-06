@@ -1,39 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Every Space Launch in History</title>
-    <style>
-      body, main {
-        overflow: hidden;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: auto;
-        margin: auto;
-      }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
-    <script src="sketch.js"></script>
-    <script src="countryObj.js"></script>
-    <script src="markerObj.js"></script>
-  </head>
-
-  <body></body>
-</html>
-
-<!-- 
 Hochschule für Gestaltung - Schwäbisch Gmünd
 Grundlagen im medialen Raum - Projektarbeit
 Anton Pelezki 
 Carina Senger 
 Luca Mário Ziegler Félix  
-Tim Niedermeier 
-                   ⢰⣶⣶⣦⣤⣀                                    
+Tim Niedermeier
+                                   
                    ⢸⣿⣿⣿⣿⣿⣿⣶⣤⣀         ⠤⣄⣀⡀        ⣀⣀⣤⣤⣤⣶⣦    
                    ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄        ⠘⢯⣗⣲⣤⣠⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿    
                    ⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠉     ⢀⡤⠖⠚⠉⠉⠉⠉⠙⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇    
@@ -61,5 +32,4 @@ Tim Niedermeier
          ⢹ ⠸⡄ ⢹⡀⣤⠒⢧⡀ ⠈⣇ ⢸⡀ ⢹⠇⣼⠉⢙⠦⢄⣈⡉ ⠼⡄⣼⠃⣴⡟⠋⢹⠇ ⣼ ⢠⠇ ⣠⠾⠁  ⠛  ⣷
          ⠼⡆ ⠱⡄ ⡧⢿⡀ ⠳⡄ ⠸⡦ ⢳⣴⣫⠾⠛⣷⣸⡀ ⢂   ⣻⣿⣰⠋  ⣿  ⠹⠤⢾⣀⡾⠁⢀⡠     ⡿
                ⡅ ⠙⣄ ⠙⢦⡀⣿  ⢹⡀⣀⣀⣼⡍⠻⠿⠙⢶⠞⠛⠉⣻⣿   ⠘⢦⡀   ⠈⠛⠒⠻⠄      
-               ⠛⠳⠆⠈⠳⠤⠨⠗⠛   ⠏⠻⠇⠼⠁⠂   ⠃ ⠸⠋⠿⠷⠄ ⠰⠃⠙⠲⠤            ⣀
- -->
+               ⠛⠳⠆⠈⠳⠤⠨⠗⠛   ⠏⠻⠇⠼⠁⠂   ⠃ ⠸⠋⠿⠷⠄ ⠰⠃⠙⠲⠤            
