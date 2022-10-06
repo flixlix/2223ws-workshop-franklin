@@ -13,6 +13,7 @@ class Button {
   }
 
   display() {
+    push();
     fill(255, 0, 0);
     //ellipse (this.myX, this.myY, 5,5);
 
@@ -41,6 +42,7 @@ class Button {
       stroke(this.myStrokeColor);
       rect(this.myX, this.myY, this.mySize, this.mySize);
     }
+    pop();
   }
 
   releasedOverMe() {
