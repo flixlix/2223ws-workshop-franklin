@@ -40,11 +40,11 @@ function setup() {
   frameRate(60);
   let currentCountry;
   let currentEvent;
-  playButton = new Button(width/2-10, height-50, 20, "||");
-  skipButton = new Button(width/2+40, height-50, 20, ">");
-  backButton = new Button(width/2-60, height-50, 20, "<");
-  totalskipButton = new Button(width/2+90, height-50, 20, ">>");
-  totalbackButton = new Button(width/2-110, height-50, 20, "<<");
+  playButton = new Button(width/2-20, height-50, 40, "||");
+  skipButton = new Button(width/2+60, height-50, 40, ">");
+  backButton = new Button(width/2-100, height-50, 40, "<");
+  totalskipButton = new Button(width/2+140, height-50, 40, ">>");
+  totalbackButton = new Button(width/2-180, height-50, 40, "<<");
   console.log()
   currentYear = 0;
   xLine = height - 100;
