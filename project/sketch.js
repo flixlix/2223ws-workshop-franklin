@@ -40,12 +40,11 @@ function setup() {
   frameRate(60);
   let currentCountry;
   let currentEvent;
-  playButton = new Button(width/2-10, height-50, 20, "||");
+  playButton = new Button(width/2-10, height-50, 20, "󰐊");
   skipButton = new Button(width/2+40, height-50, 20, ">");
   backButton = new Button(width/2-60, height-50, 20, "<");
   totalskipButton = new Button(width/2+90, height-50, 20, ">>");
   totalbackButton = new Button(width/2-110, height-50, 20, "<<");
-  console.log()
   currentYear = 0;
   xLine = height - 100;
   numYears = launchDataByCountry.rows.length; /* 61 */
@@ -65,9 +64,7 @@ function setup() {
 
   /* Run through all columns of color csv file and assign that color to country objects */
   for (let currentColumn = 0; currentColumn < colorsOfEachCountry.getColumnCount(); currentColumn++) {
-    
     arrayOfCountries[currentColumn]._color = "#" + colorsOfEachCountry.rows[0].arr[currentColumn]; /* assign color from csv to country object */
-    console.log(arrayOfCountries[currentColumn]._color)
   }
 
   /* add new value to array of data to each country */
@@ -92,6 +89,7 @@ function setup() {
   for (let i = 0; i < eventsData.rows.length; i++) {
     currentEvent = new Marker();
     currentEvent._name = eventsData.rows[i].obj.Country;
+    currentEvent._index = i;
     currentEvent._date = eventsData.rows[i].obj.Date;
     currentEvent._decimalYear = eventsData.rows[i].obj.Position;
     currentEvent._description = eventsData.rows[i].obj.Event;

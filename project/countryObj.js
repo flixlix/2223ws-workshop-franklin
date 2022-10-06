@@ -24,8 +24,8 @@ class Country {
         for (let year = 0; year < yearsDisplayed; year++) {
             let valueX;
             /* old way of calculating x coordinate */
-            /* valueX = this._xBorder + (year) * this._stepX; */    
-            valueX = map(this._arrayOfData[year].x - 1957,0,yearsDisplayed,75,width - 75);
+            /* valueX = this._xBorder + (year) * this._stepX; */
+            valueX = map(this._arrayOfData[year].x - 1957, 0, yearsDisplayed, 75, width - 75);
             let valueY = map(this._arrayOfData[year].y, 0, 108, xLine, topY);
             let currentPoint = createVector(valueX, valueY);
             this._arrayOfPoints.push(currentPoint);
@@ -34,24 +34,11 @@ class Country {
 
 
     drawNumRocketLaunch(xLine) {
-        this.is_overMe();
 
+        this.is_overMe();
+        push();
         for (let year = 0; year < yearsDisplayed; year++) {
             if (this._name == "UdSSR" && year < 35 || this._name == "Russia" && year >= 36 || this._name != "UdSSR" && this._name != "Russia") {
-
-
-                if (this._overMe || this._isSelected) {
-                    fill(this._colorIsOver);
-                    stroke(this._colorIsOver);
-                    strokeWeight(3);
-                } else {
-                    fill(this._color);
-                    stroke(this._color);
-                    strokeWeight(1);
-                }
-
-                ellipse(this._arrayOfPoints[year].x, this._arrayOfPoints[year].y, 3, 3);
-
                 // for lines between points
                 stroke(this._color);
                 if (year > 0) line(this._arrayOfPoints[year - 1].x, this._arrayOfPoints[year - 1].y, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
@@ -62,29 +49,23 @@ class Country {
                     noStroke();
                     /* text( this._name, this._arrayOfPoints[this._arrayOfData.length-1].x+5, this._arrayOfPoints[this._arrayOfData.length-1].y); */
                 }
+                if (this._overMe || this._isSelected) {
+                    fill(this._colorIsOver);
+                    stroke(this._colorIsOver);
+                    strokeWeight(3);
+                } else {
+                    fill(this._color);
+                    stroke(this._color);
+                    strokeWeight(0.5);
+                }
+                ellipse(this._arrayOfPoints[year].x, this._arrayOfPoints[year].y, 3, 3);
             }
         }
+        pop();
     }
 
 
 
-    displayBall(year) {
-        fill(250, 150, 150, 50);
-        noStroke();
-        if (this._arrayOfPoints[year].y < 1127) { // 1140
-            // drawing dates
-            let mySize = round(map(this._arrayOfPoints[year].y, 1200, 150, 1, 500));
-            ellipse(this._arrayOfPoints[year].x, this._arrayOfPoints[year].y, mySize, mySize);
-
-            // text
-            fill(200);
-            noStroke();
-            textAlign(CENTER);
-            textSize(10);
-            text(this.myCode, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y - 5);
-            text(year + 1960, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y + 15);
-        }
-    }
 
     is_overMe() {
         let ifAny = false;
@@ -111,10 +92,58 @@ class Country {
     };
 
     clickOverMe() {
+
         for (let year = 0; year < yearsDisplayed; year++) {
             let distance = dist(mouseX, mouseY, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
-            if (distance < 5) this._isSelected = !this._isSelected;
+            if (distance < 20) {
+                this._isSelected = !this._isSelected;
+                this.setOthersSelectedFalse();
+                if (this.isAnySelected()) {
+                    this.changeOpacityOfOthers("lower");
+                } else {
+                    this.changeOpacityOfOthers("higher");
+                }
+            }
         }
+
+    }
+
+    setOthersSelectedFalse() {
+        /* run through all countries and set _isSelected as false but not on this object */
+        for (let i = 0; i < arrayOfCountries.length; i++) {
+            if (arrayOfCountries[i]._name != this._name) {
+                arrayOfCountries[i]._isSelected = false;
+            }
+        }
+    }
+
+    changeOpacityOfOthers(option) {
+        /* run through all countries and set _isSelected as false but not on this object */
+        if (option === "lower") {
+
+            for (let i = 0; i < arrayOfCountries.length; i++) {
+                if (arrayOfCountries[i]._name != this._name) {
+                    arrayOfCountries[i]._color = arrayOfCountries[i]._color + "80";
+                }
+            }
+        } else if (option === "higher") {
+            for (let i = 0; i < arrayOfCountries.length; i++) {
+                if (arrayOfCountries[i]._name != this._name) {
+                    arrayOfCountries[i]._color = arrayOfCountries[i]._color.slice(0, -2);
+                }
+            }
+        }
+    }
+
+
+    isAnySelected() {
+        let isAny = false;
+        for (let i = 0; i < arrayOfCountries.length; i++) {
+            if (arrayOfCountries[i]._isSelected) {
+                isAny = true;
+            }
+        }
+        return isAny;
     }
 
 } // end of class
