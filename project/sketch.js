@@ -54,7 +54,9 @@ function setup() {
 
   /* Run through all columns of color csv file and assign that color to country objects */
   for (let currentColumn = 0; currentColumn < colorsOfEachCountry.getColumnCount(); currentColumn++) {
+    
     arrayOfCountries[currentColumn]._color = "#" + colorsOfEachCountry.rows[0].arr[currentColumn]; /* assign color from csv to country object */
+    console.log(arrayOfCountries[currentColumn]._color)
   }
 
   /* add new value to array of data to each country */
