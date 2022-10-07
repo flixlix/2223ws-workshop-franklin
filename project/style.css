@@ -1,0 +1,49 @@
+body,
+main {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: auto;
+
+  margin: auto;
+}
+
+.action-buttons-container {
+  position: absolute;
+  bottom: 35px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  justify-self: end;
+}
+
+.action-button {
+  fill: #474747;
+  width: 40px;
+  justify-self: center;
+  align-self: center;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  
+}
+
+.action-button:hover {
+  fill: #c9c9c9;
+  transform: scale(1.1);
+}
+.action-button:active {
+  fill: #9b9b9b;
+  transform: scale(0.95);
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+button#pause {
+  display: none;
+}

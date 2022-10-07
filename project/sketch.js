@@ -19,6 +19,7 @@ let skipButton;
 let backButton;
 let totalskipButton;
 let totalbackButton;
+let animationState;
 
 function preload() {
   launchDataByCountry = loadTable(
@@ -40,11 +41,12 @@ function setup() {
   frameRate(60);
   let currentCountry;
   let currentEvent;
-  playButton = new Button(width/2-10, height-50, 20, "󰐊");
-  skipButton = new Button(width/2+40, height-50, 20, ">");
-  backButton = new Button(width/2-60, height-50, 20, "<");
-  totalskipButton = new Button(width/2+90, height-50, 20, ">>");
-  totalbackButton = new Button(width/2-110, height-50, 20, "<<");
+  skipBackwardButton = select('#skip-backward');
+  skipPreviousButton = select('#skip-previous');
+  playButton = new Button('play');
+  pauseButton = new Button('pause');
+  skipNextButton = select('#skip-next');
+  skipForwardButton = select('#skip-forward');
   currentYear = 0;
   xLine = height - 100;
   numYears = launchDataByCountry.rows.length; /* 61 */
@@ -100,24 +102,9 @@ function setup() {
 }
 
 function draw() {
-
-
-
-  if (frameCount % 1 === 0 && playButton.selected)  {
-    if (yearsDisplayed <= launchDataByCountry.rows.length - 1) {
-      yearsDisplayed = (yearsDisplayed * 1.005) + 0.05;
-    } else {
-      yearsDisplayed = launchDataByCountry.rows.length;
-    }
-    for (let country = 0; country < arrayOfCountries.length; country++) { // countries
-      //calculates the pixel position of each year in the country
-      arrayOfCountries[country].calculatePoints(xLine);
-    }
-    for (let i = 0; i < arrayOfEvents.length; i++) {
-      arrayOfEvents[i].calculatePositionX(xLine);
-    }
+  if (frameCount % 1 === 0 && animationState) {
+    setYearsDisplayed((yearsDisplayed * 1.005) + 0.05)
   }
-
   background("#0f0326"); /* color of background of canvas */
   fill(255);
   textSize(30);
@@ -130,16 +117,11 @@ function draw() {
   for (let event = 0; event < arrayOfEvents.length; event++) { // events
     arrayOfEvents[event].drawMarker(xLine);
   }
-  playButton.display();
-  skipButton.display();
-  backButton.display();
-  totalskipButton.display();
-  totalbackButton.display();
 }
 
 
 function mouseReleased() {
-  playButton.releasedOverMe();
+  /* playButton.mouseClicked(); */
   for (let country = 0; country < arrayOfCountries.length; country++) { // countries
     arrayOfCountries[country].clickOverMe();
   }
@@ -148,6 +130,141 @@ function mouseReleased() {
   }
 
 }
+
+function skipBackward() {
+  setYearsDisplayed(1)
+}
+
+function skipPrevious() {
+  setYearsDisplayed(yearsDisplayed - 1);
+}
+
+function play() {
+  setYearsDisplayed("continue");
+  animationState = true;
+  playButton.hide();
+  pauseButton.show();
+}
+
+function pause() {
+  animationState = false;
+  playButton.show();
+  pauseButton.hide();
+}
+
+function toggle() {
+  if (animationState) {
+    pause();
+  } else {
+    play();
+  }
+}
+
+function skipNext() {
+  setYearsDisplayed(yearsDisplayed + 1);
+}
+
+function skipForward() {
+  setYearsDisplayed("max");
+}
+
+/* accept as argument number of years or text (such as max) */
+function setYearsDisplayed(years) {
+
+  /* was max number of years asked? */
+  /* or */
+  /* was the maximum reached? */
+  if (years === "max" || years >= launchDataByCountry.rows.length) {
+
+    /* set maximum number of years */
+    years = launchDataByCountry.rows.length;
+
+    /* stop animation */
+    pause();
+  }
+
+  /* did user ask for less than 1 year to be displayed? */
+  else if (years < 1) {
+
+    /* force 1 year to be displayed */
+    years = 1;
+  }
+
+  /* did user ask to continue animation? */
+  else if (years === "continue") {
+
+    /* was the maximum number of years reched beforehand? */
+    /* or */
+    /* is there currently only one year being displayed? */
+    if (yearsDisplayed >= launchDataByCountry.rows.length || yearsDisplayed === 1) {
+
+      /* reset number of years to display */
+      years = 1;
+    }
+
+
+    /* is the before mentioned not the case? */
+    else {
+
+      /* set years to be seen the same value that was already there */
+      years = yearsDisplayed;
+    }
+  }
+  /* sync argument that was entered with number of years to be displayed */
+  yearsDisplayed = years;
+
+  /* recalculate arrays of points */
+  calculateAllPoints();
+}
+
+function calculateAllPoints() {
+
+  /* run through array of countries */
+  for (let country = 0; country < arrayOfCountries.length; country++) {
+
+    /* calculate the x-y-position of each country */
+    arrayOfCountries[country].calculatePoints(xLine);
+  }
+
+  /* run through array of events */
+  for (let i = 0; i < arrayOfEvents.length; i++) {
+
+    /* calculate the x-position of each event marker */
+    arrayOfEvents[i].calculatePositionX(xLine);
+  }
+}
+
+
+function keyPressed() {
+  
+  /* is spacebar pressed? */
+  if (keyCode === 32) {
+    /* turn animation on if it was off and viceversa */
+    toggle();
+  }
+  
+  /* is pgup button pressed? */
+  else if (keyCode === 33) {
+    skipBackward();
+  }
+  
+  /* is pgdn button pressed? */
+  else if (keyCode === 34) {
+    skipForward();
+  }
+
+  /* is right arrow pressed? */
+  else if (keyCode === 39) {
+    skipNext();
+  }
+  
+  /* is left arrow pressed? */
+  else if (keyCode === 37) {
+    skipPrevious();
+  }
+
+}
+
 
 /* 
 Hochschule für Gestaltung - Schwäbisch Gmünd

@@ -1,54 +1,31 @@
 class Button {
-  constructor(_x, _y, _sZ, _tl) {
-    this.myX = _x;
-    this.myY = _y;
-    this.mySize = _sZ;
-    this.myTitle = _tl;
-    this.myColor = color(128);
-    this.myOverMeColor = color(200);
-    this.myStrokeColor = color(255);
-    this.mouseOverMe = false;
-    this.selected = false;
-    this.myTextSize = 24;
+  constructor(title) {
+    this._title = title;
+    this._element = "";
+    this._mouseOverMe = false;
+    this._selected = false;
+    this._element = document.getElementById(this._title);
   }
 
-  display() {
-    push();
-    fill(255, 0, 0);
-    //ellipse (this.myX, this.myY, 5,5);
+  show() {
+    this._element.style.display= "inline";
+  }
 
-    this.mouseOverMe =
-      mouseX > this.myX &&
-      mouseX < this.myX + this.mySize &&
-      mouseY > this.myY &&
-      mouseY < this.myY + this.mySize;
-
-    fill(this.myColor);
-    if (this.mouseOverMe) fill(this.myOverMeColor);
-
-    strokeWeight(1);
-    stroke(this.myStrokeColor);
-    rect(this.myX, this.myY, this.mySize, this.mySize);
-
-    fill(255);
-    noStroke();
-    textAlign(LEFT);
-    textSize(this.myTextSize);
-    text(this.myTitle, this.myX + 3, this.myY + 40);
-
-    if (this.selected) {
-      strokeWeight(4);
-      noFill();
-      stroke(this.myStrokeColor);
-      rect(this.myX, this.myY, this.mySize, this.mySize);
-    }
-    pop();
+  hide() {
+    this._element.style.display= "none";
   }
 
   releasedOverMe() {
-    if (this.mouseOverMe) this.selected = !this.selected;
+    if (this.mouseOverMe) this._selected = !this._selected;
   }
+
 } // end of class
+
+function buttonClicked() {
+  this._selected = !this._selected;
+  console.log( this._selected);
+  this._selected = !this._selected;
+}
 
 /* 
 Hochschule für Gestaltung - Schwäbisch Gmünd

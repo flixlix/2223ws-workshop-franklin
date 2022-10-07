@@ -5,18 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Every Space Launch in History</title>
-    <style>
-      body, main {
-        overflow: hidden;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: auto;
-        margin: auto;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
     <script src="sketch.js"></script>
     <script src="countryObj.js"></script>
@@ -24,7 +13,50 @@
     <script src="Button.js"></script>
   </head>
 
-  <body></body>
+  <body>
+    <div class="action-buttons-container">
+      <button id="skip-backward" class="action-button" onclick="skipBackward()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20,5V19L13,12M6,5V19H4V5M13,5V19L6,12" />
+        </svg>
+      </button>
+      <button id="marker-previous" class="marker action-button" onclick="skipMarkerPrevious()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M15 11.5C13.62 11.5 12.5 10.38 12.5 9S13.62 6.5 15 6.5 17.5 7.62 17.5 9 16.38 11.5 15 11.5M8 9C8 14.25 15 22 15 22S22 14.25 22 9C22 5.13 18.87 2 15 2S8 5.13 8 9M6 7L1 12L6 17V7Z" />
+        </svg>
+      </button>
+      <button id="skip-previous" class="action-button" onclick="skipPrevious()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z" />
+        </svg>
+      </button>
+      <button id="play" class="action-button" onclick="play()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+        </svg>
+      </button>
+      <button id="pause" class="action-button" onclick="pause()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M14,19H18V5H14M6,19H10V5H6V19Z" />
+        </svg>
+      </button>
+      <button id="skip-next" class="action-button" onclick="skipNext()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M16,18H18V6H16M6,18L14.5,12L6,6V18Z" />
+        </svg>
+      </button>
+      <button id="marker-next" class="marker action-button" onclick="skipMarkerNext()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M9 11.5C7.62 11.5 6.5 10.38 6.5 9S7.62 6.5 9 6.5 11.5 7.62 11.5 9 10.38 11.5 9 11.5M9 2C5.13 2 2 5.13 2 9C2 14.25 9 22 9 22S16 14.25 16 9C16 5.13 12.87 2 9 2M18 17L23 12L18 7V17Z" />
+        </svg>
+      </button>
+      <button id="skip-forward" class="action-button" onclick="skipForward()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M4,5V19L11,12M18,5V19H20V5M11,5V19L18,12" />
+        </svg>
+      </button>
+    </div>
+  </body>
 </html>
 
 <!-- 
