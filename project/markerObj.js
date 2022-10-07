@@ -23,26 +23,30 @@ class Marker {
     lineMaxX = (width - 75); /* get coordinates of last element in array */
     lineMinX = 75; /* get coordinates of first element in array */
     for (let year = 0; year < yearsDisplayed; year++) {
-      this._positionX = map(this._decimalYear, 1957, 1957 + yearsDisplayed, lineMinX, lineMaxX);
+      this._positionX = map(this._decimalYear, 1957, 1957 + yearsDisplayed -1, lineMinX, lineMaxX);
+
     }
+
   }
 
   drawMarker(xLine) {
+
     push();
     this.is_overMe();
+    strokeWeight(0.5)
     if (this._isOver && this._isSelected) {
       stroke(this._colorIsOverAndSelected)
     } else if (this._isOver) {
-      stroke(this._colorIsOver)
+      stroke(this._colorIsOver);
     } else if (this._isSelected) {
       stroke(this._colorIsSelected);
     }
     line(this._positionX, xLine, this._positionX, topY);
     pop();
     if (this._isSelected) {
-      push()
-      noStroke()
-      textLeading(20)
+      push();
+      noStroke();
+      textLeading(20);
       textAlign(RIGHT);
       textSize(24);
       fill(255);
@@ -77,7 +81,6 @@ class Marker {
   setOthersSelectedFalse() {
     /* run through all countries and set _isSelected as false but not on this object */
     for (let i = 0; i < arrayOfEvents.length; i++) {
-      console.log(arrayOfEvents[i]._index)
       if (arrayOfEvents[i]._index != this._index) {
         arrayOfEvents[i]._isSelected = false;
       }

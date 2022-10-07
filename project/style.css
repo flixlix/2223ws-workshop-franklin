@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+
 body,
 main {
+  font-family: "Open Sans", sans-serif;
   overflow: hidden;
   height: 100vh;
   width: 100vw;
@@ -7,8 +10,18 @@ main {
   align-items: center;
   justify-content: center;
   padding: auto;
-
+  color: white;
   margin: auto;
+}
+
+.title {
+  cursor: default;
+  z-index: 2;
+  position: absolute;
+  font-weight: 100;
+  z-index: 2;
+  top: 20px;
+  font-size: 30px;
 }
 
 .action-buttons-container {
@@ -26,8 +39,7 @@ main {
   justify-self: center;
   align-self: center;
   cursor: pointer;
-  transition: all 0.2s ease-out;
-  
+  transition: all 0.15s ease-out;
 }
 
 .action-button:hover {
@@ -46,4 +58,119 @@ button {
 
 button#pause {
   display: none;
+}
+
+button.marker.action-button {
+  width: 34px;
+}
+
+button.action-button.pp {
+  width: 55px;
+}
+
+button.action-button:not(.pp) {
+  transition-duration: 0.3s;
+}
+
+div.legend ul {
+  position: absolute;
+  left: 100px;
+  top: 95px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  align-items: flex-start;
+  column-gap: 30px;
+  height: 120px;
+  border: solid 0px rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  width: 225px;
+  padding: 0 20px;
+  padding-top: 10px;
+  margin: 0;
+}
+
+.legend-item {
+  cursor: pointer;
+}
+
+.legend ul li {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  align-items: center;
+  justify-content: start;
+  gap: 12px;
+  overflow-wrap: normal;
+  width: 100px;
+}
+
+.name {
+  user-select: none;
+}
+
+
+.legend ul li:hover {
+  font-weight: bold;
+}
+
+.legend ul li:hover :first-child {
+  transform: scale(1.4);
+}
+
+div.square {
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  transition: all 0.2s ease-in-out;
+  border-radius: 50%;
+}
+
+.legend-item:not(.active) {
+  opacity: 50%;
+}
+
+.legend-item:not(.active) .name {
+  font-weight: 400;
+}
+
+.legend-item .name {
+  font-weight: bold;
+}
+
+.legend ul {
+  list-style: none;
+  line-height: 26px;
+}
+
+#udssr :first-child {
+  background-color: #ef3e36;
+}
+
+#usa :first-child {
+  background-color: #6290C8;
+}
+
+#china :first-child {
+  background-color: #f28482;
+}
+
+#russia :first-child {
+  background-color: #ef3e36;
+}
+
+#brazil :first-child {
+  background-color: #009739;
+}
+
+#australia :first-child {
+  background-color: #86836d;
+}
+
+#europe :first-child {
+  background-color: #f9e900;
+}
+#asia :first-child {
+  background-color: #b3b3f1;
 }

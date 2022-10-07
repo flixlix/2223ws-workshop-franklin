@@ -25,7 +25,12 @@ class Country {
             let valueX;
             /* old way of calculating x coordinate */
             /* valueX = this._xBorder + (year) * this._stepX; */
-            valueX = map(this._arrayOfData[year].x - 1957, 0, yearsDisplayed, 75, width - 75);
+            if (yearsDisplayed === 1) {
+                valueX = 75;
+            } else {
+                valueX = map(this._arrayOfData[year].x - 1957, 0, yearsDisplayed - 1, 75, width - 75);
+            }
+
             let valueY = map(this._arrayOfData[year].y, 0, 108, xLine, topY);
             let currentPoint = createVector(valueX, valueY);
             this._arrayOfPoints.push(currentPoint);
@@ -34,7 +39,17 @@ class Country {
 
 
     drawNumRocketLaunch(xLine) {
-
+        /*         let legendTopY = 10;
+                let legendLeftX = width / 2 - 15;
+                push();
+                textAlign(LEFT, TOP);
+                textLeading(0);
+                text(this._name, legendLeftX + 15, ((this._index - 1) * 20) + legendTopY);
+                pop();
+                push();
+                fill(this._color)
+                rect(legendLeftX, (((this._index - 1) * 20) + 2) + legendTopY, 10, 10);
+                pop(); */
         this.is_overMe();
         push();
         for (let year = 0; year < yearsDisplayed; year++) {
@@ -68,6 +83,7 @@ class Country {
 
 
     is_overMe() {
+        push();
         let ifAny = false;
         for (let year = 0; year < yearsDisplayed; year++) {
             let distance = dist(mouseX, mouseY, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
@@ -89,6 +105,7 @@ class Country {
             }
         }
         this._overMe = ifAny;
+        pop();
     };
 
     clickOverMe() {

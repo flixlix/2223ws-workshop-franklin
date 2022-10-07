@@ -5,23 +5,20 @@ let eventsData;
 const minLaunches = 30; /* Minimum number of launches per country to it to be displayed */
 const arrayOfCountries = [];
 const arrayOfEvents = [];
+const arrayOfLegendItems = [];
 let currentYear;
 let xLine;
 let numYears; /* to be reassigned in the beginning of setup */
 let yearsDisplayed;
-let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-const topY = 150;
-let lineMaxX;
-let lineMinX;
-let playButton;
-let skipButton;
-let backButton;
-let totalskipButton;
-let totalbackButton;
+const topY = 250;
+let lineMaxX, lineMinX;
+let playButton, pauseButton;
 let animationState;
+let font;
+let legendUdSSR, legendUSA, legendChina, legendRussia, legendBrazil, legendAustralia, legendEurope, legendAsia;
 
 function preload() {
+  font = loadFont('fonts/OpenSans-Regular.ttf');
   launchDataByCountry = loadTable(
     "data/launches_by_year.csv",
     "csv",
@@ -38,21 +35,21 @@ function preload() {
 
 function setup() {
   createCanvas(1400, 900); /* size of canvas in x and y direction */
+  textFont(font);
   frameRate(60);
   let currentCountry;
   let currentEvent;
-  skipBackwardButton = select('#skip-backward');
-  skipPreviousButton = select('#skip-previous');
   playButton = new Button('play');
   pauseButton = new Button('pause');
-  skipNextButton = select('#skip-next');
-  skipForwardButton = select('#skip-forward');
+  addLegendItems();
+  legendUdSSR._selected = true;
+  /*  , legendUSA, legendChina, legendRussia, legendBrazil, legendAustralia, legendEurope, legendAsia; */
   currentYear = 0;
   xLine = height - 100;
   numYears = launchDataByCountry.rows.length; /* 61 */
   yearsDisplayed = 1; /* assign number of points to number of rows in original csv */
   if (yearsDisplayed > launchDataByCountry.rows.length || yearsDisplayed < 1) {
-    console.warn("You entered too many years, resetting value...")
+    console.error("You entered too many years, resetting value...")
     yearsDisplayed = launchDataByCountry.rows.length; /* 61 */
   }
 
@@ -83,7 +80,7 @@ function setup() {
     }
   }
 
-  for (let country = 0; country < arrayOfCountries.length; country++) { // countries
+  for (let country = 0; country < arrayOfCountries.length; country++) {
     //calculates the pixel position of each year in the country
     arrayOfCountries[country].calculatePoints(xLine);
   }
@@ -101,31 +98,65 @@ function setup() {
   }
 }
 
+function addLegendItems() {
+  legendUdSSR = new LegendItem("udssr");
+  legendUSA = new LegendItem("usa");
+  legendChina = new LegendItem("china");
+  legendRussia = new LegendItem("russia");
+  legendBrazil = new LegendItem("brazil");
+  legendAustralia = new LegendItem("australia");
+  legendEurope = new LegendItem("europe");
+  legendAsia = new LegendItem("asia");       
+}
+
 function draw() {
+  /* set animation every frame */
   if (frameCount % 1 === 0 && animationState) {
+    /* exponential growth */
     setYearsDisplayed((yearsDisplayed * 1.005) + 0.05)
   }
   background("#0f0326"); /* color of background of canvas */
-  fill(255);
-  textSize(30);
-  text("Rocket launches throughout history", 50, 50)
-  textSize(15);
-  text("First Launch date: " + rocketLaunches.rows[0].obj.date, 50, 75);
-  for (let country = 0; country < arrayOfCountries.length; country++) { // countries
+
+  /*   fill(255);
+    textSize(30);
+    pop();
+    text("Rocket launches throughout history", 50, 50)
+    push();
+    textSize(15);
+    text("First Launch date: " + rocketLaunches.rows[0].obj.date, 50, 75);
+    
+    text("current year: " + currentYear, 50, 100) */
+  /* run through countries */
+  let currentYear = round(yearsDisplayed + 1956, 0);
+  push();
+  fill(255)
+  text("1957", 72, 820)
+  textAlign(RIGHT)
+  text(currentYear, width - 72, 820)
+  pop();
+  for (let country = 0; country < arrayOfCountries.length; country++) {
+    /* call draw function inside each object */
     arrayOfCountries[country].drawNumRocketLaunch(xLine);
   }
-  for (let event = 0; event < arrayOfEvents.length; event++) { // events
+  /* run through events markers */
+  for (let event = 0; event < arrayOfEvents.length; event++) {
+    /* call draw function inside each object */
     arrayOfEvents[event].drawMarker(xLine);
   }
+  push();
+  noStroke();
+  fill("#0f0326");
+  rect(width - 72, 200, 200, 1000);
+  pop();
 }
 
 
 function mouseReleased() {
   /* playButton.mouseClicked(); */
-  for (let country = 0; country < arrayOfCountries.length; country++) { // countries
+  for (let country = 0; country < arrayOfCountries.length; country++) {
     arrayOfCountries[country].clickOverMe();
   }
-  for (let event = 0; event < arrayOfEvents.length; event++) { // countries
+  for (let event = 0; event < arrayOfEvents.length; event++) {
     arrayOfEvents[event].clickOverMe();
   }
 
@@ -136,10 +167,11 @@ function skipBackward() {
 }
 
 function skipPrevious() {
-  setYearsDisplayed(yearsDisplayed - 1);
+  setYearsDisplayed(floor(yearsDisplayed) - 1);
 }
 
-function play() {
+/* can't have "play" function, leads to a conflict */
+function playAnimation() {
   setYearsDisplayed("continue");
   animationState = true;
   playButton.hide();
@@ -156,12 +188,12 @@ function toggle() {
   if (animationState) {
     pause();
   } else {
-    play();
+    playAnimation();
   }
 }
 
 function skipNext() {
-  setYearsDisplayed(yearsDisplayed + 1);
+  setYearsDisplayed(floor(yearsDisplayed) + 1);
 }
 
 function skipForward() {
@@ -234,20 +266,20 @@ function calculateAllPoints() {
   }
 }
 
+/* is any key pressed */
+function keyReleased() {
 
-function keyPressed() {
-  
   /* is spacebar pressed? */
   if (keyCode === 32) {
     /* turn animation on if it was off and viceversa */
     toggle();
   }
-  
+
   /* is pgup button pressed? */
   else if (keyCode === 33) {
     skipBackward();
   }
-  
+
   /* is pgdn button pressed? */
   else if (keyCode === 34) {
     skipForward();
@@ -257,7 +289,7 @@ function keyPressed() {
   else if (keyCode === 39) {
     skipNext();
   }
-  
+
   /* is left arrow pressed? */
   else if (keyCode === 37) {
     skipPrevious();
