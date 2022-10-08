@@ -17,6 +17,7 @@ let playButton, pauseButton;
 let animationState;
 let font;
 let legendUdSSR, legendUSA, legendChina, legendRussia, legendBrazil, legendAustralia, legendEurope, legendAsia;
+let highestValueY;
 
 function preload() {
   font = loadFont('fonts/OpenSans-Regular.ttf');
@@ -42,6 +43,8 @@ function setup() {
   frameRate(60);
   let currentCountry;
   let currentEvent;
+  lineMaxX = (width - 75);
+  lineMinX = 75;
   playButton = new Button('play');
   pauseButton = new Button('pause');
   addLegendItems();
@@ -60,9 +63,10 @@ function setup() {
 /* runs 60 times per second */
 function draw() {
   background(backgroundColor); /* color of background of canvas */
+
   /* start animation every frame if animation state is enabled */
   displayAnimation();
-  
+
   /* show starting and current years at the bottom of the graph */
   displayAxesTitle();
 
@@ -76,12 +80,38 @@ function draw() {
   displayBlockingRect();
 }
 
+function getHighestValueY() {
+  let arrayOfMaxes = [];
+  for (let year = 0; year < numYears; year++) {
+      for (let i = 0; i < arrayOfCountries.length; i++) {
+          if (arrayOfCountries[i]._isSelected && arrayOfCountries[i].isAnySelected() || !arrayOfCountries[i].isAnySelected()) {
+              arrayOfMaxes.push(Math.max(arrayOfCountries[i]._arrayOfData[year].y))
+          } else {
+              arrayOfMaxes.push(0)
+          }
+      }
+      highestValueY = Math.max(...arrayOfMaxes);
+  }
+  console.log(highestValueY)
+}
+
+function calculateMaxPointCountry() {
+  let arrayOfMaxes = [];
+  for (let country = 0; country < arrayOfCountries.length; country++) {
+    for (let year = 0; year < yearsDisplayed; year++) {
+      arrayOfMaxes.push(arrayOfCountries[country]._arrayOfData[year].y);
+    }
+    
+  }
+  let maxxx= Math.max(arrayOfMaxes)
+  console.log(maxxx)
+}
 
 
 function displayLaunches() {
   for (let country = 0; country < arrayOfCountries.length; country++) {
     /* call draw function inside each object */
-    arrayOfCountries[country].drawNumRocketLaunch(xLine);
+    arrayOfCountries[country].drawNumRocketLaunch();
   }
 }
 
@@ -89,7 +119,7 @@ function displayEvents() {
   /* run through events markers */
   for (let event = 0; event < arrayOfEvents.length; event++) {
     /* call draw function inside each object */
-    arrayOfEvents[event].drawMarker(xLine);
+    arrayOfEvents[event].drawMarker();
   }
 }
 
@@ -111,10 +141,6 @@ function displayAnimation() {
 }
 
 function mouseReleased() {
-  /* playButton.mouseClicked(); */
-  for (let country = 0; country < arrayOfCountries.length; country++) {
-    arrayOfCountries[country].clickOverMe();
-  }
   for (let event = 0; event < arrayOfEvents.length; event++) {
     arrayOfEvents[event].clickOverMe();
   }
@@ -209,6 +235,7 @@ function setYearsDisplayed(years) {
 }
 
 function calculateAllPoints() {
+  getHighestValueY();
 
   /* run through array of countries */
   for (let country = 0; country < arrayOfCountries.length; country++) {
