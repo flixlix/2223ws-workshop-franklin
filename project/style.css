@@ -191,23 +191,11 @@ div.square {
   background-color: #b3b3f1;
 }
 
-#auto-scale {
-  justify-self: center;
-  overflow: visible;
-  align-self: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 700px 1230px 0px 0px;
+button#blank, button#blank * {
+  height: 0;
+  cursor: default;
 }
 
 #auto-scale.active {
-  fill: #ff01fb;  
-}
-
-.auto-scale-container {
-  position: absolute;
-  bottom: 35px;
-  display: flex;
-  align-items: center;
+  fill: #907ad6;
 }

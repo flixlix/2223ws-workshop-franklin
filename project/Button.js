@@ -8,11 +8,19 @@ class Button {
   }
 
   show() {
-    this._element.style.display= "inline";
+    this._element.style.display = "inline";
   }
 
   hide() {
-    this._element.style.display= "none";
+    this._element.style.display = "none";
+  }
+
+  changeActivity(active) {
+    if(active) {
+      this._element.classList.add('active');
+    } else {
+      this._element.classList.remove("active");
+    }
   }
 
   releasedOverMe() {
@@ -23,7 +31,7 @@ class Button {
 
 function buttonClicked() {
   this._selected = !this._selected;
-  console.log( this._selected);
+  console.log(this._selected);
   this._selected = !this._selected;
 }
 

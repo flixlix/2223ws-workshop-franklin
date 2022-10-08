@@ -48,6 +48,17 @@ class Marker {
     if (this._isSelected) {
       this.showInfo();
     }
+    if (animationState) {
+      this.selectMarkersWithinTimeRange();
+    }
+  }
+
+  selectMarkersWithinTimeRange() {
+    if (Math.floor(yearsDisplayed + 1957) - 1 === Math.floor(this._decimalYear)) {
+      this._isSelected = true;
+    } else {
+      this._isSelected = false;
+    }
   }
 
   showInfo() {
@@ -57,11 +68,11 @@ class Marker {
     textAlign(RIGHT);
     textSize(24);
     fill(255);
-    text(this._description, width - 75, 36); /* crew text */
+    text(this._description, width - 75, 100);
     textSize(15);
     fill(190);
-    text(this._name + "\n" + this._date + "\n" + this._crew, width - 75, 58);
-    pop()
+    text(this._name + "\n" + this._date + "\n" + this._crew, width - 75, 122);
+    pop();
   }
 
   is_overMe() {
@@ -80,7 +91,7 @@ class Marker {
   }
 
   setOthersSelectedFalse() {
-    /* run through all countries and set _isSelected as false but not on this object */
+    /* run through all markers and set _isSelected as false but not on this object */
     for (let i = 0; i < arrayOfEvents.length; i++) {
       if (arrayOfEvents[i]._index != this._index) {
         arrayOfEvents[i]._isSelected = false;

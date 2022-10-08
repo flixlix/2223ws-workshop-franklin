@@ -17,10 +17,11 @@ class Country {
 
 
 
-    // calculates the pixel position of each year in the country
+    /* calculate each coordinate of every year */
     calculatePoints(xLine) {
         this._stepX = (width - 150) / (yearsDisplayed - 1);
         this._arrayOfPoints = [];
+
         for (let year = 0; year < yearsDisplayed; year++) {
             let valueX;
             /* old way of calculating x coordinate */
@@ -34,8 +35,21 @@ class Country {
             let valueY = map(this._arrayOfData[year].y, 0, highestValueY, xLine, topY);
             let currentPoint = createVector(valueX, valueY);
             this._arrayOfPoints.push(currentPoint);
-
+            arrayOfDataPoints.push(this._arrayOfData[year].y)
         }
+        if (autoScale) {
+            this.hideExtremeCases();
+        }
+    }
+
+    hideExtremeCases() {
+        thisCountryHighestValue = Math.max(...arrayOfDataPoints);
+        if (thisCountryHighestValue > highestValueY) {
+            for (let year = 0; year < yearsDisplayed; year++) {
+                this._arrayOfPoints[year].y = 20000;
+            }
+        }
+        arrayOfDataPoints = [];
     }
 
     drawNumRocketLaunch() {
@@ -72,7 +86,7 @@ class Country {
     changeOpacityBasedOnValue() {
         if (this.isAnySelected() && !this._isSelected) {
             /* more transparent colors */
-            this.setColorAlpha(20);
+            this.setColorAlpha(30);
         } else if (this.isAnySelected() && this._isSelected) {
             this.setColorAlpha("ff");
         } else {
