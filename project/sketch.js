@@ -99,14 +99,14 @@ function setup() {
 }
 
 function addLegendItems() {
-  legendUdSSR = new LegendItem("udssr"); 
-  legendUSA = new LegendItem("usa");
-  legendChina = new LegendItem("china");
-  legendRussia = new LegendItem("russia");
-  legendBrazil = new LegendItem("brazil");
-  legendAustralia = new LegendItem("australia");
-  legendEurope = new LegendItem("europe");
-  legendAsia = new LegendItem("asia");       
+  legendUdSSR = new LegendItem("UdSSR", "udssr");
+  legendUSA = new LegendItem("USA", "usa");
+  legendChina = new LegendItem("China", "china");
+  legendRussia = new LegendItem("Russia", "russia");
+  legendBrazil = new LegendItem("Brazil", "brazil");
+  legendAustralia = new LegendItem("Australia", "australia");
+  legendEurope = new LegendItem("Europe", "europe");
+  legendAsia = new LegendItem("Asia", "asia");
 }
 
 function draw() {

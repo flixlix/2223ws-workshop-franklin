@@ -50,7 +50,7 @@ class Country {
                 fill(this._color)
                 rect(legendLeftX, (((this._index - 1) * 20) + 2) + legendTopY, 10, 10);
                 pop(); */
-        this.is_overMe();
+        /* this.is_overMe(); */
         push();
         for (let year = 0; year < yearsDisplayed; year++) {
             if (this._name == "UdSSR" && year < 35 || this._name == "Russia" && year >= 36 || this._name != "UdSSR" && this._name != "Russia") {

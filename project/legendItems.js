@@ -1,8 +1,7 @@
 class LegendItem {
-    constructor(element) {
-        this._name = "";
-        this._element = document.getElementById(element);
-        console.log("this 1: ", this)
+    constructor(name, id) {
+        this._name = name;
+        this._element = document.getElementById(id);
         this._element.addEventListener('click', this.setSelect);
         this._selected = false;
     }
@@ -13,7 +12,11 @@ class LegendItem {
         } else {
             this.classList.add("active");
         }
-        console.log(this.classList.contains("active"))
+        for(let i = 0; i < arrayOfCountries.length; i++) {
+            if (arrayOfCountries[i]._name === this.lastElementChild.innerText) {
+                arrayOfCountries[i]._isSelected = !arrayOfCountries[i]._isSelected;
+            }
+        }
     }
 
 
