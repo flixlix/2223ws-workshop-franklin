@@ -1,5 +1,6 @@
 class LegendItem {
     constructor(name, id) {
+        if(name === "UdSSR") name = "Russia";
         this._name = name;
         this._element = document.getElementById(id);
         this._element.addEventListener('click', this.setSelect);
@@ -13,15 +14,10 @@ class LegendItem {
             this.classList.add("active");
         }
         for(let i = 0; i < arrayOfCountries.length; i++) {
-            if (arrayOfCountries[i]._name === this.lastElementChild.innerText) {
-                arrayOfCountries[i]._isSelected = !arrayOfCountries[i]._isSelected;
-            }
+            let selectorName = this.lastElementChild.innerText;
+            arrayOfCountries[i].toggleSelectCountry(selectorName);
+
         }
-    }
-
-
-    itemClicked() {
-        this._selected = !this._selected;
     }
 } // end of class
 

@@ -53,28 +53,32 @@ class Country {
         /* this.is_overMe(); */
         push();
         for (let year = 0; year < yearsDisplayed; year++) {
-            if (this._name == "UdSSR" && year < 35 || this._name == "Russia" && year >= 36 || this._name != "UdSSR" && this._name != "Russia") {
-                // for lines between points
-                stroke(this._color);
-                if (year > 0) line(this._arrayOfPoints[year - 1].x, this._arrayOfPoints[year - 1].y, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
-
-                if (this._isSelected) {
-                    fill(200);
-                    textSize(18);
-                    noStroke();
-                    /* text( this._name, this._arrayOfPoints[this._arrayOfData.length-1].x+5, this._arrayOfPoints[this._arrayOfData.length-1].y); */
-                }
-                if (this._overMe || this._isSelected) {
-                    fill(this._colorIsOver);
-                    stroke(this._colorIsOver);
-                    strokeWeight(3);
-                } else {
-                    fill(this._color);
-                    stroke(this._color);
-                    strokeWeight(0.5);
-                }
-                ellipse(this._arrayOfPoints[year].x, this._arrayOfPoints[year].y, 3, 3);
+            if (this.isAnySelected() && !this._isSelected) {
+                /* more transparent colors */
+                this.setColorAlpha(40);
+            } else {
+                this.setColorAlpha("ff");
             }
+            stroke(this._color);
+            if (year > 0) line(this._arrayOfPoints[year - 1].x, this._arrayOfPoints[year - 1].y, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
+            if (this._isSelected) {
+                fill(200);
+                textSize(18);
+                noStroke();
+                /* text( this._name, this._arrayOfPoints[this._arrayOfData.length-1].x+5, this._arrayOfPoints[this._arrayOfData.length-1].y); */
+            }
+            if (this._overMe || this._isSelected) {
+                fill(this._colorIsOver);
+                stroke(this._colorIsOver);
+                strokeWeight(3);
+            } else {
+                fill(this._color);
+                stroke(this._color);
+                strokeWeight(0.5);
+            }
+
+            ellipse(this._arrayOfPoints[year].x, this._arrayOfPoints[year].y, 3, 3);
+
         }
         pop();
     }
@@ -114,12 +118,6 @@ class Country {
             let distance = dist(mouseX, mouseY, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
             if (distance < 20) {
                 this._isSelected = !this._isSelected;
-                this.setOthersSelectedFalse();
-                if (this.isAnySelected()) {
-                    this.changeOpacityOfOthers("lower");
-                } else {
-                    this.changeOpacityOfOthers("higher");
-                }
             }
         }
 
@@ -130,24 +128,6 @@ class Country {
         for (let i = 0; i < arrayOfCountries.length; i++) {
             if (arrayOfCountries[i]._name != this._name) {
                 arrayOfCountries[i]._isSelected = false;
-            }
-        }
-    }
-
-    changeOpacityOfOthers(option) {
-        /* run through all countries and set _isSelected as false but not on this object */
-        if (option === "lower") {
-
-            for (let i = 0; i < arrayOfCountries.length; i++) {
-                if (arrayOfCountries[i]._name != this._name) {
-                    arrayOfCountries[i]._color = arrayOfCountries[i]._color + "80";
-                }
-            }
-        } else if (option === "higher") {
-            for (let i = 0; i < arrayOfCountries.length; i++) {
-                if (arrayOfCountries[i]._name != this._name) {
-                    arrayOfCountries[i]._color = arrayOfCountries[i]._color.slice(0, -2);
-                }
             }
         }
     }
@@ -163,5 +143,18 @@ class Country {
         return isAny;
     }
 
+    setColorAlpha(alphaValue) {
+        this._color = this._color.slice(0, -2);
+        this._color = this._color + alphaValue;
+    }
+
+    toggleSelectCountry(selectorName) {
+        if(selectorName === "UdSSR") {
+            
+        }
+        if (this._name === selectorName) {
+            this._isSelected = !this._isSelected;
+        }
+    }
 } // end of class
 
