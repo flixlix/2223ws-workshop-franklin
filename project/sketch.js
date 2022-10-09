@@ -1,5 +1,6 @@
 const backgroundColor = "#0f0326";
 let launchDataByCountry;
+let sumOfLaunchDataByCountry;
 let colorsOfEachCountry;
 let rocketLaunches;
 let eventsData;
@@ -29,6 +30,11 @@ function preload() {
     "csv",
     "header"
   );
+  sumOfLaunchDataByCountry = loadTable(
+    "data/sum_of_country_launches_by_month.csv",
+    "csv",
+    "header"
+  )
   colorsOfEachCountry = loadTable(
     "data/colors_of_each_country.csv",
     "csv",
@@ -43,8 +49,7 @@ function preload() {
 function setup() {
   createCanvas(1400, 900); /* size of canvas in x and y direction */
   textFont(font);
-  frameRate(60);
-  let currentCountry;
+  frameRate(30);
   let currentEvent;
   lineMaxX = (width - 75);
   lineMinX = 75;
@@ -88,13 +93,57 @@ function draw() {
 }
 
 function displayBoxDiagram() {
+  let arrayOfSums = [];
+  arrayOfSums = calculateArrayOfSums(arrayOfSums);
+  const sumOfSums = getSumOfAllSums(arrayOfSums);
+  let arrayOfWidths = [];
+  mapValuesWidth(arrayOfSums, sumOfSums, arrayOfWidths);
+  drawRects(arrayOfWidths);
+}
+
+function drawRects(arrayOfWidths) {
   push();
-  noFill();
-  stroke(255);
-  strokeWeight(3);
+  let positionX = 400;
   noStroke();
-  rect(400, 80, 400, 100)
+  for (let countryIndex = 0; countryIndex < arrayOfCountries.length; countryIndex++) {
+    fill(arrayOfCountries[countryIndex]._color)
+    rect(positionX, 90, arrayOfWidths[countryIndex], 100)
+    if (arrayOfWidths[countryIndex] > 3) {
+      positionX += arrayOfWidths[countryIndex] + 4;
+    }
+  }
   pop();
+}
+
+function mapValuesWidth(inputArray, sumOfInputArray, outputArray) {
+  for (let countryIndex = 0; countryIndex < arrayOfCountries.length; countryIndex++) {
+    let mappedValue = 0;
+    mappedValue = map(inputArray[countryIndex], 0, sumOfInputArray, 0, 400);
+    if (isNaN(mappedValue)) {
+      mappedValue = 0;
+    }
+    outputArray.push(mappedValue);
+  }
+  return outputArray;
+}
+
+function calculateArrayOfSums(inputArray) {
+  for (let countryIndex = 0; countryIndex < arrayOfCountries.length; countryIndex++) {
+    let lastSum = 0;
+    for (let dateIndex = 0; dateIndex < sumOfLaunchDataByCountry.rows.length; dateIndex++) {
+      if (arrayOfCountries[countryIndex]._arrayOfSum[dateIndex].x <= yearsDisplayed + 1956) {
+        lastSum = parseInt(arrayOfCountries[countryIndex]._arrayOfSum[dateIndex].y)
+      }
+    }
+    inputArray.push(lastSum);
+  }
+  return inputArray;
+}
+
+function getSumOfAllSums(inputArr) {
+
+  /* sum all elements inside array of sums and give that value to sumOfCountriesSums */
+  return inputArr.reduce((a, b) => a + b, 0);
 }
 
 function getHighestValueY() {
@@ -171,7 +220,7 @@ function displayAxesTitle() {
 function displayAnimation() {
   if (frameCount % 1 === 0 && animationState) {
     /* exponential growth */
-    setYearsDisplayed((yearsDisplayed * 1.001) + 0.05)
+    setYearsDisplayed((yearsDisplayed * 1.001) + 0.1)
   }
 }
 
@@ -364,6 +413,9 @@ function calculateAllPoints() {
 
     /* calculate the x-y-position of each country */
     arrayOfCountries[country].calculatePoints(xLine);
+
+    /* calculate the sum of the country data */
+    arrayOfCountries[country].calculateSumVectors();
   }
 
   /* run through array of events */
@@ -437,6 +489,7 @@ function createCountryObjects() {
     currentCountry._name = launchDataByCountry.columns[currentColumn]; /* add name of country to object */
     currentCountry._index = currentColumn;
     arrayOfCountries.push(currentCountry);
+
   }
   assignColorsToObject();
 }

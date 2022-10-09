@@ -5,6 +5,7 @@ class Country {
         this._index = "";
         this._arrayOfData = [];
         this._arrayOfPoints = [];
+        this._arrayOfSum = [];
         this._overMe = false;
         this._isSelected = false;
 
@@ -39,6 +40,18 @@ class Country {
         }
         if (autoScale) {
             this.hideExtremeCases();
+        }
+    }
+
+    calculateSumVectors() {
+        this._arrayOfSum = [];
+        for (let date = 0; date < sumOfLaunchDataByCountry.rows.length; date ++) {
+            let valueX;
+            let valueY;
+            valueX = sumOfLaunchDataByCountry.rows[date].arr[0];
+            valueY = sumOfLaunchDataByCountry.rows[date].arr[this._index];
+            let currentVector = createVector(valueX, valueY);
+            this._arrayOfSum.push(currentVector)
         }
     }
 

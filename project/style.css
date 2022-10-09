@@ -37,6 +37,7 @@ p {
 .action-buttons-container {
   position: absolute;
   bottom: 35px;
+  gap: 5px;
   margin: auto;
   display: flex;
   justify-content: center;
