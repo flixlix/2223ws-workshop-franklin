@@ -1,13 +1,22 @@
 Alle Anmerkungen beziehen sich auf Safari als Browser, eventuell sind diese Fehler/Probleme bei anderen Browsern nicht oder anders vorhanden
 
-1. 
+1. Fehler in Skalierung, bei. Zoom, hier verschieden jeweils die Ränder des Frames. Überschrift verschwindet dann zum Beispiel komplett.
 
-Fehler in Skalierung, bei. Zoom, hier verschieden jeweils die Ränder des Frames. Überschrift verschwindet dann zum Beispiel komplett.
+2. Buttons bewegen sich je nach Festergrösse auf andere Position, sind jedoch in einer Linie
 
-2.
+3. Legende wird bei Veränderungen der Fenstergrösse links gebunden und der Hauptframe verschiebt sich.
 
-Buttons bewegen sich je nach Festergröße auf andere Position, sind jedoch in einer Linie
+4. Hover der Elemente nicht möglich während Abspielen
 
-3.
+5. Sobald Seite im Hintergrund sind alle Aktionen weg, man muss von vorne beginnen, Selektion etc. wird nicht gespeichert
 
-Legende bei 
+6. Länder-Linien nicht klickbar, hover auf die einzelnen Punkte ist nicht möglich, keine Anzeige von Daten. 
+
+
+
+
+Allgemein
+
+1. Abstand der Buttons zueinander vergrößern 
+2. Button Info bei hover, was macht es wenn ich klicke?
+3
