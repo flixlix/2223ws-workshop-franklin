@@ -232,22 +232,26 @@ function skipForward() {
 function skipMarkerPrevious() {
   /* pass delta argument of -1 to decrement index of marker */
   /* callback of 0 */
-  setMarkerSelected(- 1, 0);
+  setMarkerSelected(- 1);
 }
 
 function skipMarkerNext() {
   /* pass delta argument of +1 to increment index of marker */
   /* callback of highest number of marker */
-  setMarkerSelected(+ 1, arrayOfEvents.length - 1);
+  setMarkerSelected(+ 1);
 }
 
-function setMarkerSelected(delta, callback) {
+function setMarkerSelected(delta) {
   let indexOfNewEvent = checkAnyEventSelected().indexOfSelected + delta;
-  if (checkAnyEventSelected().boolAnySelected === false) {
+  if (!checkAnyEventSelected().boolAnySelected) {
     for (let i = 0; i < arrayOfEvents.length; i++) {
-      if (checkMarkerInTimeScope(callback)) {
-        arrayOfEvents[callback]._isSelected = true;
-        arrayOfEvents[callback].setOthersSelectedFalse();
+      let firstMarkerIndex = 0;
+      if(delta === 1) firstMarkerIndex = i; 
+      if (arrayOfEvents[firstMarkerIndex] != undefined) {
+        if (checkMarkerInTimeScope(i)) {
+          arrayOfEvents[firstMarkerIndex]._isSelected = true;
+          arrayOfEvents[firstMarkerIndex].setOthersSelectedFalse();
+        }
       }
     }
   } else {

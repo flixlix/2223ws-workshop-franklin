@@ -51,12 +51,11 @@ class Marker {
     /* if (animationState) {
       this.selectMarkersWithinTimeRange();
     } */
+    this.unselectMarkersOutsideTimeRange();
   }
 
-  selectMarkersWithinTimeRange() {
-    if (Math.floor(yearsDisplayed + 1957) - 1 === Math.floor(this._decimalYear)) {
-      this._isSelected = true;
-    } else {
+  unselectMarkersOutsideTimeRange() {
+    if (Math.floor(yearsDisplayed + 1956) <= Math.floor(this._decimalYear)) {
       this._isSelected = false;
     }
   }
