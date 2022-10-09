@@ -231,21 +231,23 @@ function skipForward() {
 
 function skipMarkerPrevious() {
   /* pass delta argument of -1 to decrement index of marker */
-  setMarkerSelected(- 1);
+  /* callback of 0 */
+  setMarkerSelected(- 1, 0);
 }
 
 function skipMarkerNext() {
   /* pass delta argument of +1 to increment index of marker */
-  setMarkerSelected(+ 1);
+  /* callback of highest number of marker */
+  setMarkerSelected(+ 1, arrayOfEvents.length - 1);
 }
 
-function setMarkerSelected(delta) {
+function setMarkerSelected(delta, callback) {
   let indexOfNewEvent = checkAnyEventSelected().indexOfSelected + delta;
   if (checkAnyEventSelected().boolAnySelected === false) {
     for (let i = 0; i < arrayOfEvents.length; i++) {
-      if (checkMarkerInTimeScope(indexOfNewEvent)) {
-        arrayOfEvents[i]._isSelected = true;
-        arrayOfEvents[i].setOthersSelectedFalse();
+      if (checkMarkerInTimeScope(callback)) {
+        arrayOfEvents[callback]._isSelected = true;
+        arrayOfEvents[callback].setOthersSelectedFalse();
       }
     }
   } else {
