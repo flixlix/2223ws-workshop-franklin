@@ -231,38 +231,60 @@ function skipForward() {
 
 function skipMarkerPrevious() {
   /* pass delta argument of -1 to decrement index of marker */
-  /* callback of 0 */
   setMarkerSelected(- 1);
 }
 
 function skipMarkerNext() {
   /* pass delta argument of +1 to increment index of marker */
-  /* callback of highest number of marker */
   setMarkerSelected(+ 1);
 }
 
 function setMarkerSelected(delta) {
-  let indexOfNewEvent = checkAnyEventSelected().indexOfSelected + delta;
+
+  /* if no marker is selected */
   if (!checkAnyEventSelected().boolAnySelected) {
+
+    /* run through array of events */
     for (let i = 0; i < arrayOfEvents.length; i++) {
+
+      /* set default index of marker */
       let firstMarkerIndex = 0;
-      if(delta === 1) firstMarkerIndex = i; 
+
+      /* if next marker function was called, set first marker index whatever 'i' is */
+      if (delta === 1) firstMarkerIndex = i;
+
+      /* if marker object can be found */
       if (arrayOfEvents[firstMarkerIndex] != undefined) {
+
+        /* if marker is within the time range */
         if (checkMarkerInTimeScope(i)) {
-          arrayOfEvents[firstMarkerIndex]._isSelected = true;
-          arrayOfEvents[firstMarkerIndex].setOthersSelectedFalse();
+
+          /* call function to deselect all markers and only select specified marker */
+          setOnlyThisMarkerSelected(arrayOfEvents[firstMarkerIndex]);
         }
       }
     }
-  } else {
+  } else /* if there is already a marker selected */ {
+
+    /* set index of next marker */
+    let newMarkerIndex = checkAnyEventSelected().indexOfSelected + delta;
+
     /* get index of current selected element and increment by 1 */
-    if (arrayOfEvents[indexOfNewEvent] != undefined && checkMarkerInTimeScope(indexOfNewEvent)) {
-      /* don't increment, beacuse current selected element shall stay selected */
-      arrayOfEvents[indexOfNewEvent].setOthersSelectedFalse();
-      /* select event after current selected event */
-      arrayOfEvents[indexOfNewEvent]._isSelected = true;
+    if (arrayOfEvents[newMarkerIndex] != undefined && checkMarkerInTimeScope(newMarkerIndex)) {
+
+      /* call function to deselect all markers and only select specified marker */
+      setOnlyThisMarkerSelected(arrayOfEvents[newMarkerIndex]);
     }
   }
+}
+
+function setOnlyThisMarkerSelected(marker) {
+
+  /* set other markers as not selected */
+  marker.setOthersSelectedFalse();
+
+  /* set marker as selected */
+  marker._isSelected = true;
 }
 
 function checkMarkerInTimeScope(index) {

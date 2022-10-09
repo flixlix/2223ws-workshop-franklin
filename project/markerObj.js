@@ -48,9 +48,8 @@ class Marker {
     if (this._isSelected) {
       this.showInfo();
     }
-    /* if (animationState) {
-      this.selectMarkersWithinTimeRange();
-    } */
+
+    /* check if marker is ouside of the scope, and if true, deselect marker */
     this.unselectMarkersOutsideTimeRange();
   }
 
