@@ -31,7 +31,6 @@ class Button {
 
 function buttonClicked() {
   this._selected = !this._selected;
-  console.log(this._selected);
   this._selected = !this._selected;
 }
 
