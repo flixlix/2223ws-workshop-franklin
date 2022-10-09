@@ -57,7 +57,7 @@ p {
 }
 
 .action-button:hover, .action-button#play:hover {
-  fill: #c9c9c9;
+  fill: #a3a3a3;
   transform: scale(1.1);
 }
 
@@ -197,8 +197,9 @@ button#blank, button#blank * {
 }
 
 #auto-scale.active {
-  animation: rainbow 10s linear;
-  animation-iteration-count: infinite;
+  animation: rainbow .7s linear 1;
+  fill: rgb(183, 0, 255);
+  /* animation-iteration-count: infinite; */
 }
 
 @keyframes rainbow{
