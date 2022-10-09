@@ -1,13 +1,23 @@
-Hochschule für Gestaltung - Schwäbisch Gmünd
-Grundlagen im medialen Raum - Projektarbeit
-Anton Pelezki 
-Carina Senger 
-Luca Mário Ziegler Félix  
-Tim Niedermeier
+# Space launches throughout history
 
+Final Project for the workshop "Grundlagen im medialen Raum"
 
+> [Project Folder](project/)
 
-# [Project Folder](project/)
+Professor: [Franklin Hernandez-Castro](franklin.castro@hfg.design)
+
+Students:
+  - [Carina Senger](carina.senger@hfg.design)
+  - [Tim Niedermeier](tim.niedermeier@hfg.design)
+  - [Anton Pelezki](anton.pelezki@hfg.design)
+  - [Luca Ziegler Félix](luca.ziegler@hfg.design)
+
+<br/>
+HfG - Hochschule für Gestaltung
+Schwäbisch Gmünd 2022
+
+<hr/>
+
 ## The task
 
 Our task was to create a paradigm using the [P5JS Library](https://p5js.org/).
@@ -50,7 +60,7 @@ By clicking on these markers, the user can find out more details about the launc
 
 #### Auto Scale Button
 
-![Auto Scale Icon](project/images/auto-scale.svg)
+<img src="project/images/auto-scale.svg" width= "100px"/>
 
 The first button allows the user to select wether or not the y axis is dynamic.
 This means, for eg: 
@@ -62,19 +72,19 @@ This means, for eg:
     
 #### Skip to Previous / Next Year
 
-![Skip to Previous Year Icon](project/images/skip-previous.svg) ![Skip to Next Year Icon](project/images/skip-next.svg)
+<img src="project/images/skip-previous.svg" width= "100px"/> <img src="project/images/skip-next.svg" width= "100px"/>
 
 Using the skip previous / next buttons, the user can manually adjust the time scope that is displayed.
 
 #### Skip to First / Last Year
 
-![Skip to First Year Icon](project/images/skip-backward.svg) ![Skip to Last Year Icon](project/images/skip-forward.svg)
+<img src="project/images/skip-backward.svg" width= "100px"/> <img src="project/images/skip-forward.svg" width= "100px"/>
 
 Using the skip to First / to Last buttons, the user can manually adjust the time scope that is displayed.
 
 #### Play / Pause
 
-![Play Icon](project/images/play.svg) ![Pause Icon](project/images/pause.svg)
+<img src="project/images/play.svg" width= "100px"/> <img src="project/images/pause.svg" width= "100px"/>
 
 Using the play / pause buttons, the user can toggle the animation, in which the years are exponentially incremented.
 
@@ -89,11 +99,17 @@ The play / pause buttons behaviour is the same as can be viewed on any youtube v
 
 ## Keyboard shortcuts
 
-SPACEBAR: start/stop animation
-LEFTARROW: skip to previous year
-RIGHTARROW: skip to next year
-PgUp: skip to first year
-PgDn: skip to last year
-m: select next marker
-n: select previous marker
 
+SPACEBAR: start/stop animation
+
+LEFTARROW: skip to previous year
+
+RIGHTARROW: skip to next year
+
+PgUp: skip to first year
+
+PgDn: skip to last year
+
+m: select next marker
+
+n: select previous marker
