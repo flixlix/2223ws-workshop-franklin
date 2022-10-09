@@ -50,7 +50,7 @@ By clicking on these markers, the user can find out more details about the launc
 
 #### Auto Scale Button
 
-![Auto Scale Icon](project/images/auto-scale.svg)
+<img src="project/images/auto-scale.svg" width= "100px"/>
 
 The first button allows the user to select wether or not the y axis is dynamic.
 This means, for eg: 
@@ -62,19 +62,19 @@ This means, for eg:
     
 #### Skip to Previous / Next Year
 
-![Skip to Previous Year Icon](project/images/skip-previous.svg) ![Skip to Next Year Icon](project/images/skip-next.svg)
+<img src="project/images/skip-previous.svg" width= "100px"/> <img src="project/images/skip-next.svg" width= "100px"/>
 
 Using the skip previous / next buttons, the user can manually adjust the time scope that is displayed.
 
 #### Skip to First / Last Year
 
-![Skip to First Year Icon](project/images/skip-backward.svg) ![Skip to Last Year Icon](project/images/skip-forward.svg)
+<img src="project/images/skip-backward.svg" width= "100px"/> <img src="project/images/skip-forward.svg" width= "100px"/>
 
 Using the skip to First / to Last buttons, the user can manually adjust the time scope that is displayed.
 
 #### Play / Pause
 
-![Play Icon](project/images/play.svg) ![Pause Icon](project/images/pause.svg)
+<img src="project/images/play.svg" width= "100px"/> <img src="project/images/pause.svg" width= "100px"/>
 
 Using the play / pause buttons, the user can toggle the animation, in which the years are exponentially incremented.
 
