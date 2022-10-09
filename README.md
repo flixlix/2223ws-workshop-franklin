@@ -9,6 +9,8 @@ Tim Niedermeier
 
 # [Project Folder](project/)
 
+![Project Screenshot](project/images/screenshot.png)
+
 ## Keyboard shortcuts
 
 SPACEBAR: start/stop animation
