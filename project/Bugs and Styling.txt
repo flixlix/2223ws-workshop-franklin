@@ -22,4 +22,7 @@ Allgemein
 1. Abstand der Buttons zueinander vergrößern 
 2. Button Info bei hover, was macht es wenn ich klicke?
 3. Highlight - Ereignis, Name, Datum, Land
+4. Land lange bei 0 nicht anzeigen bis zum Ereignis
+
+
 
