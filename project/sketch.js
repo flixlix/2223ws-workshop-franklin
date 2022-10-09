@@ -91,7 +91,8 @@ function displayBoxDiagram() {
   push();
   noFill();
   stroke(255);
-  strokeWeight(3)
+  strokeWeight(3);
+  noStroke();
   rect(400, 80, 400, 100)
   pop();
 }
@@ -283,7 +284,7 @@ function setOnlyThisMarkerSelected(marker) {
   /* set other markers as not selected */
   marker.setOthersSelectedFalse();
 
-  /* set marker as selected */
+  /* set this marker as selected */
   marker._isSelected = true;
 }
 
@@ -376,30 +377,27 @@ function calculateAllPoints() {
 /* is any key pressed */
 function keyReleased() {
 
-  /* is spacebar pressed? */
-  if (keyCode === 32) {
-    /* turn animation on if it was off and viceversa */
-    toggle();
-  }
-
-  /* is pgup button pressed? */
-  else if (keyCode === 33) {
-    skipBackward();
-  }
-
-  /* is pgdn button pressed? */
-  else if (keyCode === 34) {
-    skipForward();
-  }
-
-  /* is right arrow pressed? */
-  else if (keyCode === 39) {
-    skipNext();
-  }
-
-  /* is left arrow pressed? */
-  else if (keyCode === 37) {
-    skipPrevious();
+  switch (keyCode) {
+    case 32: //spacebar
+      toggle();
+      break;
+    case 33: //pgup
+      skipBackward();
+      break;
+    case 34: // pgdn
+      skipForward();
+      break;
+    case 37: // left arrow
+      skipPrevious();
+      break;
+    case 39: // right arrow
+      skipNext();
+      break;
+    case 77: // "m" key
+      skipMarkerNext();
+      break;
+    case 78: // "n" key
+      skipMarkerPrevious();
   }
 }
 function createEventObjects() {
