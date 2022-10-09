@@ -62,7 +62,7 @@ This means, for eg:
     
 #### Skip to Previous / Next Year
 
-![Skip to Previous Year Icon](project/images/skip-back.svg) ![Skip to Next Year Icon](project/images/skip-next.svg)
+![Skip to Previous Year Icon](project/images/skip-previous.svg) ![Skip to Next Year Icon](project/images/skip-next.svg)
 
 Using the skip previous / next buttons, the user can manually adjust the time scope that is displayed.
 
