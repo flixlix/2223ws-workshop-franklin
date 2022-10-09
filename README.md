@@ -1,13 +1,23 @@
-Hochschule für Gestaltung - Schwäbisch Gmünd
-Grundlagen im medialen Raum - Projektarbeit
-Anton Pelezki 
-Carina Senger 
-Luca Mário Ziegler Félix  
-Tim Niedermeier
+# Space launches throughout history
 
+Final Project for the workshop "Grundlagen im medialen Raum"
 
+> [Project Folder](project/)
 
-# [Project Folder](project/)
+Professor: [Franklin Hernandez-Castro](franklin.castro@hfg.design)
+
+Students:
+  - [Carina Senger](carina.senger@hfg.design)
+  - [Tim Niedermeier](tim.niedermeier@hfg.design)
+  - [Anton Pelezki](anton.pelezki@hfg.design)
+  - [Luca Ziegler Félix](luca.ziegler@hfg.design)
+
+<br/>
+HfG - Hochschule für Gestaltung
+Schwäbisch Gmünd 2022
+
+<hr/>
+
 ## The task
 
 Our task was to create a paradigm using the [P5JS Library](https://p5js.org/).
@@ -89,11 +99,17 @@ The play / pause buttons behaviour is the same as can be viewed on any youtube v
 
 ## Keyboard shortcuts
 
-SPACEBAR: start/stop animation
-LEFTARROW: skip to previous year
-RIGHTARROW: skip to next year
-PgUp: skip to first year
-PgDn: skip to last year
-m: select next marker
-n: select previous marker
 
+SPACEBAR: start/stop animation
+
+LEFTARROW: skip to previous year
+
+RIGHTARROW: skip to next year
+
+PgUp: skip to first year
+
+PgDn: skip to last year
+
+m: select next marker
+
+n: select previous marker
