@@ -1,4 +1,4 @@
-Safari & Google Chrome
+Safari, Chrome & Firefox
 
 1. Fehler in Skalierung, bei. Zoom, hier verschieden jeweils die Ränder des Frames. Überschrift verschwindet dann zum Beispiel komplett.
 
