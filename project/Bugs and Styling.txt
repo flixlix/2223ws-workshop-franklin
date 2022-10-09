@@ -1,4 +1,4 @@
-Alle Anmerkungen beziehen sich auf Safari als Browser, eventuell sind diese Fehler/Probleme bei anderen Browsern nicht oder anders vorhanden
+Safari & Google Chrome
 
 1. Fehler in Skalierung, bei. Zoom, hier verschieden jeweils die Ränder des Frames. Überschrift verschwindet dann zum Beispiel komplett.
 
