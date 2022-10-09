@@ -6,7 +6,8 @@ Luca Mário Ziegler Félix
 Tim Niedermeier
 
 
-# User Guide
+
+# [Project Folder](project/)
 
 ## Keyboard shortcuts
 
@@ -17,3 +18,4 @@ PgUp: skip to first year
 PgDn: skip to last year
 m: select next marker
 n: select previous marker
+
