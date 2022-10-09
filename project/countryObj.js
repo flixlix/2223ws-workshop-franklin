@@ -86,7 +86,7 @@ class Country {
     changeOpacityBasedOnValue() {
         if (this.isAnySelected() && !this._isSelected) {
             /* more transparent colors */
-            this.setColorAlpha(30);
+            this.setColorAlpha(10);
         } else if (this.isAnySelected() && this._isSelected) {
             this.setColorAlpha("ff");
         } else {

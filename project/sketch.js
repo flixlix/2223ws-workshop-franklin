@@ -123,7 +123,6 @@ function calculateMaxPointCountry() {
 
   }
   let maxxx = Math.max(arrayOfMaxes)
-  console.log(maxxx)
 }
 
 
@@ -190,7 +189,6 @@ function toggleAutoScale() {
   } else {
     autoScaleButton.changeActivity(false);
   }
-  console.log(autoScale)
 }
 
 function skipBackward() {
@@ -229,6 +227,55 @@ function skipNext() {
 
 function skipForward() {
   setYearsDisplayed("max");
+}
+
+function skipMarkerPrevious() {
+  /* pass delta argument of -1 to decrement index of marker */
+  setMarkerSelected(- 1);
+}
+
+function skipMarkerNext() {
+  /* pass delta argument of +1 to increment index of marker */
+  setMarkerSelected(+ 1);
+}
+
+function setMarkerSelected(delta) {
+  let indexOfNewEvent = checkAnyEventSelected().indexOfSelected + delta;
+  if (checkAnyEventSelected().boolAnySelected === false) {
+    for (let i = 0; i < arrayOfEvents.length; i++) {
+      if (checkMarkerInTimeScope(indexOfNewEvent)) {
+        arrayOfEvents[i]._isSelected = true;
+        arrayOfEvents[i].setOthersSelectedFalse();
+      }
+    }
+  } else {
+    /* get index of current selected element and increment by 1 */
+    if (arrayOfEvents[indexOfNewEvent] != undefined && checkMarkerInTimeScope(indexOfNewEvent)) {
+      /* don't increment, beacuse current selected element shall stay selected */
+      arrayOfEvents[indexOfNewEvent].setOthersSelectedFalse();
+      /* select event after current selected event */
+      arrayOfEvents[indexOfNewEvent]._isSelected = true;
+    }
+  }
+}
+
+function checkMarkerInTimeScope(index) {
+  return Math.floor(arrayOfEvents[index]._decimalYear) < yearsDisplayed + 1956;
+}
+
+function checkAnyEventSelected() {
+  let anySelected = false;
+  let indexOfSelectedEvent = 0;
+  for (let i = 0; i < arrayOfEvents.length; i++) {
+    if (arrayOfEvents[i]._isSelected === true) {
+      anySelected = true;
+      indexOfSelectedEvent = i;
+    }
+  }
+  return {
+    boolAnySelected: anySelected,
+    indexOfSelected: indexOfSelectedEvent
+  };
 }
 
 /* accept as argument number of years or text (such as max) */

@@ -48,9 +48,9 @@ class Marker {
     if (this._isSelected) {
       this.showInfo();
     }
-    if (animationState) {
+    /* if (animationState) {
       this.selectMarkersWithinTimeRange();
-    }
+    } */
   }
 
   selectMarkersWithinTimeRange() {
