@@ -12,6 +12,8 @@ Alle Anmerkungen beziehen sich auf Safari als Browser, eventuell sind diese Fehl
 
 6. Länder-Linien nicht klickbar, hover auf die einzelnen Punkte ist nicht möglich, keine Anzeige von Daten. 
 
+7. Button ganz links ohne erkennbare Funktion
+
 
 
 
@@ -19,4 +21,5 @@ Allgemein
 
 1. Abstand der Buttons zueinander vergrößern 
 2. Button Info bei hover, was macht es wenn ich klicke?
-3
+3. Highlight - Ereignis, Name, Datum, Land
+
