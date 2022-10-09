@@ -1,0 +1,13 @@
+Alle Anmerkungen beziehen sich auf Safari als Browser, eventuell sind diese Fehler/Probleme bei anderen Browsern nicht oder anders vorhanden
+
+1. 
+
+Fehler in Skalierung, bei. Zoom, hier verschieden jeweils die Ränder des Frames. Überschrift verschwindet dann zum Beispiel komplett.
+
+2.
+
+Buttons bewegen sich je nach Festergröße auf andere Position, sind jedoch in einer Linie
+
+3.
+
+Legende bei 
