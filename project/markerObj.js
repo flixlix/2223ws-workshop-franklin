@@ -6,6 +6,8 @@ class Marker {
     this._date = "";
     this._description = "";
     this._crew = "";
+    this._vehicle = "";
+
     this._positionX = 10;
     this._selectionWidth = 10;
     this._isOver = false;
@@ -45,9 +47,8 @@ class Marker {
     }
     line(this._positionX, xLine, this._positionX, topY);
     pop();
-    if (this._isSelected) {
-      this.showInfo();
-    }
+    
+
 
     /* check if marker is ouside of the scope, and if true, deselect marker */
     this.unselectMarkersOutsideTimeRange();
@@ -66,11 +67,25 @@ class Marker {
     textAlign(RIGHT);
     textSize(24);
     fill(255);
-    text(this._description, width - 75, 100);
+    eventsContainer.childNodes[1].innerHTML = this._description;
+    eventsContainer.childNodes[3].innerHTML = this._crew;
+    eventsContainer.childNodes[5].innerHTML = this._vehicle;
+    eventsContainer.childNodes[7].innerHTML = this._date;
+    eventsContainer.childNodes[9].innerHTML = this._name;
+    /* text(this._description, width - 75, 100);
     textSize(15);
     fill(190);
-    text(this._crew + "\n" + this._date + "\n" + this._name, width - 75, 122);
+    console.log(this._crew)
+    text(this._crew + "\n" + this._vehicle + "\n" + this._date + "\n" + this._name, width - 75, 122); */
     pop();
+  }
+
+  hideInfo() {
+    eventsContainer.childNodes[1].innerHTML = "";
+    eventsContainer.childNodes[3].innerHTML = "";
+    eventsContainer.childNodes[5].innerHTML = "";
+    eventsContainer.childNodes[7].innerHTML = "";
+    eventsContainer.childNodes[9].innerHTML = "";
   }
 
   is_overMe() {
@@ -85,6 +100,7 @@ class Marker {
     if (mouseX > this._positionX - this._selectionWidth && mouseX < this._positionX + this._selectionWidth && mouseY > topY && mouseY < xLine) {
       this._isSelected = !this._isSelected;
       this.setOthersSelectedFalse();
+      updateDisplayedInfo();
     }
   }
 
@@ -95,5 +111,15 @@ class Marker {
         arrayOfEvents[i]._isSelected = false;
       }
     }
+  }
+
+  isAnySelected() {
+    let isAny = { bool: false, index: 0 };
+    for (let i = 0; i < arrayOfEvents.length; i++) {
+      if (arrayOfEvents[i]._isSelected) {
+        isAny = { bool: true, index: i }
+      }
+    }
+    return isAny;
   }
 } // end of class

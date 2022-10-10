@@ -22,6 +22,7 @@ let highestValueY;
 let thisCountryHighestValue;
 let arrayOfDataPoints = [];
 let autoScale = false;
+let eventsContainer;
 
 function preload() {
   font = loadFont('fonts/OpenSans-Regular.ttf');
@@ -66,6 +67,11 @@ function setup() {
   createDataArrayForEachCountry();
   createEventObjects();
   calculateAllPoints();
+  getEventsContainer();
+}
+
+function getEventsContainer() {
+  eventsContainer = document.getElementById('event-container');
 }
 
 
@@ -326,6 +332,19 @@ function setMarkerSelected(delta) {
       setOnlyThisMarkerSelected(arrayOfEvents[newMarkerIndex]);
     }
   }
+  updateDisplayedInfo();
+}
+
+function updateDisplayedInfo() {
+  for (let countryIndex = 0; countryIndex < arrayOfEvents.length; countryIndex++) {
+    let thisObject = arrayOfEvents[countryIndex];
+    if (thisObject.isAnySelected().bool && thisObject._index == thisObject.isAnySelected().index) {
+      console.log(thisObject._index)
+      thisObject.showInfo();
+    } else if (!thisObject.isAnySelected().bool) {
+      thisObject.hideInfo();
+    }
+  }
 }
 
 function setOnlyThisMarkerSelected(marker) {
@@ -460,7 +479,8 @@ function createEventObjects() {
     currentEvent._date = eventsData.rows[i].obj.Date;
     currentEvent._decimalYear = eventsData.rows[i].obj.Position;
     currentEvent._description = eventsData.rows[i].obj.Event;
-    currentEvent._crew = eventsData.rows[i].obj.Crew
+    currentEvent._crew = eventsData.rows[i].obj.Crew;
+    currentEvent._vehicle = eventsData.rows[i].obj.Vehicle;
     currentEvent.calculatePositionX(xLine);
     arrayOfEvents.push(currentEvent)
   }

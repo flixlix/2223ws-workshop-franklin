@@ -210,9 +210,12 @@ button#blank * {
   display: flex;
   align-items: flex-end;
   flex-direction: column;
-  justify-content: flex-start;
-  margin: 0px 0px 600px 1070px;
+  justify-content: right;
+  margin: 0px 0px 600px 995px;
   padding-right: 40px;
+  flex-wrap: nowrap;
+  width: 300px;
+  overflow: visible;
 }
 
 #description {
