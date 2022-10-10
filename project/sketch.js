@@ -109,13 +109,15 @@ function displayBoxDiagram() {
 
 function drawRects(arrayOfWidths) {
   push();
-  let positionX = 400;
+  let positionX = 500;
   noStroke();
   for (let countryIndex = 0; countryIndex < arrayOfCountries.length; countryIndex++) {
     fill(arrayOfCountries[countryIndex]._color)
+    strokeWeight(3);
+    stroke(backgroundColor)
     rect(positionX, 90, arrayOfWidths[countryIndex], 100)
     if (arrayOfWidths[countryIndex] > 3) {
-      positionX += arrayOfWidths[countryIndex] + 4;
+      positionX += arrayOfWidths[countryIndex];
     }
   }
   pop();
