@@ -92,14 +92,14 @@ function draw() {
   /* show the special events markers in the right fraction of the year */
   displayEvents();
 
-  /* show rectangle on top to hide incoming points */
-  displayBlockingRect();
-
   /* draw rectangles and their sizes */
   displayBoxDiagram();
 
   /* show one point per country per year and connect the points with a line */
   displayLaunches();
+
+  /* show rectangle on top to hide incoming points */
+  displayBlockingRect();
 }
 
 function displayBoxDiagram() {
