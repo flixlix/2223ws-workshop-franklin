@@ -69,7 +69,7 @@ class Marker {
     text(this._description, width - 75, 100);
     textSize(15);
     fill(190);
-    text(this._name + "\n" + this._date + "\n" + this._crew, width - 75, 122);
+    text(this._crew + "\n" + this._date + "\n" + this._name, width - 75, 122);
     pop();
   }
 
