@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 
-body,
-main {
+body {
   font-family: "Open Sans", sans-serif;
   overflow: hidden;
   height: 100vh;
@@ -9,26 +8,27 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: auto;
   color: white;
-  margin: auto;
   background-color: #0f0326;
 }
 
-body {
+main {
   width: 1400px;
   height: 900px;
+  position: absolute;
+  display: flex;
 }
 
 .title {
   cursor: default;
   z-index: 2;
   user-select: none;
-  position: absolute;
   font-weight: 100;
-  z-index: 2;
-  top: 20px;
   font-size: 30px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 p {
@@ -37,9 +37,10 @@ p {
 
 .action-buttons-container {
   position: absolute;
-  bottom: 35px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   gap: 5px;
-  margin: auto;
   display: flex;
   justify-content: center;
   justify-self: end;
@@ -101,14 +102,17 @@ div.legend ul {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-
   align-items: flex-start;
   column-gap: 30px;
   height: 120px;
   border: solid 0px rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(5px);
   width: 225px;
-  margin: 0px 1070px 600px 0px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 85px;
+  left: 75px;
 }
 
 .legend-item {
@@ -208,12 +212,12 @@ button#blank * {
 
 .event-container {
   position: absolute;
+  right: 75px;
+  top: 87px;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
   justify-content: right;
-  margin: 0px 0px 600px 995px;
-  padding-right: 40px;
   flex-wrap: nowrap;
   width: 300px;
   overflow: visible;

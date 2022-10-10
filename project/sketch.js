@@ -16,6 +16,7 @@ let xLine;
 let numYears; /* to be reassigned in the beginning of setup */
 let yearsDisplayed;
 const topY = 250;
+const radiusRect = 3;
 let lineMaxX, lineMinX;
 let playButton, pauseButton;
 let animationState = false;
@@ -88,9 +89,6 @@ function draw() {
   /* show starting and current years at the bottom of the graph */
   displayAxesTitle();
 
-  /* show one point per country per year and connect the points with a line */
-  displayLaunches();
-
   /* show the special events markers in the right fraction of the year */
   displayEvents();
 
@@ -100,6 +98,8 @@ function draw() {
   /* draw rectangles and their sizes */
   displayBoxDiagram();
 
+  /* show one point per country per year and connect the points with a line */
+  displayLaunches();
 }
 
 function displayBoxDiagram() {
@@ -137,7 +137,7 @@ function calculateRects(positionX) {
     if (mouseIsOverEachCountry(positionX, positionY, widthRect, heightY)) {
       displayAxisTextEachCountry(middleX, positionY, heightY, countryIndex);
     }
-    rect(positionX, positionY, arrayOfWidths[countryIndex], heightY)
+    rect(positionX, positionY, arrayOfWidths[countryIndex], heightY, radiusRect)
     if (arrayOfWidths[countryIndex] > 3) {
       positionX += arrayOfWidths[countryIndex];
     }
@@ -155,8 +155,9 @@ function displayAxisTextEachCountry(middleX, positionY, heightY, countryIndex) {
   fill(255);
   textAlign(CENTER, TOP);
   noStroke();
-  let thisValue = arrayOfSums[countryIndex];
-  text(thisValue, middleX, positionY + heightY + 18);
+  let thisValue = nfc(arrayOfSums[countryIndex], 0).replaceAll(',', '.');
+  text(arrayOfCountries[countryIndex]._name, middleX, positionY + heightY + 18);
+  text(thisValue, middleX, positionY + heightY + 32);
   pop();
 }
 
@@ -239,6 +240,13 @@ function displayLaunches() {
     /* call draw function inside each object */
     arrayOfCountries[country].drawNumRocketLaunch();
   }
+  for (let country = 0; country < arrayOfCountries.length; country++) {
+    /* call draw function inside each object */
+    if (arrayOfCountries[country]._isSelected) {
+      arrayOfCountries[country].is_overMe()
+    }
+  }
+
 }
 
 function displayEvents() {
@@ -297,7 +305,7 @@ function displayAxesBoxes() {
   push();
   fill(255);
   textAlign(CENTER, CENTER)
-  text(sumOfSums, middleX, topY - 2);
+  text(nfc(sumOfSums, 0).replaceAll(',', '.'), middleX, topY - 2);
   pop();
 }
 
@@ -417,7 +425,6 @@ function updateDisplayedInfo() {
   for (let countryIndex = 0; countryIndex < arrayOfEvents.length; countryIndex++) {
     let thisObject = arrayOfEvents[countryIndex];
     if (thisObject.isAnySelected().bool && thisObject._index == thisObject.isAnySelected().index) {
-      console.log(thisObject._index)
       thisObject.showInfo();
     } else if (!thisObject.isAnySelected().bool) {
       thisObject.hideInfo();

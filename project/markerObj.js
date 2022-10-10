@@ -47,7 +47,7 @@ class Marker {
     }
     line(this._positionX, xLine, this._positionX, topY);
     pop();
-    
+
 
 
     /* check if marker is ouside of the scope, and if true, deselect marker */
@@ -72,11 +72,6 @@ class Marker {
     eventsContainer.childNodes[5].innerHTML = this._vehicle;
     eventsContainer.childNodes[7].innerHTML = this._date;
     eventsContainer.childNodes[9].innerHTML = this._name;
-    /* text(this._description, width - 75, 100);
-    textSize(15);
-    fill(190);
-    console.log(this._crew)
-    text(this._crew + "\n" + this._vehicle + "\n" + this._date + "\n" + this._name, width - 75, 122); */
     pop();
   }
 

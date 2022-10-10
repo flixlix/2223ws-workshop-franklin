@@ -8,6 +8,7 @@ class Country {
         this._arrayOfSum = [];
         this._overMe = false;
         this._isSelected = false;
+        this._alias = "";
 
         this._color = color(186, 30, 104);
         this._colorIsOver = color(252, 251, 254);
@@ -45,7 +46,7 @@ class Country {
 
     calculateSumVectors() {
         this._arrayOfSum = [];
-        for (let date = 0; date < sumOfLaunchDataByCountry.rows.length; date ++) {
+        for (let date = 0; date < sumOfLaunchDataByCountry.rows.length; date++) {
             let valueX;
             let valueY;
             valueX = sumOfLaunchDataByCountry.rows[date].arr[0];
@@ -69,8 +70,8 @@ class Country {
         push();
         for (let year = 0; year < yearsDisplayed; year++) {
             this.changeOpacityBasedOnValue();
-            this.drawPoints(year);
             this.drawLinesBetweenPoints(year);
+            this.drawPoints(year);
         }
         pop();
     }
@@ -85,15 +86,46 @@ class Country {
             fill(this._color);
             strokeWeight(0.5);
         }
-        ellipse(this._arrayOfPoints[year].x, this._arrayOfPoints[year].y, 3, 3);
+        let yearIndex = year;
+        let yearIndexMinus = yearIndex - 1;
+        let yearIndexPlus = yearIndex + 1;
+        if (yearIndexMinus === -1) {
+            yearIndexMinus = 0;
+        }
+        if (yearIndexPlus > yearsDisplayed - 1) {
+            yearIndexPlus = yearIndex;
+        }
+        if (!this.isZero(this._arrayOfPoints[yearIndex].y) || !this.isZero(this._arrayOfPoints[yearIndexMinus].y) || !this.isZero(this._arrayOfPoints[yearIndexPlus].y)) {
+            ellipse(this._arrayOfPoints[yearIndex].x, this._arrayOfPoints[yearIndex].y, 3, 3);
+        }
         pop();
+    }
+
+    isZero(number) {
+        let bool = false;
+        if (number >= xLine) {
+            bool = true;
+        }
+        return bool;
     }
 
     drawLinesBetweenPoints(year) {
         stroke(this._color);
-        if (year > 0) {
-            line(this._arrayOfPoints[year - 1].x, this._arrayOfPoints[year - 1].y, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
+        let yearIndex = year;
+        let yearIndexMinus = yearIndex - 1;
+        let yearIndexPlus = yearIndex + 1;
+        if (yearIndexMinus === -1) {
+            yearIndexMinus = 0;
         }
+        if (yearIndexPlus > yearsDisplayed - 1) {
+            yearIndexPlus = yearIndex;
+        }
+        if (year > 0) {
+            if (!this.isZero(this._arrayOfPoints[yearIndex].y) || !this.isZero(this._arrayOfPoints[yearIndexMinus].y)) {
+                line(this._arrayOfPoints[yearIndexMinus].x, this._arrayOfPoints[yearIndexMinus].y, this._arrayOfPoints[yearIndex].x, this._arrayOfPoints[yearIndex].y);
+            }
+        }
+
     }
 
     changeOpacityBasedOnValue() {
@@ -112,7 +144,7 @@ class Country {
         let ifAny = false;
         for (let year = 0; year < yearsDisplayed; year++) {
             let distance = dist(mouseX, mouseY, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y);
-            if (distance < 20) {
+            if (distance <= 30) {
                 fill(200);
                 textSize(24);
                 let descriptionText;
@@ -123,15 +155,44 @@ class Country {
                 } else {
                     descriptionText = "Space Flight"
                 }
-                text((this._arrayOfData[year].y * 1).toFixed(0) + " " /* add whitespace between value and text */ + descriptionText, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y - 70);
-                text(this._name, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y - 45);
-                text(this._arrayOfData[year].x, this._arrayOfPoints[year].x, this._arrayOfPoints[year].y - 20);
+                this.drawPopupRect();
+                push();
+                noStroke();
+                textSize(24);
+                textLeading(0);
+                fill('#878092');
+                let selectedYear = this._arrayOfData[year].x;
+                this._alias = this._name;
+                if (this._name === "Russia") {
+                    if (selectedYear <= 1991) {
+                        this._alias = "UdSSR";
+                    } else {
+                        this._alias = "Russia"
+                    }
+                }
+                textAlign(RIGHT, TOP);
+                text(this._arrayOfData[year].x, width - 75 - 20, topY + 16);
+                fill(255);
+                textSize(16);
+                text((this._arrayOfData[year].y * 1).toFixed(0), width - 95, topY + 58);
+                textAlign(LEFT, TOP);
+                text(this._alias, 1120, topY + 58);
+                pop();
                 ifAny = true;
             }
         }
         this._overMe = ifAny;
         pop();
     };
+
+    drawPopupRect(year) {
+        push();
+        fill(backgroundColor)
+        stroke(this._color)
+        strokeWeight(1)
+        rect(1100, topY, width - 1100 - 75, 95, radiusRect);
+        pop();
+    }
 
     setOthersSelectedFalse() {
         /* run through all countries and set _isSelected as false but not on this object */
