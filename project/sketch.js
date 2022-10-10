@@ -1,4 +1,5 @@
 const backgroundColor = "#0f0326";
+let sumOfSums;
 let launchDataByCountry;
 let sumOfLaunchDataByCountry;
 let colorsOfEachCountry;
@@ -8,6 +9,8 @@ const minLaunches = 30; /* Minimum number of launches per country to it to be di
 const arrayOfCountries = [];
 const arrayOfEvents = [];
 const arrayOfLegendItems = [];
+let arrayOfWidths = [];
+let arrayOfSums
 let currentYear;
 let xLine;
 let numYears; /* to be reassigned in the beginning of setup */
@@ -96,31 +99,78 @@ function draw() {
 
   /* draw rectangles and their sizes */
   displayBoxDiagram();
+
 }
 
 function displayBoxDiagram() {
-  let arrayOfSums = [];
+  arrayOfSums = [];
   arrayOfSums = calculateArrayOfSums(arrayOfSums);
-  const sumOfSums = getSumOfAllSums(arrayOfSums);
-  let arrayOfWidths = [];
+  sumOfSums = getSumOfAllSums(arrayOfSums);
+  arrayOfWidths = [];
   mapValuesWidth(arrayOfSums, sumOfSums, arrayOfWidths);
   drawRects(arrayOfWidths);
 }
 
-function drawRects(arrayOfWidths) {
+function drawRects() {
+  if (yearsDisplayed <= 1) {
+    return;
+  }
   push();
   let positionX = 500;
   noStroke();
+  calculateRects(positionX);
+  pop();
+  /* draw axes titles for boxes */
+  displayAxesBoxes();
+
+}
+
+function calculateRects(positionX) {
   for (let countryIndex = 0; countryIndex < arrayOfCountries.length; countryIndex++) {
     fill(arrayOfCountries[countryIndex]._color)
     strokeWeight(3);
-    stroke(backgroundColor)
-    rect(positionX, 90, arrayOfWidths[countryIndex], 100)
+    stroke(backgroundColor);
+    let positionY = 90;
+    let heightY = 100;
+    let widthRect = arrayOfWidths[countryIndex]
+    let middleX = positionX + widthRect / 2;
+    if (mouseIsOverEachCountry(positionX, positionY, widthRect, heightY)) {
+      displayAxisTextEachCountry(middleX, positionY, heightY, countryIndex);
+    }
+    rect(positionX, positionY, arrayOfWidths[countryIndex], heightY)
     if (arrayOfWidths[countryIndex] > 3) {
       positionX += arrayOfWidths[countryIndex];
     }
   }
+}
+
+function displayAxisTextEachCountry(middleX, positionY, heightY, countryIndex) {
+  push();
+  stroke("#fff");
+  strokeWeight(1);
+  noFill();
+  line(middleX, positionY + heightY + 5, middleX, positionY + heightY + 15);
   pop();
+  push();
+  fill(255);
+  textAlign(CENTER, TOP);
+  noStroke();
+  let thisValue = arrayOfSums[countryIndex];
+  text(thisValue, middleX, positionY + heightY + 18);
+  pop();
+}
+
+function mouseIsOverEachCountry(positionX, positionY, width, height) {
+  let isOver = false;
+  let strokeWidth = 2;
+  let startX = positionX + strokeWidth;
+  let startY = positionY + strokeWidth;
+  let endX = positionX + width - strokeWidth;
+  let endY = positionY + height - strokeWidth;
+  if (mouseX > startX && mouseX < endX && mouseY > startY && mouseY < endY) {
+    isOver = true;
+  }
+  return isOver;
 }
 
 function mapValuesWidth(inputArray, sumOfInputArray, outputArray) {
@@ -217,11 +267,37 @@ function displayAxesTitle() {
   pop();
 
   push();
-  stroke("#fff")
-  line(75, xLine + 10, 75, xLine + 20)
-  line(width - 75, xLine + 10, width - 75, xLine + 20)
-  line(55, topY, 65, topY)
-  line(55, xLine, 65, xLine)
+  stroke("#fff");
+  strokeWeight(1)
+  line(75, xLine + 10, 75, xLine + 20);
+  line(width - 75, xLine + 10, width - 75, xLine + 20);
+  line(55, topY, 65, topY);
+  line(55, xLine, 65, xLine);
+  pop();
+}
+
+function displayAxesBoxes() {
+
+  const topY = 75;
+  const heightY = 10;
+  const widthX = 400;
+  const middleX = width / 2; /* 700px */
+  const leftX = middleX - widthX / 2;
+  const rightX = middleX + widthX / 2;
+  const distanceBetweenLines = 42;
+  push();
+  stroke("#fff");
+  noFill();
+  strokeWeight(1);
+  line(leftX, topY - heightY / 2, leftX, topY + heightY / 2);
+  line(rightX, topY - heightY / 2, rightX, topY + heightY / 2);
+  line(leftX + 1, topY, middleX - distanceBetweenLines / 2, topY);
+  line(middleX + distanceBetweenLines / 2, topY, rightX - 1, topY);
+  pop();
+  push();
+  fill(255);
+  textAlign(CENTER, CENTER)
+  text(sumOfSums, middleX, topY - 2);
   pop();
 }
 
