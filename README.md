@@ -36,7 +36,7 @@ We chose the theme: Rocket launches throughout history.
 
 [Source of the data](https://thespacedevs.com/llapi)
 
-For that, we downloaded a .csv file containing the number of flights per country per day since 1957 until 2023 (we only used the data until OCT'22, because the rest are mere predictions). 
+We downloaded a .csv file containing the number of flights per country per day since 1957 until 2023 (we only used the data until OCT'22, because the rest are mere predictions). 
 
 From the same source, we also downloaded a .csv file containing all space flights, ordered by day of departure. From this file, we extracted 5 notable flights to also display this information.
 
@@ -44,7 +44,7 @@ From the same source, we also downloaded a .csv file containing all space flight
 
 ### Countries legends
 
-In the top left corner, we implemented a legend that also serves as a country selector. Clicking on a country will highlight its points. It is possible to select multiple countries at once.
+In the top left corner, we implemented a legend that also serves as a country / region selector. Clicking on a country will highlight its graph. It is possible to select multiple countries at the same time.
 
 ### xaxis extremas label
 
@@ -52,8 +52,7 @@ On the x- as well as on the y-axis, we implemented a label indicating the minimu
 
 ### Notable launches markers
 
-After deciding on five notable launches throughout history, we put markers on the exact time they took place. 
-These markers are displayed on the exact portion of the year, meaning for eg: a launch that took place on the 27th of December of 1957 will be much closer to the point displaying 1958 than the point displaying 1957.
+After deciding on five notable launches throughout history, we put markers on the exact time they took place meaning e.g.: a launch that took place on the 27th of December of 1957 will be much closer to the point displaying 1958 than the point displaying 1957.
 By clicking on these markers, the user can find out more details about the launch (exact date, country of operation, description and crew).
 
 ### Action Buttons Row
@@ -63,7 +62,7 @@ By clicking on these markers, the user can find out more details about the launc
 <img src="project/images/auto-scale.svg" width= "100px"/>
 
 The first button allows the user to select wether or not the y axis is dynamic.
-This means, for eg: 
+This means, e.g.: 
   - The user selects the country "Brazil"
   - If the Auto Scale feature is enabled:
     - The maximum value of the selected country will be displayed on the top of the graph
