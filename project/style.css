@@ -57,12 +57,14 @@ p {
   fill: #818181;
 }
 
-.action-button:hover, .action-button#play:hover {
+.action-button:hover,
+.action-button#play:hover {
   fill: #a3a3a3;
   transform: scale(1.1);
 }
 
-.action-button:active, .action-button#play:active {
+.action-button:active,
+.action-button#play:active {
   fill: #9b9b9b;
   transform: scale(0.95);
 }
@@ -127,7 +129,6 @@ div.legend ul {
   user-select: none;
 }
 
-
 .legend ul li:hover {
   font-weight: bold;
 }
@@ -166,7 +167,7 @@ div.square {
 }
 
 #usa :first-child {
-  background-color: #6290C8;
+  background-color: #6290c8;
 }
 
 #china :first-child {
@@ -192,52 +193,73 @@ div.square {
   background-color: #b3b3f1;
 }
 
-button#blank, button#blank * {
+button#blank,
+button#blank * {
   height: 0;
   cursor: default;
 }
 
 #auto-scale.active {
-  animation: rainbow .7s linear 1;
+  animation: rainbow 0.7s linear 1;
   fill: rgb(183, 0, 255);
   /* animation-iteration-count: infinite; */
 }
 
-@keyframes rainbow{
-  0%,100%{
-    fill: rgb(255,0,0);
+.event-container {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0px 0px 600px 1070px;
+  padding-right: 40px;
+}
+
+#description {
+  font-weight: bold;
+}
+
+.event-container :not(#description) {
+  color: #878092;
+  font-weight: 400;
+}
+
+@keyframes rainbow {
+  0%,
+  100% {
+    fill: rgb(255, 0, 0);
   }
-  8%{
-    fill: rgb(255,127,0);
+  8% {
+    fill: rgb(255, 127, 0);
   }
-  16%{
-    fill: rgb(255,255,0);
+  16% {
+    fill: rgb(255, 255, 0);
   }
-  25%{
-    fill: rgb(127,255,0);
+  25% {
+    fill: rgb(127, 255, 0);
   }
-  33%{
-    fill: rgb(0,255,0);
+  33% {
+    fill: rgb(0, 255, 0);
   }
-  41%{
-    fill: rgb(0,255,127);
+  41% {
+    fill: rgb(0, 255, 127);
   }
-  50%{
-    fill: rgb(0,255,255);
+  50% {
+    fill: rgb(0, 255, 255);
   }
-  58%{
-    fill: rgb(0,127,255);
+  58% {
+    fill: rgb(0, 127, 255);
   }
-  66%{
-    fill: rgb(0,0,255);
+  66% {
+    fill: rgb(0, 0, 255);
   }
-  75%{
-    fill: rgb(127,0,255);
+  75% {
+    fill: rgb(127, 0, 255);
   }
-  83%{
-    fill: rgb(255,0,255);
+  83% {
+    fill: rgb(255, 0, 255);
   }
-  91%{
-    fill: rgb(255,0,127);
+  91% {
+    fill: rgb(255, 0, 127);
   }
 }
