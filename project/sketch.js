@@ -89,16 +89,18 @@ function draw() {
   /* show starting and current years at the bottom of the graph */
   displayAxesTitle();
 
-  /* show the special events markers in the right fraction of the year */
-  displayEvents();
-
   /* draw rectangles and their sizes */
   displayBoxDiagram();
 
   /* show one point per country per year and connect the points with a line */
   displayLaunches();
 
-  /* show rectangle on top to hide incoming points */
+  /* show the special events markers in the right fraction of the year */
+  displayEvents();
+  displayCountryValues();
+
+
+
   displayBlockingRect();
 }
 
@@ -240,13 +242,15 @@ function displayLaunches() {
     /* call draw function inside each object */
     arrayOfCountries[country].drawNumRocketLaunch();
   }
+}
+
+function displayCountryValues() {
   for (let country = 0; country < arrayOfCountries.length; country++) {
     /* call draw function inside each object */
     if (arrayOfCountries[country]._isSelected) {
       arrayOfCountries[country].is_overMe()
     }
   }
-
 }
 
 function displayEvents() {
