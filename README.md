@@ -4,13 +4,13 @@ Final Project for the workshop "Grundlagen im medialen Raum"
 
 > [Project Folder](project/)
 
-Professor: [Franklin Hernandez-Castro](franklin.castro@hfg.design)
+Professor: [Franklin Hernandez-Castro](mailto:franklin.castro@hfg.design)
 
 Students:
-  - [Carina Senger](carina.senger@hfg.design)
-  - [Tim Niedermeier](tim.niedermeier@hfg.design)
-  - [Anton Pelezki](anton.pelezki@hfg.design)
-  - [Luca Ziegler Félix](luca.ziegler@hfg.design)
+  - [Carina Senger](mailto:carina.senger@hfg.design)
+  - [Tim Niedermeier](mailto:tim.niedermeier@hfg.design)
+  - [Anton Pelezki](mailto:anton.pelezki@hfg.design)
+  - [Luca Ziegler Félix](mailto:luca.ziegler@hfg.design)
 
 <br/>
 HfG - Hochschule für Gestaltung
