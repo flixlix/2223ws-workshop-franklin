@@ -27,6 +27,7 @@ let thisCountryHighestValue;
 let arrayOfDataPoints = [];
 let autoScale = false;
 let eventsContainer;
+let imageEventElement;
 
 function preload() {
   font = loadFont('fonts/OpenSans-Regular.ttf');
@@ -54,6 +55,8 @@ function preload() {
 function setup() {
   createCanvas(1400, 900); /* size of canvas in x and y direction */
   textFont(font);
+  smooth();
+  pixelDensity(2.0)
   frameRate(30);
   let currentEvent;
   lineMaxX = (width - 75);
@@ -71,11 +74,12 @@ function setup() {
   createDataArrayForEachCountry();
   createEventObjects();
   calculateAllPoints();
-  getEventsContainer();
+  getHtmlElements();
 }
 
-function getEventsContainer() {
+function getHtmlElements() {
   eventsContainer = document.getElementById('event-container');
+  imageEventElement = document.getElementById('image-event-element');
 }
 
 
@@ -97,17 +101,22 @@ function draw() {
 
   /* show the special events markers in the right fraction of the year */
   displayEvents();
+
+  /* show the value of the currently hovered ellipse */
   displayCountryValues();
 
-
-
+  /* show rectangle to cover other elements */
   displayBlockingRect();
 }
 
 function displayBoxDiagram() {
+
+  /* reset array of sums */
   arrayOfSums = [];
   arrayOfSums = calculateArrayOfSums(arrayOfSums);
   sumOfSums = getSumOfAllSums(arrayOfSums);
+
+  /* reset array of widths */
   arrayOfWidths = [];
   mapValuesWidth(arrayOfSums, sumOfSums, arrayOfWidths);
   drawRects(arrayOfWidths);
@@ -136,7 +145,7 @@ function calculateRects(positionX) {
     let heightY = 100;
     let widthRect = arrayOfWidths[countryIndex]
     let middleX = positionX + widthRect / 2;
-    if (mouseIsOverEachCountry(positionX, positionY, widthRect, heightY)) {
+    if (!arrayOfCountries[0].isAnySelected() && mouseIsOverEachCountry(positionX, positionY, widthRect, heightY) || arrayOfCountries[0].isAnySelected() && arrayOfCountries[0].whichIsSelected().includes(countryIndex)) {
       displayAxisTextEachCountry(middleX, positionY, heightY, countryIndex);
     }
     rect(positionX, positionY, arrayOfWidths[countryIndex], heightY, radiusRect)
@@ -145,6 +154,7 @@ function calculateRects(positionX) {
     }
   }
 }
+
 
 function displayAxisTextEachCountry(middleX, positionY, heightY, countryIndex) {
   push();
@@ -192,7 +202,7 @@ function calculateArrayOfSums(inputArray) {
   for (let countryIndex = 0; countryIndex < arrayOfCountries.length; countryIndex++) {
     let lastSum = 0;
     for (let dateIndex = 0; dateIndex < sumOfLaunchDataByCountry.rows.length; dateIndex++) {
-      if (arrayOfCountries[countryIndex]._arrayOfSum[dateIndex].x <= yearsDisplayed + 1956) {
+      if (arrayOfCountries[countryIndex]._arrayOfSum[dateIndex].x <= yearsDisplayed + 1957) {
         lastSum = parseInt(arrayOfCountries[countryIndex]._arrayOfSum[dateIndex].y)
       }
     }
@@ -202,7 +212,6 @@ function calculateArrayOfSums(inputArray) {
 }
 
 function getSumOfAllSums(inputArr) {
-
   /* sum all elements inside array of sums and give that value to sumOfCountriesSums */
   return inputArr.reduce((a, b) => a + b, 0);
 }
@@ -263,6 +272,8 @@ function displayEvents() {
 
 function displayAxesTitle() {
   let currentYear = round(yearsDisplayed + 1956, 0);
+
+  /* xaxis label text from first year to currently displayed last year  */
   push();
   fill(255);
   textAlign(CENTER, TOP);
@@ -271,6 +282,7 @@ function displayAxesTitle() {
   text(currentYear, width - 75, xLine + 25);
   pop();
 
+  /* yaxis label from 0 rockets to maximum number of rockets */
   push();
   fill(255);
   textAlign(RIGHT, CENTER)
@@ -278,18 +290,73 @@ function displayAxesTitle() {
   text("0", 50, xLine - 3);
   pop();
 
+  /* multiple lines to set the bounds */
   push();
-  stroke("#fff");
-  strokeWeight(1)
+
+  /* slightly transparent white, last two digits define alpha channel of color */
+  let legendColor = "#ffffff40";
+  stroke(legendColor);
+  strokeWeight(1);
+
+  /* ----------------------- START BOUNDS LINES ----------------------- */
+  /* xaxis lines */
+
+  /* - left line */
   line(75, xLine + 10, 75, xLine + 20);
+
+  /* - right line */
   line(width - 75, xLine + 10, width - 75, xLine + 20);
+
+  /* yaxis lines */
+
+  /* - top line */
   line(55, topY, 65, topY);
+
+  /* - bottom line */
   line(55, xLine, 65, xLine);
+
+  /* ----------------------- END BOUNDS LINES ----------------------- */
+
+  /* ----------------------- START CONNECTIONS LINES ----------------------- */
+
+  /* yaxis lines */
+
+  /* - bottom line */
+  line(60, xLine - 1, 60, topY + (xLine - topY) / 2 + 75);
+
+  /* - top line */
+  line(60, topY + 1, 60, topY + (xLine - topY) / 2 - 75);
+
+  /* xaxis lines */
+
+  /* - left line */
+  line(75 + 1, xLine + 15, width / 2 - 25, xLine + 15);
+
+  /* - right line */
+  line(width / 2 + 25, xLine + 15, width - 76, xLine + 15);
+
+  /* ----------------------- END CONNECTIONS LINES ----------------------- */
+  pop();
+
+  /* yaxis lengend on the right text for number of rockets */
+  push();
+  const angle = radians(270);
+  textAlign(CENTER, CENTER);
+  translate(57, topY + (xLine - topY) / 2);
+  rotate(angle);
+  fill(legendColor);
+  text("number of rockets", 0, 0 /* topY + xLine / 2 */)
+  pop();
+
+  /* xaxis lengend on the bottom text for years */
+  push();
+  fill(legendColor);
+  textAlign(CENTER, CENTER);
+  text("years", width / 2, xLine + 12 /* topY + xLine / 2 */);
   pop();
 }
 
 function displayAxesBoxes() {
-
   const topY = 75;
   const heightY = 10;
   const widthX = 400;
@@ -570,6 +637,7 @@ function createEventObjects() {
     currentEvent._description = eventsData.rows[i].obj.Event;
     currentEvent._crew = eventsData.rows[i].obj.Crew;
     currentEvent._vehicle = eventsData.rows[i].obj.Vehicle;
+    currentEvent._pathToImg = eventsData.rows[i].obj.pathToImg;
     currentEvent.calculatePositionX(xLine);
     arrayOfEvents.push(currentEvent)
   }

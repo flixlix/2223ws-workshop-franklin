@@ -7,6 +7,7 @@ class Marker {
     this._description = "";
     this._crew = "";
     this._vehicle = "";
+    this._pathToImg = "";
 
     this._positionX = 10;
     this._selectionWidth = 10;
@@ -45,7 +46,7 @@ class Marker {
       stroke(this._color);
       strokeWeight(0.5);
     }
-    line(this._positionX, xLine, this._positionX, topY);
+    line(this._positionX, xLine + 14, this._positionX, topY);
     pop();
 
 
@@ -57,10 +58,12 @@ class Marker {
   unselectMarkersOutsideTimeRange() {
     if (Math.floor(yearsDisplayed + 1956) <= Math.floor(this._decimalYear)) {
       this._isSelected = false;
+      this.hideInfo();
     }
   }
 
   showInfo() {
+    imageEventElement.src = this._pathToImg;
     push();
     noStroke();
     textLeading(20);
@@ -73,6 +76,7 @@ class Marker {
     eventsContainer.childNodes[7].innerHTML = this._date;
     eventsContainer.childNodes[9].innerHTML = this._name;
     pop();
+    imageEventElement.style.display = "block";
   }
 
   hideInfo() {
@@ -81,6 +85,7 @@ class Marker {
     eventsContainer.childNodes[5].innerHTML = "";
     eventsContainer.childNodes[7].innerHTML = "";
     eventsContainer.childNodes[9].innerHTML = "";
+    imageEventElement.style.display = "none";
   }
 
   is_overMe() {

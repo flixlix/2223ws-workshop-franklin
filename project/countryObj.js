@@ -214,6 +214,16 @@ class Country {
         return isAny;
     }
 
+    whichIsSelected() {
+        let index = [];
+        for (let i = 0; i < arrayOfCountries.length; i++) {
+            if (arrayOfCountries[i]._isSelected) {
+                index.push(i);
+            }
+        }
+        return index;
+    }
+
     setColorAlpha(alphaValue) {
         this._color = this._color.slice(0, -2);
         this._color = this._color + alphaValue;
