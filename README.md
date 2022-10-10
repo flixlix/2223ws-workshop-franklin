@@ -4,7 +4,7 @@ Final Project for the workshop "Grundlagen im medialen Raum"
 
 > [Project Folder](project/)
 
-Professor: [Franklin Hernandez-Castro](mailto:franklin.castro@hfg.design)
+Professor: [Franklin Hernandez-Castro](mailto:franklin.castro@hfg.design subject=Space launches throughout history / Project 2022 HfG")
 
 Students:
   - [Carina Senger](mailto:carina.senger@hfg.design)
