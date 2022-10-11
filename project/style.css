@@ -101,6 +101,7 @@ div.legend {
   position: absolute;
   display: flex;
   align-items: center;
+  z-index: 100;
 }
 
 div.legend ul {
@@ -110,8 +111,6 @@ div.legend ul {
   align-items: flex-start;
   column-gap: 30px;
   height: 120px;
-  border: solid 0px rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(5px);
   width: 225px;
   margin: 0;
   padding: 0;
@@ -297,25 +296,25 @@ button#blank * {
 }
 
 .stars {
-  background: url("images/sky_of_stars.png") center center;
-  background-size: auto contain;
-  -webkit-animation: velocity 1s linear 0s infinite normal forwards; /* Safari 4.0 - 8.0 */
-  animation: velocity 100s linear infinite;
+  background: url("images/sky_of_stars_more_stars.png") center center;
+  background-size: contain;
+  aspect-ratio: 1/1;
+  animation: velocity 1000s linear infinite;
   transform: rotate(1turn);
-  height: 2000px;
+
+  height: 2500px;
   margin: 0;
   padding: 0;
-  width: 2000px;
-  z-index: 10000;
+  width: 2500px;
+  z-index: 99;
   transition: all 2s ease-in;
   /*  opacity: 20%; */
 }
 .rocket {
-  background: url("images/rocket.png") no-repeat center center;
+  background: url("images/rocket_ship.png") no-repeat center center;
   background-size: contain;
   position: absolute;
-  transition: all 2s ease;
-  -webkit-animation: flying 1s ease-in-out 0s infinite normal; /* Safari 4.0 - 8.0 */
+  transition: all 5s ease;
   animation: flying 1.5s ease-in-out 0s infinite normal;
   /* animation: flyaway 2s cubic-bezier(.29,-0.04,.93,.29) 0s 1 normal; */
   top: -300px;
@@ -326,19 +325,6 @@ button#blank * {
   width: 100px;
   margin: 0;
   z-index: 100000;
-}
-
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes flying {
-  0% {
-    top: 400px;
-  }
-  50% {
-    top: 450px;
-  }
-  100% {
-    top: 400px;
-  }
 }
 
 /* Standard syntax */
@@ -361,19 +347,6 @@ button#blank * {
   }
   100% {
     top: -300px;
-  }
-}
-
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes velocity {
-  0% {
-    background-position: center bottom;
-  }
-  50% {
-    background-position: center center;
-  }
-  100% {
-    background-position: center top;
   }
 }
 
