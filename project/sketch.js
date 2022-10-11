@@ -529,7 +529,6 @@ function updateDisplayedInfo() {
       thisObject.showInfo();
     } else if (!thisObject.isAnySelected().bool) {
       thisObject.hideInfo();
-      console.log("hideInfo()")
     }
   }
 }

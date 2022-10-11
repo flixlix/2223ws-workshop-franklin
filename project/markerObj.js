@@ -58,7 +58,6 @@ class Marker {
   unselectMarkersOutsideTimeRange() {
     if (Math.floor(yearsDisplayed + 1956) <= Math.floor(this._decimalYear)) {
       this.setUnselected();
-      console.log(this.isAnySelected())
       if (!this.isAnySelected().bool) {
         this.hideInfo();
       }
@@ -87,7 +86,6 @@ class Marker {
   }
 
   hideInfo() {
-    console.log(eventsContainer)
     eventsContainer.childNodes[1].innerHTML = "";
     eventsContainer.childNodes[3].innerHTML = "";
     eventsContainer.childNodes[5].innerHTML = "";
