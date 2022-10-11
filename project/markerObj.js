@@ -46,7 +46,7 @@ class Marker {
       stroke(this._color);
       strokeWeight(0.5);
     }
-    line(this._positionX, xLine + 14, this._positionX, topY);
+    line(this._positionX, xLine , this._positionX, topY);
     pop();
 
 
