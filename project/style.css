@@ -301,7 +301,6 @@ button#blank * {
   aspect-ratio: 1/1;
   animation: velocity 1000s linear infinite;
   transform: rotate(1turn);
-
   height: 2500px;
   margin: 0;
   padding: 0;
@@ -315,7 +314,7 @@ button#blank * {
   background-size: contain;
   position: absolute;
   transition: all 5s ease;
-  animation: flying 1.5s ease-in-out 0s infinite normal;
+  animation: flying 1.3s ease-out 0s infinite normal;
   /* animation: flyaway 2s cubic-bezier(.29,-0.04,.93,.29) 0s 1 normal; */
   top: -300px;
   left: 50%;
@@ -333,7 +332,7 @@ button#blank * {
     top: 400px;
   }
   50% {
-    top: 450px;
+    top: 410px;
   }
   100% {
     top: 400px;

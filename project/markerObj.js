@@ -46,7 +46,7 @@ class Marker {
       stroke(this._color);
       strokeWeight(0.5);
     }
-    line(this._positionX, xLine , this._positionX, topY);
+    line(this._positionX, xLine, this._positionX, topY);
     pop();
 
 
@@ -57,9 +57,16 @@ class Marker {
 
   unselectMarkersOutsideTimeRange() {
     if (Math.floor(yearsDisplayed + 1956) <= Math.floor(this._decimalYear)) {
-      this._isSelected = false;
-      this.hideInfo();
+      this.setUnselected();
+      console.log(this.isAnySelected())
+      if (!this.isAnySelected().bool) {
+        this.hideInfo();
+      }
     }
+  }
+
+  setUnselected() {
+    this._isSelected = false;
   }
 
   showInfo() {
@@ -80,6 +87,7 @@ class Marker {
   }
 
   hideInfo() {
+    console.log(eventsContainer)
     eventsContainer.childNodes[1].innerHTML = "";
     eventsContainer.childNodes[3].innerHTML = "";
     eventsContainer.childNodes[5].innerHTML = "";

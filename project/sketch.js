@@ -123,6 +123,8 @@ function hideAnimationsAfterStartup() {
     if (!flyAway) {
       rocketELement.style.animationIterationCount = 1;
       rocketELement.style.animationName = "flyaway";
+      rocketELement.style. animationTimingFunction = "cubic-bezier(.5,0,.81,.8)";
+      rocketELement.style.animationDuration = "1.2s";
     }
     flyAway = true;
   }
@@ -527,6 +529,7 @@ function updateDisplayedInfo() {
       thisObject.showInfo();
     } else if (!thisObject.isAnySelected().bool) {
       thisObject.hideInfo();
+      console.log("hideInfo()")
     }
   }
 }
