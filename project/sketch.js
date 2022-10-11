@@ -28,6 +28,9 @@ let arrayOfDataPoints = [];
 let autoScale = false;
 let eventsContainer;
 let imageEventElement;
+let starsElement;
+let rocketELement;
+let flyAway;
 
 function preload() {
   font = loadFont('fonts/OpenSans-Regular.ttf');
@@ -80,12 +83,17 @@ function setup() {
 function getHtmlElements() {
   eventsContainer = document.getElementById('event-container');
   imageEventElement = document.getElementById('image-event-element');
+  starsElement = document.getElementById('stars-element');
+  rocketELement = document.getElementById('rocket-element');
+  flyAway = false;
 }
 
 
 /* runs 60 times per second */
 function draw() {
   background(backgroundColor); /* color of background of canvas */
+
+  hideAnimationsAfterStartup();
 
   /* start animation every frame if animation state is enabled */
   displayAnimation();
@@ -107,6 +115,19 @@ function draw() {
 
   /* show rectangle to cover other elements */
   displayBlockingRect();
+}
+
+function hideAnimationsAfterStartup() {
+  if (yearsDisplayed > 1) {
+    starsElement.style.opacity = 0;
+    if (!flyAway) {
+      rocketELement.style.animationIterationCount = 1;
+      rocketELement.style.animationName = "flyaway";
+    }
+    flyAway = true;
+  }
+
+
 }
 
 function displayBoxDiagram() {
@@ -145,7 +166,8 @@ function calculateRects(positionX) {
     let heightY = 100;
     let widthRect = arrayOfWidths[countryIndex]
     let middleX = positionX + widthRect / 2;
-    if (!arrayOfCountries[0].isAnySelected() && mouseIsOverEachCountry(positionX, positionY, widthRect, heightY) || arrayOfCountries[0].isAnySelected() && arrayOfCountries[0].whichIsSelected().includes(countryIndex)) {
+    /* if (!arrayOfCountries[0].isAnySelected() && mouseIsOverEachCountry(positionX, positionY, widthRect, heightY) || arrayOfCountries[0].isAnySelected() && arrayOfCountries[0].whichIsSelected().includes(countryIndex)) { */
+    if (mouseIsOverEachCountry(positionX, positionY, widthRect, heightY)) {
       displayAxisTextEachCountry(middleX, positionY, heightY, countryIndex);
     }
     rect(positionX, positionY, arrayOfWidths[countryIndex], heightY, radiusRect)
@@ -276,6 +298,7 @@ function displayAxesTitle() {
   /* xaxis label text from first year to currently displayed last year  */
   push();
   fill(255);
+  textSize(18);
   textAlign(CENTER, TOP);
   noStroke();
   text("1957", 75, xLine + 25)
@@ -284,6 +307,7 @@ function displayAxesTitle() {
 
   /* yaxis label from 0 rockets to maximum number of rockets */
   push();
+  textSize(18);
   fill(255);
   textAlign(RIGHT, CENTER)
   text(highestValueY, 50, topY - 3);
@@ -322,24 +346,25 @@ function displayAxesTitle() {
   /* yaxis lines */
 
   /* - bottom line */
-  line(60, xLine - 1, 60, topY + (xLine - topY) / 2 + 75);
+  line(60, xLine - 1, 60, topY + (xLine - topY) / 2 + 80);
 
   /* - top line */
-  line(60, topY + 1, 60, topY + (xLine - topY) / 2 - 75);
+  line(60, topY + 1, 60, topY + (xLine - topY) / 2 - 80);
 
   /* xaxis lines */
 
   /* - left line */
-  line(75 + 1, xLine + 15, width / 2 - 25, xLine + 15);
+  line(75 + 1, xLine + 15, width / 2 - 33, xLine + 15);
 
   /* - right line */
-  line(width / 2 + 25, xLine + 15, width - 76, xLine + 15);
+  line(width / 2 + 33, xLine + 15, width - 76, xLine + 15);
 
   /* ----------------------- END CONNECTIONS LINES ----------------------- */
   pop();
 
   /* yaxis lengend on the right text for number of rockets */
   push();
+  textSize(14);
   const angle = radians(270);
   textAlign(CENTER, CENTER);
   translate(57, topY + (xLine - topY) / 2);
@@ -350,6 +375,7 @@ function displayAxesTitle() {
 
   /* xaxis lengend on the bottom text for years */
   push();
+  textSize(14);
   fill(legendColor);
   textAlign(CENTER, CENTER);
   text("years", width / 2, xLine + 12 /* topY + xLine / 2 */);
@@ -363,9 +389,10 @@ function displayAxesBoxes() {
   const middleX = width / 2; /* 700px */
   const leftX = middleX - widthX / 2;
   const rightX = middleX + widthX / 2;
-  const distanceBetweenLines = 42;
+  const distanceBetweenLines = 64;
   push();
-  stroke("#fff");
+  let legendColor = "#ffffff40";
+  stroke(legendColor);
   noFill();
   strokeWeight(1);
   line(leftX, topY - heightY / 2, leftX, topY + heightY / 2);
@@ -375,8 +402,9 @@ function displayAxesBoxes() {
   pop();
   push();
   fill(255);
-  textAlign(CENTER, CENTER)
-  text(nfc(sumOfSums, 0).replaceAll(',', '.'), middleX, topY - 2);
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  text(nfc(sumOfSums, 0).replaceAll(',', '.'), middleX, topY - 3);
   pop();
 }
 
@@ -546,11 +574,17 @@ function setYearsDisplayed(years) {
     pause();
   }
 
+
   /* did user ask for less than 1 year to be displayed? */
   else if (years < 1) {
 
     /* force 1 year to be displayed */
     years = 1;
+
+  } 
+  /* didi user restart function */
+  else if (years === 1) {
+    pause();
   }
 
   /* did user ask to continue animation? */

@@ -14,7 +14,7 @@ class Marker {
     this._isOver = false;
     this._isSelected = false;
 
-    this._color = color(255, 255, 255, 128);
+    this._color = color(255, 255, 255, 255);
     this._colorIsOver = color(255, 255, 255, 220);
     this._colorIsSelected = color(255, 215, 0);
     this._colorIsOverAndSelected = color(196, 167, 0);

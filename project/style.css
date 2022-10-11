@@ -40,6 +40,7 @@ p {
 }
 
 .action-buttons-container {
+  z-index: 70000000;
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -292,5 +293,98 @@ button#blank * {
   }
   91% {
     fill: rgb(255, 0, 127);
+  }
+}
+
+.stars {
+  background: url("images/sky_of_stars.png") center center;
+  background-size: auto contain;
+  -webkit-animation: velocity 1s linear 0s infinite normal forwards; /* Safari 4.0 - 8.0 */
+  animation: velocity 100s linear infinite;
+  transform: rotate(1turn);
+  height: 2000px;
+  margin: 0;
+  padding: 0;
+  width: 2000px;
+  z-index: 10000;
+  transition: all 2s ease-in;
+  /*  opacity: 20%; */
+}
+.rocket {
+  background: url("images/rocket.png") no-repeat center center;
+  background-size: contain;
+  position: absolute;
+  transition: all 2s ease;
+  -webkit-animation: flying 1s ease-in-out 0s infinite normal; /* Safari 4.0 - 8.0 */
+  animation: flying 1.5s ease-in-out 0s infinite normal;
+  /* animation: flyaway 2s cubic-bezier(.29,-0.04,.93,.29) 0s 1 normal; */
+  top: -300px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  height: 200px;
+  object-fit: fill;
+  width: 100px;
+  margin: 0;
+  z-index: 100000;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes flying {
+  0% {
+    top: 400px;
+  }
+  50% {
+    top: 450px;
+  }
+  100% {
+    top: 400px;
+  }
+}
+
+/* Standard syntax */
+@keyframes flying {
+  0% {
+    top: 400px;
+  }
+  50% {
+    top: 450px;
+  }
+  100% {
+    top: 400px;
+  }
+}
+
+/* Standard syntax */
+@keyframes flyaway {
+  0% {
+    top: 400px;
+  }
+  100% {
+    top: -300px;
+  }
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes velocity {
+  0% {
+    background-position: center bottom;
+  }
+  50% {
+    background-position: center center;
+  }
+  100% {
+    background-position: center top;
+  }
+}
+
+@keyframes velocity {
+  0% {
+    transform: rotate(0turn);
+  }
+  50% {
+    transform: rotate((0.5turn));
+  }
+  100% {
+    transform: rotate((1turn));
   }
 }
