@@ -161,20 +161,31 @@ function drawRects() {
 
 function calculateRects(positionX) {
   for (let countryIndex = 0; countryIndex < arrayOfCountries.length; countryIndex++) {
-    fill(arrayOfCountries[countryIndex]._color)
-    strokeWeight(3);
-    stroke(backgroundColor);
-    let positionY = 90;
-    let heightY = 100;
-    let widthRect = arrayOfWidths[countryIndex]
-    let middleX = positionX + widthRect / 2;
-    /* if (!arrayOfCountries[0].isAnySelected() && mouseIsOverEachCountry(positionX, positionY, widthRect, heightY) || arrayOfCountries[0].isAnySelected() && arrayOfCountries[0].whichIsSelected().includes(countryIndex)) { */
-    if (mouseIsOverEachCountry(positionX, positionY, widthRect, heightY)) {
-      displayAxisTextEachCountry(middleX, positionY, heightY, countryIndex);
-    }
-    rect(positionX, positionY, arrayOfWidths[countryIndex], heightY, radiusRect);
-    if (arrayOfWidths[countryIndex] > 3) {
-      positionX += arrayOfWidths[countryIndex];
+    if (countryIndex != 3 && countryIndex != 4) {
+      push();
+      noFill();
+      strokeWeight(3);
+      stroke(backgroundColor);
+      let positionY = 90;
+      let heightY = 100;
+      let widthRect = arrayOfWidths[countryIndex]
+      let middleX = positionX + widthRect / 2;
+      /* if (!arrayOfCountries[0].isAnySelected() && mouseIsOverEachCountry(positionX, positionY, widthRect, heightY) || arrayOfCountries[0].isAnySelected() && arrayOfCountries[0].whichIsSelected().includes(countryIndex)) { */
+      if (mouseIsOverEachCountry(positionX, positionY, widthRect, heightY)) {
+        displayAxisTextEachCountry(middleX, positionY, heightY, countryIndex);
+      }
+      rect(positionX, positionY, arrayOfWidths[countryIndex], heightY, radiusRect);
+      strokeWeight(1);
+      arrayOfCountries[countryIndex].setColorAlpha("ff");
+      stroke(arrayOfCountries[countryIndex]._color);
+      arrayOfCountries[countryIndex].setColorAlpha(40);
+      let colorTransparent = arrayOfCountries[countryIndex]._color;
+      fill(colorTransparent);
+      rect(positionX + 4, positionY + 4, arrayOfWidths[countryIndex] - 7, heightY - 7, radiusRect);
+      if (arrayOfWidths[countryIndex] > 3) {
+        positionX += arrayOfWidths[countryIndex];
+      }
+      pop();
     }
   }
 }
@@ -391,19 +402,19 @@ function displayAxesBoxes() {
   const middleX = width / 2; /* 700px */
   const leftX = middleX - widthX / 2;
   const rightX = middleX + widthX / 2;
-  const distanceBetweenLines = 64;
+  const distanceBetweenLines = 66;
   push();
   let legendColor = "#ffffff40";
   stroke(legendColor);
   noFill();
   strokeWeight(1);
-  line(leftX, topY - heightY / 2, leftX, topY + heightY / 2);
-  line(rightX, topY - heightY / 2, rightX, topY + heightY / 2);
-  line(leftX + 1, topY, middleX - distanceBetweenLines / 2, topY);
-  line(middleX + distanceBetweenLines / 2, topY, rightX - 1, topY);
+  line(leftX + 3, topY - heightY / 2, leftX + 3, topY + heightY / 2);
+  line(rightX - 2, topY - heightY / 2, rightX - 2, topY + heightY / 2);
+  line(leftX + 4, topY, middleX - distanceBetweenLines / 2, topY);
+  line(middleX + distanceBetweenLines / 2, topY, rightX - 3, topY);
   pop();
   push();
-  fill(255);
+  fill(legendColor);
   textAlign(CENTER, CENTER);
   textSize(14);
   text(nfc(sumOfSums, 0).replaceAll(',', '.'), middleX, topY - 3);
