@@ -123,7 +123,7 @@ function hideAnimationsAfterStartup() {
     if (!flyAway) {
       rocketELement.style.animationIterationCount = 1;
       rocketELement.style.animationName = "flyaway";
-      rocketELement.style. animationTimingFunction = "cubic-bezier(.5,0,.81,.8)";
+      rocketELement.style.animationTimingFunction = "cubic-bezier(.5,0,.81,.8)";
       rocketELement.style.animationDuration = "1.2s";
     }
     flyAway = true;
@@ -172,7 +172,7 @@ function calculateRects(positionX) {
     if (mouseIsOverEachCountry(positionX, positionY, widthRect, heightY)) {
       displayAxisTextEachCountry(middleX, positionY, heightY, countryIndex);
     }
-    rect(positionX, positionY, arrayOfWidths[countryIndex], heightY, radiusRect)
+    rect(positionX, positionY, arrayOfWidths[countryIndex], heightY, radiusRect);
     if (arrayOfWidths[countryIndex] > 3) {
       positionX += arrayOfWidths[countryIndex];
     }
@@ -312,8 +312,8 @@ function displayAxesTitle() {
   textSize(18);
   fill(255);
   textAlign(RIGHT, CENTER)
-  text(highestValueY, 50, topY - 3);
-  text("0", 50, xLine - 3);
+  text(highestValueY, 43, topY - 3);
+  text("0", 43, xLine - 3);
   pop();
 
   /* multiple lines to set the bounds */
@@ -583,7 +583,7 @@ function setYearsDisplayed(years) {
     /* force 1 year to be displayed */
     years = 1;
 
-  } 
+  }
   /* didi user restart function */
   else if (years === 1) {
     pause();

@@ -312,7 +312,7 @@ button#blank * {
   background: url("images/rocket_ship.png") no-repeat center center;
   background-size: contain;
   position: absolute;
-  transition: all 5s ease;
+  /* transition: all 5s ease; */
   animation: flying 1.3s ease-out 0s infinite normal;
   top: -300px;
   left: 50%;
@@ -338,7 +338,7 @@ button#blank * {
 
 @keyframes flyaway {
   0% {
-    top: 400px;
+    top: 405px;
   }
   100% {
     top: -300px;
