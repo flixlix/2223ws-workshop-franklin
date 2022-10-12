@@ -307,7 +307,6 @@ button#blank * {
   width: 2500px;
   z-index: 99;
   transition: all 2s ease-in;
-  /*  opacity: 20%; */
 }
 .rocket {
   background: url("images/rocket_ship.png") no-repeat center center;
@@ -315,7 +314,6 @@ button#blank * {
   position: absolute;
   transition: all 5s ease;
   animation: flying 1.3s ease-out 0s infinite normal;
-  /* animation: flyaway 2s cubic-bezier(.29,-0.04,.93,.29) 0s 1 normal; */
   top: -300px;
   left: 50%;
   transform: translate(-50%, 0%);
@@ -326,7 +324,6 @@ button#blank * {
   z-index: 100000;
 }
 
-/* Standard syntax */
 @keyframes flying {
   0% {
     top: 400px;
@@ -339,7 +336,6 @@ button#blank * {
   }
 }
 
-/* Standard syntax */
 @keyframes flyaway {
   0% {
     top: 400px;
