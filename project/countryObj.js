@@ -135,7 +135,7 @@ class Country {
         } else if (this.isAnySelected() && this._isSelected) {
             this.setColorAlpha("ff");
         } else {
-            this.setColorAlpha("aa");
+            this.setColorAlpha(80);
         }
     }
 

@@ -52,7 +52,8 @@ p {
 }
 
 .action-button {
-  fill: #474747;
+  fill: #353535;
+  opacity: 85%;
   width: 40px;
   justify-self: center;
   align-self: center;
@@ -61,7 +62,7 @@ p {
 }
 
 .action-button#play {
-  fill: #818181;
+  fill: #6d6d6d;
 }
 
 .action-button:hover,
@@ -110,13 +111,13 @@ div.legend ul {
   flex-wrap: wrap;
   align-items: flex-start;
   column-gap: 30px;
-  height: 120px;
+  height: 90px;
   width: 225px;
   margin: 0;
   padding: 0;
   position: absolute;
   top: 85px;
-  left: 75px;
+  left: 60px;
 }
 
 .legend-item {
@@ -209,9 +210,7 @@ button#blank * {
 }
 
 #auto-scale.active {
-  animation: rainbow 0.7s linear 1;
-  fill: rgb(183, 0, 255);
-  /* animation-iteration-count: infinite; */
+  fill: hsl(0, 0%, 75%);
 }
 
 .event-container {
@@ -253,46 +252,6 @@ button#blank * {
   aspect-ratio: 1/1;
   z-index: 3;
   border-radius: 3px;
-}
-
-@keyframes rainbow {
-  0%,
-  100% {
-    fill: rgb(255, 0, 0);
-  }
-  8% {
-    fill: rgb(255, 127, 0);
-  }
-  16% {
-    fill: rgb(255, 255, 0);
-  }
-  25% {
-    fill: rgb(127, 255, 0);
-  }
-  33% {
-    fill: rgb(0, 255, 0);
-  }
-  41% {
-    fill: rgb(0, 255, 127);
-  }
-  50% {
-    fill: rgb(0, 255, 255);
-  }
-  58% {
-    fill: rgb(0, 127, 255);
-  }
-  66% {
-    fill: rgb(0, 0, 255);
-  }
-  75% {
-    fill: rgb(127, 0, 255);
-  }
-  83% {
-    fill: rgb(255, 0, 255);
-  }
-  91% {
-    fill: rgb(255, 0, 127);
-  }
 }
 
 .stars {
