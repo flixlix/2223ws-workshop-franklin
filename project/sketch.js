@@ -162,7 +162,11 @@ function drawRects() {
 function calculateRects(positionX) {
   for (let countryIndex = 0; countryIndex < arrayOfCountries.length; countryIndex++) {
     push();
-    arrayOfCountries[countryIndex].setColorAlpha(40);
+    if(arrayOfCountries[countryIndex]._isSelected) {
+      arrayOfCountries[countryIndex].setColorAlpha("ff");
+    }else {
+      arrayOfCountries[countryIndex].setColorAlpha(40);
+    }
     fill(arrayOfCountries[countryIndex]._color)
     strokeWeight(3);
     stroke(backgroundColor);
