@@ -171,7 +171,7 @@ function calculateRects(positionX) {
     strokeWeight(3);
     stroke(backgroundColor);
     let positionY = 90;
-    let heightY = 100;
+    let heightY = 105;
     let widthRect = arrayOfWidths[countryIndex]
     let middleX = positionX + widthRect / 2;
     /* if (!arrayOfCountries[0].isAnySelected() && mouseIsOverEachCountry(positionX, positionY, widthRect, heightY) || arrayOfCountries[0].isAnySelected() && arrayOfCountries[0].whichIsSelected().includes(countryIndex)) { */
