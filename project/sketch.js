@@ -178,7 +178,7 @@ function calculateRects(positionX) {
     if (arrayOfWidths[countryIndex] > 3) {
       push();
       noFill();
-      strokeWeight(2);
+      strokeWeight(1);
       arrayOfCountries[countryIndex].setColorAlpha("ff");
       stroke(arrayOfCountries[countryIndex]._color);
       rect(positionX + 2, positionY + 2, arrayOfWidths[countryIndex] - 4, heightY - 4, radiusRect-2);
