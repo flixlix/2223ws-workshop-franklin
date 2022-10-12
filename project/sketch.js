@@ -161,7 +161,8 @@ function drawRects() {
 
 function calculateRects(positionX) {
   for (let countryIndex = 0; countryIndex < arrayOfCountries.length; countryIndex++) {
-    arrayOfCountries[countryIndex].setColorAlpha(60);
+    push();
+    arrayOfCountries[countryIndex].setColorAlpha(40);
     fill(arrayOfCountries[countryIndex]._color)
     strokeWeight(3);
     stroke(backgroundColor);
@@ -175,8 +176,16 @@ function calculateRects(positionX) {
     }
     rect(positionX, positionY, arrayOfWidths[countryIndex], heightY, radiusRect);
     if (arrayOfWidths[countryIndex] > 3) {
+      push();
+      noFill();
+      strokeWeight(2);
+      arrayOfCountries[countryIndex].setColorAlpha("ff");
+      stroke(arrayOfCountries[countryIndex]._color);
+      rect(positionX + 2, positionY + 2, arrayOfWidths[countryIndex] - 4, heightY - 4, radiusRect-2);
       positionX += arrayOfWidths[countryIndex];
+      pop();
     }
+    pop();
   }
 }
 
