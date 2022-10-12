@@ -268,39 +268,39 @@ button#blank * {
   transition: all 2s ease-in;
 }
 .rocket {
-  background: url("images/rocket_ship.png") no-repeat center center;
+  background: url("images/rocketship.svg") no-repeat center center;
   background-size: contain;
   position: absolute;
   /* transition: all 5s ease; */
-  animation: flying 1.3s ease-out 0s infinite normal;
-  top: -300px;
+  animation: flying 1.3s ease-in-out 0s infinite normal;
+  top: -500%;
   left: 50%;
-  transform: translate(-50%, 0%);
-  height: 200px;
+  transform: translate(-50%, -50%);
+  height: 400px;
   object-fit: fill;
-  width: 100px;
+  width: 120px;
   margin: 0;
   z-index: 100000;
 }
 
 @keyframes flying {
   0% {
-    top: 400px;
+    top: 50%;
   }
   50% {
-    top: 410px;
+    top: 55%;
   }
   100% {
-    top: 400px;
+    top: 50%;
   }
 }
 
 @keyframes flyaway {
   0% {
-    top: 405px;
+    top: 52.5%;
   }
   100% {
-    top: -300px;
+    top: -50%;
   }
 }
 
