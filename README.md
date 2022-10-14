@@ -2,15 +2,18 @@
 
 Final Project for the workshop "Grundlagen im medialen Raum"
 
+
+
 > [Project Folder](project/)
 
 Professor: [Franklin Hernandez-Castro](mailto:franklin.castro@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
 
 Students:
-  - [Carina Senger](mailto:carina.senger@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
-  - [Tim Niedermeier](mailto:tim.niedermeier@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
-  - [Anton Pelezki](mailto:anton.pelezki@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
-  - [Luca Ziegler Félix](mailto:luca.ziegler@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
+
+- [Carina Senger](mailto:carina.senger@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
+- [Tim Niedermeier](mailto:tim.niedermeier@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
+- [Anton Pelezki](mailto:anton.pelezki@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
+- [Luca Ziegler Félix](mailto:luca.ziegler@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
 
 <br/>
 HfG - Hochschule für Gestaltung
@@ -25,10 +28,11 @@ The data must come in form of either a .json or a .csv file.
 From that data a user of the paradigm ust be able to extract some information or learn something about the data displayed.
 
 The following parameters were given as a requirement:
- - cohernt design
- - low cognitive burden
- - interaction
- - information from the data (aha effect)
+
+- coherent design
+- low cognitive burden
+- interaction
+- information from the data (aha effect)
 
 ## Our solution
 
@@ -36,7 +40,7 @@ We chose the theme: Rocket launches throughout history.
 
 [Source of the data](https://thespacedevs.com/llapi)
 
-We downloaded a .csv file containing the number of flights per country per day since 1957 until 2023 (we only used the data until OCT'22, because the rest are mere predictions). 
+We downloaded a .csv file containing the number of flights per country per day since 1957 until 2023 (we only used the data until OCT'22, because the rest are mere predictions).
 
 From the same source, we also downloaded a .csv file containing all space flights, ordered by day of departure. From this file, we extracted 5 notable flights to also display this information.
 
@@ -62,13 +66,14 @@ By clicking on these markers, the user can find out more details about the launc
 <img src="project/images/auto-scale.svg" width= "100px"/>
 
 The first button allows the user to select wether or not the y axis is dynamic.
-This means, e.g.: 
-  - The user selects the country "Brazil"
-  - If the Auto Scale feature is enabled:
-    - The maximum value of the selected country will be displayed on the top of the graph
-  - If the Auto Scale feature is disabled:
-    - The maximum value of the selected country will be displayed on the same height as before selction
-    
+This means, e.g.:
+
+- The user selects the country "Brazil"
+- If the Auto Scale feature is enabled:
+  - The maximum value of the selected country will be displayed on the top of the graph
+- If the Auto Scale feature is disabled:
+  - The maximum value of the selected country will be displayed on the same height as before selction
+
 #### Skip to Previous / Next Year
 
 <img src="project/images/skip-previous.svg" width= "100px"/> <img src="project/images/skip-next.svg" width= "100px"/>
@@ -88,16 +93,13 @@ Using the skip to First / to Last buttons, the user can manually adjust the time
 Using the play / pause buttons, the user can toggle the animation, in which the years are exponentially incremented.
 
 The play / pause buttons behaviour is the same as can be viewed on any youtube video:
-  - The play button is displayed if the animation is off.
-  - The pause button is displayed if the animation is on.
 
-
-
+- The play button is displayed if the animation is off.
+- The pause button is displayed if the animation is on.
 
 ![Project Screenshot](project/images/screenshot.png)
 
 ## Keyboard shortcuts
-
 
 SPACEBAR: start/stop animation
 
