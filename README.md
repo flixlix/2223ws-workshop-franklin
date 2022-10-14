@@ -2,23 +2,33 @@
 
 Final Project for the workshop "Grundlagen im medialen Raum"
 
-
-{% include youtube.html id="P6CcmtxyJKw" %}
-
 > [Project Folder](project/)
 
-Professor: [Franklin Hernandez-Castro](mailto:franklin.castro@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
+<a href="https://youtu.be/P6CcmtxyJKw">
+  <img src="project/images/project_screenshot.png">
+</a>
+
+> Click image to see demo
+
+<br/>
+
+Professor: [Prof. Dr. Franklin Hernández-Castro](mailto:franklin.castro@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
 
 Students:
 
-- [Carina Senger](mailto:carina.senger@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
-- [Tim Niedermeier](mailto:tim.niedermeier@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
-- [Anton Pelezki](mailto:anton.pelezki@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
-- [Luca Ziegler Félix](mailto:luca.ziegler@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)
+- [Send E-Mail](mailto:carina.senger@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)/ [Github User](https://github.com/Zajka420): Carina Senger 
+- [Send E-Mail](mailto:tim.niedermeier@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)/ [Github User](https://github.com/timvonasen): Tim Niedermeier
+- [Send E-Mail](mailto:anton.pelezki@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)/ [Github User](https://github.com/Bikochii): Anton Pelezki
+- [Send E-Mail](mailto:luca.ziegler@hfg.design?subject=[GitHub]%20Project%20HfG%20Rocket%20launches%20throughout%20history)/ [Github User](https://github.com/flixlix): Luca Mário Ziegler Félix
 
 <br/>
 HfG - Hochschule für Gestaltung
-Schwäbisch Gmünd 2022
+
+[Website](https://www.hfg-gmuend.de/en/)
+
+Schwäbisch Gmünd, Germany
+
+WS 22/23
 
 <hr/>
 
@@ -97,8 +107,6 @@ The play / pause buttons behaviour is the same as can be viewed on any youtube v
 
 - The play button is displayed if the animation is off.
 - The pause button is displayed if the animation is on.
-
-![Project Screenshot](project/images/screenshot.png)
 
 ## Keyboard shortcuts
 
