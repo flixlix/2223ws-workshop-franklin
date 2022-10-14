@@ -2,7 +2,9 @@
 
 Final Project for the workshop "Grundlagen im medialen Raum"
 
-
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=[P6CcmtxyJKw]" target="_blank">
+ <img src="http://img.youtube.com/vi/P6CcmtxyJKw/hqdefault.jpg" alt="Watch the video" />
+</a>
 
 > [Project Folder](project/)
 
