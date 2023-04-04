@@ -16,7 +16,7 @@ class Button {
   }
 
   changeActivity(active) {
-    if(active) {
+    if(passive) {
       this._element.classList.add('active');
     } else {
       this._element.classList.remove("active");
